@@ -1,0 +1,88 @@
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#total
+{
+	width: 1000px;
+	margin: auto;
+}
+
+
+.fond {
+    background-image: url("C:/Users/User/Documents/Git/P7_reseaux/P7_reseaux/redim/International_photoredim.jpg");
+    background-repeat: no-repeat;
+}
+
+/* HEADER */
+.head {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    align-items: center;
+}
+
+.connect {
+    width: 10%;
+    justify-content: space-around;
+    display: flex;
+}
+
+
+/* MAIN */
+/*-------------Formulaire------------*/
+.styleform {
+    width: 18%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin: auto;
+    border: 1px gray solid;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 8%;
+    background-color: white;
+}
+
+.styleform h2 {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.mb {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.border_bot {
+    border: none;
+    border-bottom: 1px gray solid;
+}
+
+.btn {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    margin: auto;
+    background-color: lightblue;
+    border: 1px solid cornflowerblue;
+    border-radius: 4px;
+}
+
+.posbtn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.sign {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
