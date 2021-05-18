@@ -1,29 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Inscription from '../views/Inscription.vue'
+import Accueil from '../components/Accueil.vue'
+import Connection from '../components/Connection.vue'
+import Inscription from '../components/Inscription.vue'
+
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Inscription',
-    component: Inscription
-  },
-  {
-    path: '/connection',
-    name: 'Connection',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Connection.vue')
-  }
-]
+export default new VueRouter ({
 
-const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
 
-export default router
+  routes: [
+    {path: '/', component: Accueil},
+    {path: '/connection', component: Connection},
+    {path: '/inscription', component: Inscription}
+  ]
+})
