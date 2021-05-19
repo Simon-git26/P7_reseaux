@@ -62,7 +62,7 @@
                     mot_de_passe_confirmation: this.mot_de_passe_confirmation,
                 };
 
-                axios.post('inscription', data)
+                axios.post('http://localhost:8080/inscription', data)
                     .then(
                         res => {
                             console.log(res)
