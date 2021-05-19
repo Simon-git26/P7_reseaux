@@ -40,7 +40,7 @@ export default {
   }
 
   body {
-    background: #1C8EF9 !important;
+    background: #7486b5 !important;
     min-height: 100vh;
     display: flex;
     font-weight: 400;
