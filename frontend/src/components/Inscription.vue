@@ -35,6 +35,7 @@
 
 
 <script>
+    import axios from 'axios'
 
     export default {
         name: 'Inscription',
@@ -61,7 +62,16 @@
                     mot_de_passe_confirmation: this.mot_de_passe_confirmation,
                 };
 
-                console.log(data);
+                axios.post('inscription', data)
+                    .then(
+                        res => {
+                            console.log(res)
+                        }
+                    ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )
             }
         }
     }
