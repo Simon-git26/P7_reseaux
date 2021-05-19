@@ -1,5 +1,5 @@
 <template>
-    <form @submit="handleSubmit">
+    <form @submit.prevent="handleSubmit">
         <h3>Inscription</h3>
 
         <div class="form-group">
@@ -51,9 +51,8 @@
         },
 
         methods: {
-            handleSubmit(e) {
-                e.preventDefault()
-
+            handleSubmit() {
+            
                 const data = {
                     nom: this.nom,
                     prenom: this.prenom,
@@ -62,18 +61,15 @@
                     mot_de_passe_confirmation: this.mot_de_passe_confirmation,
                 };
 
-                axios.post('http://localhost:8080/inscription', data)
-                    .then(
-                        res => {
-                            console.log(res)
+                axios.post('http://localhost:3000/inscription', data)
+                    .then(res => {
+                        console.log(res)
                         }
-                    ).catch(
-                    err => {
+                    ).catch(err => {
                         console.log(err)
                     }
                 )
             }
         }
     }
-
 </script>
