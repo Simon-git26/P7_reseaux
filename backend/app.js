@@ -12,10 +12,11 @@ require('dotenv').config();
 //Importer Mysql
 const mysql = require('mysql2');
 
-//Importer le router
-const routerRoutes = require('./routes/router');
-
+//Importer Sequelize
 const { Sequelize } = require('sequelize');
+
+//Importer le model User
+const User = require('./models/User');
 
 
 
@@ -47,8 +48,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-app.use('http://localhost:8080', routerRoutes);
 
 //Exporter cette application
 module.exports = app;
