@@ -1,36 +1,49 @@
-//Importer Mysql
-const mysql = require('mysql2');
+module.exports = (sequelize, Sequelize) => {
+  const User = sequelize.define(
+    "User",
+    {
+      ID: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
 
+      nom: {
+        type: Sequelize.STRING(24),
+        allowNull: false,
+        defaultValue: "",
+      },
 
-//Importer Sequelize, Définir mon model (le relier a la table users de bdd=projet7)
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('sqlite::memory:');
+      prenom: {
+        type: Sequelize.STRING(24),
+        allowNull: false,
+        defaultValue: "",
+      },
 
-const User = sequelize.define('User', {
-    nom: {
-        type: DataTypes.STRING,
-        allowNull: false
+      email: {
+        type: Sequelize.STRING(64),
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      mot_de_passe: {
+        type: Sequelize.STRING(24),
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      mot_de_passe_confirmation: {
+        type: Sequelize.STRING(24),
+        allowNull: false,
+        defaultValue: "",
+      },
     },
+    {
+      //Indiquez le nom de la table dans mysql
+      tableName: "users",
+    }
+  );
 
-    prenom: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    mot_de_passe: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-
-    mot_de_passe_confirmation: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-});
-
-console.log(User === sequelize.models.User);
+  return User;
+};
