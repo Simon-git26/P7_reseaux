@@ -8,4 +8,3 @@ Instalation de express avec npm install express --save
 Installation de mysql : npm install mysql
 Installation de dotenv: npm install dotenv
 Installation de sequelize: npm install sequelize
-Installarion de sqlite3: npm i sqlite3

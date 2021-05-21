@@ -35,7 +35,8 @@
 
 
 <script>
-    import axios from 'axios'
+    import axios from '../api'
+
 
     export default {
         name: 'Inscription',
@@ -58,10 +59,9 @@
                     prenom: this.prenom,
                     email: this.email,
                     mot_de_passe: this.mot_de_passe,
-                    mot_de_passe_confirmation: this.mot_de_passe_confirmation,
                 };
 
-                axios.post('http://localhost:3000/inscription', data)
+                axios.post('/inscription', data)
                     .then(res => {
                         console.log(res)
                         }
@@ -71,5 +71,7 @@
                 )
             }
         }
+
+        //computed: {}
     }
 </script>

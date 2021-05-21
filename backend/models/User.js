@@ -32,12 +32,6 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         defaultValue: "",
       },
-
-      mot_de_passe_confirmation: {
-        type: Sequelize.STRING(24),
-        allowNull: false,
-        defaultValue: "",
-      },
     },
     {
       //Indiquez le nom de la table dans mysql
