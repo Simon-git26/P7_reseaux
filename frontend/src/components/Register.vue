@@ -1,44 +1,39 @@
 <template>
     <div>
 
-        <p v-if="error.length && showErrors">
-            <b>Please complete all required fields</b>
-            <ul>
-                <li v-for="e in error" v-bind:key="e.id">
-                    {{ e }}
-                </li>
-            </ul>
+        <p v-if="password !== passwordConfirm && password && passwordConfirm">
+            <b>Veuillez renseignez le bon mot de passe</b>
         </p>
 
         <form @submit.prevent="handleSubmit, checkForm">
             <h3>Inscription</h3>
 
             <div class="form-group">
-                <label>Votre Nom</label>
-                <input type="text" class="form-control" v-model="firstName" placeholder="Votre nom" />
+                <label>Votre Nom *</label>
+                <input type="text" class="form-control" v-model="firstName" placeholder="Votre nom" required />
             </div>
 
             <div class="form-group">
-                <label>Votre Prenom</label>
-                <input type="text" class="form-control" v-model="lastName" placeholder="Votre Prenom" />
+                <label>Votre Prenom *</label>
+                <input type="text" class="form-control" v-model="lastName" placeholder="Votre Prenom" required />
             </div>
 
             <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" v-model="email" placeholder="Email" />
+                <label>Email *</label>
+                <input type="email" class="form-control" v-model="email" placeholder="Email" required />
             </div>
 
             <div class="form-group">
-                <label>Mot de Passe</label>
-                <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" />
+                <label>Mot de Passe *</label>
+                <input type="password" class="form-control" v-model="password" placeholder="Mot de passe"  required />
             </div>
 
             <div class="form-group">
-                <label>Confirmez le Mot de Passe</label>
-                <input type="password" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" />
+                <label>Confirmez le Mot de Passe *</label>
+                <input type="password" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" required />
             </div>
 
-            <button class="btn btn-primary btn-block">Inscription !</button>
+            <button class="btn btn-primary btn-block" :disabled="btndisable">Inscription !</button>
 
             <p>Vous avez déja un compte ?<a href="Login">Connectez vous !</a></p>
         </form>
@@ -51,15 +46,12 @@
 <script>
     import axios from '../api'
 
-
     export default {
         name: 'Register',
-
         data() {
-
             return {
-                showErrors: false,
-                error: [],
+                showErrors: [],
+                error: ["error"],
                 firstName: "",
                 lastName: "",
                 email: "",
@@ -67,7 +59,6 @@
                 passwordConfirm: ""
             } 
         },
-
         methods: {
             handleSubmit() {
             
@@ -77,7 +68,6 @@
                     email: this.email,
                     password: this.password,
                 };
-
                 axios.post('/register', data)
                     .then(res => {
                         console.log(res)
@@ -86,13 +76,9 @@
                         console.log(err)
                     }
                 )
-            }
-        },
+            },
 
-        computed: {
-            //Ma fonction de Validation Formulaire
             checkForm(e) {
-
                 if (this.firstName && this.lastName && this.email && this.password && this.passwordConfirm) {
                     console.log('checkForm fonction est appelé')
                 }
@@ -100,24 +86,56 @@
                 if (!this.firstName) {
                     this.error.push('FirstName is required')
                 }
-
                 if (!this.lastName) {
                     this.error.push('LastName is required')
                 }
-
                 if (!this.email) {
                     this.error.push('Email is required')
                 }
-
                 if (!this.password) {
                     this.error.push('Password is required')
                 }
-
                 if (!this.passwordConfirm) {
                     this.error.push('PasswordConfirm is required')
                 }
-                console.warn('errors', this.error)
+                if (this.password !== this.passwordConfirm) {
+                    this.error.push('Le mot de passe de confirmation est différent du mot de passe')
+                }
             }
+        },
+
+        computed: {
+            //Ma fonction de Validation Formulaire
+            btndisable: function() {
+                return this.error.length !== 0
+            }
+        },
+
+        watch: {
+            firstName(value) {
+                this.firstName = value;
+                this.checkForm();
+            },
+
+            lastName(value) {
+                this.lastName = value;
+                this.checkForm();
+            },
+
+            email(value) {
+                this.femail = value;
+                this.checkForm();
+            },
+
+            password(value) {
+                this.password = value;
+                this.checkForm();
+            },
+
+            passwordConfirm(value) {
+                this.passwordConfirm = value;
+                this.checkForm();
+            },
         }
     }
 </script>
@@ -126,5 +144,10 @@
 <style scoped>
 button {
     margin-bottom: 20px;
+}
+
+b {
+    display: flex;
+    justify-content: center;
 }
 </style>
