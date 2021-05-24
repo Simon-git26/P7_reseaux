@@ -20,4 +20,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-Instalation de axios: npm i axios --save (dans le fichier racine)
+
+Documentation:
+Vue.js → doc: https://vuejs.org/v2/guide/
+
+Axios → doc: https://fr.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html

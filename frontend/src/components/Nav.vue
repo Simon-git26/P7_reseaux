@@ -2,14 +2,14 @@
 
     <nav class="navbar navbar-expand navbar-light fixed-top">
       <div class="container">
-        <a href="#" class="navbar-brand">Accueil</a>
+        <a href="Home" class="navbar-brand">Accueil</a>
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link">Connection</a>
+              <a href="Login" class="nav-link">Connection</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">Inscription</a>
+              <a href="Register" class="nav-link">Inscription</a>
             </li>
           </ul>
         </div>

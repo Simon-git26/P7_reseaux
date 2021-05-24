@@ -2,6 +2,10 @@
     <div>
         <h3>Bienvenu sur Groupomania !</h3>
         <p>Veuillez vous inscrire ou vous connecter</p>
+        <div class="log">
+            <a href="Login">Connection</a>
+            <a href="Register">Inscription</a>
+        </div>
     </div>
 </template>
 
@@ -28,4 +32,12 @@
         line-height: 1;
         padding-bottom: 20px;
     }
+</style>
+
+
+<style scoped>
+.log {
+    display: flex;
+    justify-content: space-around;
+}
 </style>

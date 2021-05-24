@@ -12,7 +12,7 @@ export default new VueRouter ({
   mode: 'history',
 
   routes: [
-    {path: '/', component: Home},
+    {path: '/Home', component: Home},
     {path: '/login', component: Login},
     {path: '/register', component: Register}
   ]

@@ -14,6 +14,7 @@
 
         <button class="btn btn-primary btn-block">Connection</button>
 
+        <p>Vous n'avez pas de compte ?<a href="Register">Inscrivez vous !</a></p>
     </form>
 </template>
 
@@ -24,3 +25,10 @@
         name: 'Login'
     }
 </script>
+
+
+<style scoped>
+button {
+    margin-bottom: 20px;
+}
+</style>
