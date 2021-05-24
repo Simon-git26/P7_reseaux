@@ -10,6 +10,8 @@ const app = express();
 require('dotenv').config();
 
 
+const User = require('./models/User');
+
 //Importer le fichier models et ajouter les modifs sur la table users
 const db = require("./models");
 db.sequelize.sync({ alter: true });
@@ -38,7 +40,7 @@ app.use((req, res, next) => {
 
 
 
-app.post('/inscription', (req, res, next) => {
+app.post('/register', (req, res, next) => {
     User.create({
         ...req.body
     })

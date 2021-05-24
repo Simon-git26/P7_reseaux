@@ -4,12 +4,12 @@
 
         <div class="form-group">
             <label>Votre Nom</label>
-            <input type="text" class="form-control" v-model="nom" placeholder="Votre nom" />
+            <input type="text" class="form-control" v-model="firstName" placeholder="Votre nom" />
         </div>
 
         <div class="form-group">
             <label>Votre Prenom</label>
-            <input type="text" class="form-control" v-model="prenom" placeholder="Votre Prenom" />
+            <input type="text" class="form-control" v-model="lastName" placeholder="Votre Prenom" />
         </div>
 
         <div class="form-group">
@@ -19,12 +19,12 @@
 
         <div class="form-group">
             <label>Mot de Passe</label>
-            <input type="password" class="form-control" v-model="mot_de_passe" placeholder="Mot de passe" />
+            <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" />
         </div>
 
         <div class="form-group">
             <label>Confirmez le Mot de Passe</label>
-            <input type="password" class="form-control" v-model="mot_de_passe_confirmation" placeholder="Confirmez le Mot de passe" />
+            <input type="password" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" />
         </div>
 
         <button class="btn btn-primary btn-block">Inscription !</button>
@@ -39,15 +39,15 @@
 
 
     export default {
-        name: 'Inscription',
+        name: 'Register',
 
         data() {
             return {
-                nom: "",
-                prenom: "",
+                firstName: "",
+                lastName: "",
                 email: "",
-                mot_de_passe: "",
-                mot_de_passe_confirmation: ""
+                password: "",
+                passwordConfirm: ""
             }
         },
 
@@ -55,13 +55,13 @@
             handleSubmit() {
             
                 const data = {
-                    nom: this.nom,
-                    prenom: this.prenom,
+                    firstName: this.firstName,
+                    lastName: this.lastName,
                     email: this.email,
-                    mot_de_passe: this.mot_de_passe,
+                    password: this.password,
                 };
 
-                axios.post('/inscription', data)
+                axios.post('/register', data)
                     .then(res => {
                         console.log(res)
                         }

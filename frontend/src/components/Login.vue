@@ -21,6 +21,6 @@
 
 <script>
     export default {
-        name: 'Connection'
+        name: 'Login'
     }
 </script>

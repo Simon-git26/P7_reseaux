@@ -2,20 +2,20 @@ module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define(
     "User",
     {
-      ID: {
+      id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
 
-      nom: {
+      firstName: {
         type: Sequelize.STRING(24),
         allowNull: false,
         defaultValue: "",
       },
 
-      prenom: {
+      lastName: {
         type: Sequelize.STRING(24),
         allowNull: false,
         defaultValue: "",
@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: "",
       },
 
-      mot_de_passe: {
+      password: {
         type: Sequelize.STRING(24),
         allowNull: false,
         defaultValue: "",
