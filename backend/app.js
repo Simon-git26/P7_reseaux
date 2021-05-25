@@ -10,7 +10,9 @@ const app = express();
 require('dotenv').config();
 
 
-const User = require('./models/User');
+//Importer le router
+const userRoutes = require('./routes/routeuser');
+
 
 //Importer le fichier models et ajouter les modifs sur la table users
 const db = require("./models");
@@ -29,7 +31,6 @@ const verification = async function () {
 verification();
 
 
-
 //Middleware CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -40,16 +41,7 @@ app.use((req, res, next) => {
 
 
 
-app.post('/register', (req, res, next) => {
-    User.create({
-        ...req.body
-    })
-    .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
-    .catch(error => res.status(400).json({ error }));
-});
-
-
-
+app.use('http://localhost:3000', userRoutes);
 
 //Exporter cette application
 module.exports = app;

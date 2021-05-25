@@ -8,6 +8,8 @@ Instalation de express avec npm install express --save
 Installation de mysql : npm install mysql
 Installation de dotenv: npm install dotenv
 Installation de sequelize: npm install sequelize
+Installation de bcrypt: npm install --save bcrypt
+Installation de jsonwebtoken: npm install --save jsonwebtoken
 
 
 Documentation:
