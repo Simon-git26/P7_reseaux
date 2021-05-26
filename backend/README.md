@@ -12,6 +12,9 @@ Installation de bcrypt: npm install --save bcrypt
 Installation de jsonwebtoken: npm install --save jsonwebtoken
 Installation de npm cors: npm install cors
 Installation de morgan : npm install morgan
+-Instalation de password Validator : npm install password-validator 
+-Installation de helmet: npm install helmet
+
 
 
 Documentation:

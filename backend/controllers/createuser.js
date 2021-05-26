@@ -3,9 +3,16 @@ const jwt = require('jsonwebtoken');
 
 const db = require("../models");
 
+//MOT DE PASSE FORT 
+var passwordValidator = require('./password-validator');
+
 //Enregistré dans la base de donné les nouveaux Users
 exports.signup = (req, res, next) => {
-    console.log(req.body);
+    //password validator
+   var isValid = passwordValidator.validate(req.body.password);
+   if (!isValid) {
+       res.status(400).json({ error : "mot de passe non valide pour le package password validator" });
+   }
     //Haché le mot de passe
     bcrypt.hash(req.body.password, 10)
     .then(hash => {

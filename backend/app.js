@@ -3,8 +3,14 @@
 //Importer Express
 const express = require('express');
 
+//Importer helmet
+const helmet = require('helmet');
+
 //Méthode qui permet de crée une appli express
 const app = express();
+
+//Helmet installer
+app.use(helmet());
 
 //Importer dotenv
 require('dotenv').config();
