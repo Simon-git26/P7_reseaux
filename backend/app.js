@@ -22,6 +22,16 @@ const morgan = require('morgan');
 //Importer le router
 const userRoutes = require('./routes/routeuser');
 
+//Rate Limit
+const rateLimit = require('express-rate-limit');
+
+const  apiLimiter  =  rateLimit ( { 
+  windowMs : 15 * 60 * 1000 ,  // 15 minutes 
+  max : 3 // nb dessaie 3
+});
+
+app.use("/login", apiLimiter);
+
 
 //Importer le fichier models et ajouter les modifs sur la table users
 const db = require("./models");

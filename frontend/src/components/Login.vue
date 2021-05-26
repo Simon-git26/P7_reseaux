@@ -1,7 +1,8 @@
 <template>
     <div>
         <p v-if="password && email ">
-            <b>Le mot de passe ne correspond pas à l'email renseigné</b>
+            <b>Le mot de passe ne correspond pas à l'email.</b><br>
+            <b>Vous disposez de {{ count }} essaie</b>
         </p>
 
         <form @submit.prevent="handlelogsubmit">
@@ -17,7 +18,7 @@
                 <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
             </div>
 
-            <button class="btn btn-primary btn-block" :disabled="btnlogdisable">Connection</button>
+            <button class="btn btn-primary btn-block" v-on:click="countLimit" :disabled="btnlogdisable">Connection</button>
 
             <p>Vous n'avez pas de compte ?<a href="Register">Inscrivez vous !</a></p>
         </form>
@@ -40,8 +41,10 @@
                 showErrors: [],
                 error: ["error"],
                 email: "",
-                password: ""
-            } 
+                password: "",
+
+                count: 3
+            }
         },
 
         methods: {
@@ -79,6 +82,10 @@
                 if (!this.password) {
                     this.error.push('password is required')
                 }
+            },
+
+            countLimit() {
+                this.count--;
             }
         },
 
