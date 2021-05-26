@@ -69,11 +69,11 @@
                     password: this.password,
                 };
                 
-                axios.post('/register', {
+                axios.post('/register', data, {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: data
+                    
                 })
                     .then(res => {
                         console.log(res);

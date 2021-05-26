@@ -29,7 +29,7 @@ module.exports = (sequelize, Sequelize) => {
       },
 
       password: {
-        type: Sequelize.STRING(24),
+        type: Sequelize.STRING(124),
         allowNull: false,
         defaultValue: "",
       },

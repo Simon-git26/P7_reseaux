@@ -1,25 +1,24 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+
+const db = require("../models");
 
 //Enregistré dans la base de donné les nouveaux Users
 exports.signup = (req, res, next) => {
-    console.log("signup");
+    console.log(req.body);
     //Haché le mot de passe
     bcrypt.hash(req.body.password, 12)
     .then(hash => {
-        const user = new User({
+        db.user.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
             password: hash
-        });
-        user.save()
+        })
         .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ error: error.message}));
     })
-    .catch(error => res.status(500).json({ error }));
-    next();
+    .catch(error => res.status(500).json({ error: error.message }));
 };
 
 
