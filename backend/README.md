@@ -10,6 +10,8 @@ Installation de dotenv: npm install dotenv
 Installation de sequelize: npm install sequelize
 Installation de bcrypt: npm install --save bcrypt
 Installation de jsonwebtoken: npm install --save jsonwebtoken
+Installation de npm cors: npm install cors
+Installation de morgan : npm install morgan
 
 
 Documentation:

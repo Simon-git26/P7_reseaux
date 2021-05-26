@@ -5,7 +5,7 @@
             <b>Veuillez renseignez le bon mot de passe</b>
         </p>
 
-        <form @submit.prevent="handleSubmit, checkForm">
+        <form @submit.prevent="handleSubmit">
             <h3>Inscription</h3>
 
             <div class="form-group">
@@ -61,19 +61,25 @@
         },
         methods: {
             handleSubmit() {
-            
+                console.log('data');
                 const data = {
                     firstName: this.firstName,
                     lastName: this.lastName,
                     email: this.email,
                     password: this.password,
                 };
-                axios.post('/register', data)
+                
+                axios.post('/register', {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: data
+                })
                     .then(res => {
-                        console.log(res)
+                        console.log(res);
                         }
                     ).catch(err => {
-                        console.log(err)
+                        console.log(err);
                     }
                 )
             },

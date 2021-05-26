@@ -4,6 +4,7 @@ const User = require('../models/User');
 
 //Enregistré dans la base de donné les nouveaux Users
 exports.signup = (req, res, next) => {
+    console.log("signup");
     //Haché le mot de passe
     bcrypt.hash(req.body.password, 12)
     .then(hash => {
