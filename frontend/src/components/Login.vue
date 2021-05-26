@@ -4,7 +4,7 @@
             <b>Le mot de passe ne correspond pas à l'email renseigné</b>
         </p>
 
-        <form @submit.prevent="handlelogsubmit, checkFormLog">
+        <form @submit.prevent="handlelogsubmit">
             <h3>Connection</h3>
 
             <div class="form-group">
@@ -51,12 +51,17 @@
                     password: this.password,
                 };
 
-                axios.post('/login', data)
+                axios.post('/login', data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    
+                })
                     .then(res => {
-                        console.log(res)
+                        console.log(res);
                         }
                     ).catch(err => {
-                        console.log(err)
+                        console.log(err);
                     }
                 )
             },

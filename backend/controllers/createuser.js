@@ -7,7 +7,7 @@ const db = require("../models");
 exports.signup = (req, res, next) => {
     console.log(req.body);
     //Haché le mot de passe
-    bcrypt.hash(req.body.password, 12)
+    bcrypt.hash(req.body.password, 10)
     .then(hash => {
         db.user.create({
             firstName: req.body.firstName,
@@ -16,7 +16,7 @@ exports.signup = (req, res, next) => {
             password: hash
         })
         .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-        .catch(error => res.status(400).json({ error: error.message}));
+        .catch(error => res.status(400).json({ error: error.message }));
     })
     .catch(error => res.status(500).json({ error: error.message }));
 };
@@ -28,14 +28,22 @@ exports.signup = (req, res, next) => {
 // si bon alor on renvoi un TOKEN et un userID
 
 exports.login = (req, res) => {
-    User.findOne({ email: req.body.email })
+    console.log(req.body.email);
+    db.user.findOne({
+        where: {
+            email: req.body.email
+        }
+    })
     .then(user => {
+        
         if (!user) {
             return res.status(401).json({ error: 'Utilisateur non trouvé !' });
         }
         //Si on arrive ici c'est que on a bien trouvé un user donc on utilise bcrypt pour comparer les mdp
+        
         bcrypt.compare(req.body.password, user.password)
         .then(valid => {
+            console.log('valid', valid);
             if (!valid) {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
             }
