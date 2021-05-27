@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { connect } = require('../app');
 
 const db = require("../models");
 
@@ -55,9 +56,9 @@ exports.login = (req, res) => {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
             }
             res.status(200).json({
-                userId: user._id,
+                userId: user.id,
                 token: jwt.sign(
-                    { userId: user._id },
+                    { userId: user.id },
                     process.env.TOKEN_SECRET,
                     { expiresIn: '24h' }
                 )

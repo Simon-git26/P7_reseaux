@@ -86,6 +86,8 @@
                         console.log(err);
                     }
                 )
+
+                this.$router.push('/login');
             },
 
             checkForm(e) {

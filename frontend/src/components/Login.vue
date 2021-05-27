@@ -61,12 +61,15 @@
                     
                 })
                     .then(res => {
+                        localStorage.setItem('token', res.data.token);
                         console.log(res);
                         }
                     ).catch(err => {
                         console.log(err);
                     }
                 )
+
+                /* this.$router.push('/Groupomania'); */
             },
 
             checkFormLog() {
@@ -98,6 +101,7 @@
         },
 
 
+
         watch: {
             email(value) {
                 this.email = value;
@@ -107,7 +111,7 @@
             password(value) {
                 this.password = value;
                 this.checkFormLog();
-            }
+            },
         }
     }
 </script>

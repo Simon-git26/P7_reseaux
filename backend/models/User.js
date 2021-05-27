@@ -10,13 +10,13 @@ module.exports = (sequelize, Sequelize) => {
       },
 
       firstName: {
-        type: Sequelize.STRING(24),
+        type: Sequelize.STRING(30),
         allowNull: false,
         defaultValue: "",
       },
 
       lastName: {
-        type: Sequelize.STRING(24),
+        type: Sequelize.STRING(30),
         allowNull: false,
         defaultValue: "",
       },
