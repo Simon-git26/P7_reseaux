@@ -22,7 +22,7 @@ module.exports = (sequelize, Sequelize) => {
       },
 
       email: {
-        type: Sequelize.STRING(64),
+        type: Sequelize.STRING(124),
         allowNull: false,
         defaultValue: "",
         unique: true

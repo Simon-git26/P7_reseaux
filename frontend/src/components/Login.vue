@@ -69,7 +69,7 @@
                     }
                 )
 
-                /* this.$router.push('/Groupomania'); */
+                this.$router.push('/');
             },
 
             checkFormLog() {

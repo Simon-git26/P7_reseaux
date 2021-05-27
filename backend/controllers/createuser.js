@@ -35,7 +35,7 @@ exports.signup = (req, res, next) => {
 //on compare le mdp entré avec le hash qui est garder dans la BDD / si pas bon on renvoi une erreur /
 // si bon alor on renvoi un TOKEN et un userID
 
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
     console.log(req.body.email);
     db.user.findOne({
         where: {
@@ -56,7 +56,12 @@ exports.login = (req, res) => {
                 return res.status(401).json({ error: 'Mot de passe incorrect !' });
             }
             res.status(200).json({
-                userId: user.id,
+                user: {
+                    userId: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email
+                },
                 token: jwt.sign(
                     { userId: user.id },
                     process.env.TOKEN_SECRET,
@@ -67,4 +72,20 @@ exports.login = (req, res) => {
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
+};
+
+
+
+
+exports.findUser = (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const userId = decodedToken.userId;
+    db.user.findOne({
+        where: {
+            id: userId
+        }
+    })
+    .then((user) => res.status(200).json(user))
+    .catch(error => res.status(404).json({ error }));
 };
