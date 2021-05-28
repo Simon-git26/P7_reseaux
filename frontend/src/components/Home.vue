@@ -1,7 +1,8 @@
 <template>
     <div>
-        <div class="popup">
-            <p v-if="user">Bienvenu {{ user.firstName }} {{ user.lastName }}</p>
+        <div class="popup" v-if="isDisplay">
+            <p v-if="user">Bienvenue {{ user.firstName }} {{ user.lastName }}</p>
+            <button v-on:click="show" type="button" class="btn btn-style"><i class="far fa-times-circle"></i></button>
         </div>
     </div>
 </template>
@@ -16,7 +17,9 @@
 
         data() {
             return {
-                user: null
+                user: null,
+
+                isDisplay: true
             }
         },
         
@@ -30,6 +33,12 @@
             const res = await axios.get('user');
 
             this.user = res.data;
+        },
+
+        methods : {
+            show: function () {
+                this.isDisplay = false;
+            },
         }
     }
 
@@ -55,13 +64,29 @@
     }
 
     .popup {
-        background-color: lightblue;
+        background-color: #c2d8ff;
         display: flex;
-        justify-content: center;
-        border: 1px blue solid;
+        justify-content: space-around;
+        border: 1px #6f84a8 solid;
+        align-items: center;
+        border-radius: 5px;
     }
 
     .popup p {
         margin-top: 20px;
+    }
+
+    .btn-style {
+        border: 1px solid black;
+        height: 42px;
+        width: 45px;
+    }
+
+    .fa-times-circle {
+        color: black;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
     }
 </style>
