@@ -80,14 +80,13 @@
                     
                 })
                     .then(res => {
+                        this.$router.push('/login');
                         console.log(res);
                         }
                     ).catch(err => {
                         console.log(err);
                     }
                 )
-
-                this.$router.push('/login');
             },
 
             checkForm(e) {

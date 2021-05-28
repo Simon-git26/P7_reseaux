@@ -31,7 +31,7 @@
 
 
 <script>
-    import axios from '../api'
+    import axios, { refreshHeaders } from '../api'
 
     export default {
         name: 'Login',
@@ -62,14 +62,14 @@
                 })
                     .then(res => {
                         localStorage.setItem('token', res.data.token);
+                        refreshHeaders();
+                        this.$router.push('/');
                         console.log(res);
                         }
                     ).catch(err => {
                         console.log(err);
                     }
                 )
-
-                this.$router.push('/');
             },
 
             checkFormLog() {

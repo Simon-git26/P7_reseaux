@@ -1,10 +1,7 @@
 <template>
     <div>
-        <h3 v-if="user">Bienvenu sur Groupomania {{ user.firstName }} {{ user.lastName }}</h3>
-        <p v-if="!user">Veuillez vous inscrire ou vous connecter</p>
-        <div class="log">
-            <a href="Login">Connection</a>
-            <a href="Register">Inscription</a>
+        <div class="popup">
+            <h3 v-if="user">Bienvenu {{ user.firstName }} {{ user.lastName }}</h3>
         </div>
     </div>
 </template>
@@ -24,6 +21,12 @@
         },
         
         async created() {
+            const connected = localStorage.getItem('token');
+            if (!connected) {
+                this.$router.push('/login');
+            }
+
+            console.log(localStorage.getItem('token'));
             const res = await axios.get('user');
 
             this.user = res.data;
@@ -45,12 +48,15 @@
         line-height: 1;
         padding-bottom: 20px;
     }
-</style>
 
-
-<style scoped>
-.log {
+    .log {
     display: flex;
     justify-content: space-around;
-}
+    }
+
+    .popup {
+        background-color: lightblue;
+        display: flex;
+        justify-content: center;
+    }
 </style>
