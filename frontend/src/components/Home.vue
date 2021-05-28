@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="popup">
-            <h3 v-if="user">Bienvenu {{ user.firstName }} {{ user.lastName }}</h3>
+            <p v-if="user">Bienvenu {{ user.firstName }} {{ user.lastName }}</p>
         </div>
     </div>
 </template>
@@ -58,5 +58,10 @@
         background-color: lightblue;
         display: flex;
         justify-content: center;
+        border: 1px blue solid;
+    }
+
+    .popup p {
+        margin-top: 20px;
     }
 </style>
