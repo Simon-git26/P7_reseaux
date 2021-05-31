@@ -1,5 +1,4 @@
 <template>
-
     <nav class="navbar navbar-expand navbar-light fixed-top">
       <div class="container">
         <a href="/" class="navbar-brand">Accueil</a>
@@ -10,7 +9,8 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="Login" class="nav-link color">Connexion</a>
+              <a v-if="isConnected" href="Login" class="nav-link color">Deconnection</a>
+              <a v-else href="Login" class="nav-link color">Connexion</a>
             </li>
             <li class="nav-item">
               <a href="Register" class="nav-link color">Inscription</a>
@@ -23,10 +23,25 @@
 
 
 
-
 <script>
+  import store from '../store';
+
   export default {
     name: 'Nav',
+
+    data() {
+      return {
+        sharedState: store.state
+      }
+    },
+
+
+    computed: {
+      isConnected: function() {
+        return this.sharedState.isConnected;
+      }
+    }
+
   }
 </script>
 

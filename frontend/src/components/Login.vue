@@ -45,6 +45,7 @@
 
 <script>
 import axios, { refreshHeaders } from "../api";
+import store from '../store';
 
 export default {
   name: "Login",
@@ -75,6 +76,7 @@ export default {
         })
         .then((res) => {
           localStorage.setItem("token", res.data.token);
+          store.setIsConnected(true);
           refreshHeaders();
           this.$router.push("/");
           console.log(res);
