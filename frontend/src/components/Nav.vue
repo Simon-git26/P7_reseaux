@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a v-if="isConnected" href="Login" class="nav-link color">Deconnection</a>
+              <a v-if="isConnected" v-on:click="deconnection" href="Login" class="nav-link color">Deconnection</a>
               <a v-else href="Login" class="nav-link color">Connexion</a>
             </li>
             <li class="nav-item">
@@ -32,6 +32,12 @@
     data() {
       return {
         sharedState: store.state
+      }
+    },
+
+    methods: {
+      deconnection: function() {
+        localStorage.removeItem("token");
       }
     },
 
