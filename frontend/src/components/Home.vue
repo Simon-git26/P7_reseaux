@@ -77,7 +77,6 @@
     }
 
     .btn-style {
-        border: 1px solid black;
         height: 42px;
         width: 45px;
     }

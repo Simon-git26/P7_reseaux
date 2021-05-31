@@ -86,6 +86,9 @@ exports.findUser = (req, res) => {
             id: userId
         }
     })
-    .then((user) => res.status(200).json(user))
+    .then((user) => {
+        user.password = undefined;
+        res.status(200).json(user);
+    })
     .catch(error => res.status(404).json({ error }));
 };

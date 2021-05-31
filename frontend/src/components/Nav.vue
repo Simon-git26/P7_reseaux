@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="Login" class="nav-link color">Connection</a>
+              <a href="Login" class="nav-link color">Connexion</a>
             </li>
             <li class="nav-item">
               <a href="Register" class="nav-link color">Inscription</a>
