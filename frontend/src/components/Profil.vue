@@ -7,9 +7,11 @@
         <div class="font flexbox">
             <div>
                 <h5>Photo de Profil</h5>
-                <div class="border">
+                <div class="border border-secondary">
                     <i class="fas fa-user-circle"></i>
-                    <p>Changer ma photo de profil</p>
+                    <div class="border-top border-secondary">
+                        <p class="mb-0 pb-2 pt-2 pl-1 pr-1 background">Changer ma photo de profil</p>
+                    </div>
                 </div>
             </div>
 
@@ -17,12 +19,37 @@
                 <h5>Email</h5>
                 <p>{{ user.email }}</p>
 
-                <h5>Description</h5>
-                <p>{{ description }}</p>
-                <div class="column">
-                    <label for="changeDescription">Changer ma description</label>
-                    <input id="changeDescription" type="text" @keyup.enter="changeDescription" />
+                <div>
+                    <h5>Description</h5>
+                    <p class="breakword">{{ description }}</p>
                 </div>
+                
+                <div class="column">
+                    <label name="lab" for="changeDescription">Changer ma description</label>
+                    <textarea id="changeDescription" type="text" @keyup.enter="changeDescription" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="font flexbox">
+            <div>
+                <h5>Changer votre Mot de passe</h5>
+                <form class="flexform">
+                    <div class="flexform">
+                        <label name="labpassword" for="password">Mot de passe actuel</label>
+                        <input type="password" id="password" />
+                    </div>
+
+                    <div class="flexform mt-4">
+                        <label name="labpasswordconfirm" for="passwordconfirm">Nouveau mot de passe</label>
+                        <input type="password" id="passwordconfirm" />
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <h5>Supprimer mon compte</h5>
+                <button class="btn btn-primary">Supprimer</button>
             </div>
         </div>
     </div>
@@ -75,7 +102,10 @@
     .flexbox {
         display: flex;
         justify-content: space-around;
-        padding: 15px;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 25px;
     }
 
     .color {
@@ -89,15 +119,59 @@
     .border {
         display: flex;
         flex-direction: column;
+        border-radius: 2px;
     }
 
     .fa-user-circle {
         font-size: 150px;
+        color: #c74040;
     }
 
     .column {
         display: flex;
         flex-direction: column;
+        border: 1px black solid;
+        border-radius: 2px;
+    }
+
+    .background {
+        background-color: #8aafff;
+    }
+
+    textarea {
+        max-height: 200px;
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+    }
+
+    .breakword {
+        max-width: 183px;
+        word-wrap:break-word;
+    }
+
+    label[name=lab] {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-bottom: 0px;
+        background-color: #8aafff;
+    }
+
+    .flexform {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #password, #passwordconfirm {
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-color: #162d47;
+        height: 22px;
+    }
+
+    label[name=labpassword], label[name=labpasswordconfirm] {
+        margin-bottom: 0;
     }
 
 </style>

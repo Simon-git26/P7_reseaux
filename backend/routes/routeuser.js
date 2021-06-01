@@ -15,6 +15,6 @@ router.post('/login', userCtrl.login);
 
 router.get('/user', auth, userCtrl.findUser);
 
-router.get('/profil', auth, userCtrl.profilUser);
+router.put('/users/:id', auth, userCtrl.profilUser);
 
 module.exports = router;
