@@ -64,6 +64,7 @@
     }
 
     .popup {
+        width: 20rem;
         background-color: #c2d8ff;
         display: flex;
         justify-content: space-around;

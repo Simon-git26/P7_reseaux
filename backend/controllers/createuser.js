@@ -77,7 +77,7 @@ exports.login = (req, res, next) => {
 
 
 
-exports.findUser = (req, res) => {
+exports.findUser = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
     const userId = decodedToken.userId;
@@ -91,4 +91,10 @@ exports.findUser = (req, res) => {
         res.status(200).json(user);
     })
     .catch(error => res.status(404).json({ error }));
+};
+
+
+
+exports.profilUser = (req, res) => {
+    
 };
