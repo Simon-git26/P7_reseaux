@@ -17,5 +17,6 @@ router.post('/register', userCtrl.signup);
 router.post('/login', userCtrl.login);
 router.get('/user', auth, userCtrl.findUser);
 router.put('/users/:id', auth, userCtrl.profilUser);
+router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
 module.exports = router;

@@ -96,7 +96,7 @@ exports.findUser = (req, res, next) => {
 
 
 
-exports.profilUser = async (req, res) => {
+exports.profilUser = async (req, res, next) => {
     // Chercher le user qui correspond à req.params.id dans la bdd.
     const user = await  db.user.findOne({
         where: {
@@ -106,6 +106,28 @@ exports.profilUser = async (req, res) => {
     user.description = req.body.description;
     console.log('user', user);
     user.save()
-    .then(() => res.status(200).json({ message: 'User modifié' }))
+    .then(() => res.status(200).json({ message: 'Description changée !' }))
     .catch(error => res.status(400).json({ error }));
+};
+
+
+exports.changePassword = async (req, res) => {
+    try {
+        const user = await  db.user.findOne({
+            where: {
+                id: req.params.id
+            }
+        });
+        const valid = await bcrypt.compare(req.body.password, user.password);
+        console.log('valid', valid);
+        if (!valid) {
+            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+        }
+        user.password = await bcrypt.hash(req.body.newPassword, 10);
+        console.log('user', user);
+        await user.save();
+        res.status(200).json({ message: 'Mot de passe mis à jour' });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 };

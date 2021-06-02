@@ -1,5 +1,9 @@
 <template>
-    <div class="width">
+    
+    <div v-if="!!user" class="width">
+        <p v-if="password">
+        <b>Le mot de passe ne correspond pas.</b><br />
+        </p>
         <div>
             <h3 class="font color" v-if="user">{{ user.firstName }} {{ user.lastName }}</h3>
         </div>
@@ -9,7 +13,7 @@
                 <h5>Photo de Profil</h5>
                 <div class="border border-secondary">
                     <i class="fas fa-user-circle"></i>
-                    <div class="border-top border-secondary">
+                    <div class="border-top border-secondary file">
                         <label for="image">Changer ma photo de profil</label>
                         <input type="file" id="image" name="image" />
                     </div>
@@ -22,7 +26,7 @@
 
                 <div>
                     <h5>Description</h5>
-                    <p class="breakword">{{ description }}</p>
+                    <p class="breakword">{{ user.description }}</p>
                 </div>
                 
                 <div class="column">
@@ -38,12 +42,12 @@
                 <form class="flexform">
                     <div class="flexform">
                         <label name="labpassword" for="password">Mot de passe actuel</label>
-                        <input type="password" id="password" />
+                        <input v-model="password" type="password" id="password" @keyup.enter="changePassword" />
                     </div>
 
                     <div class="flexform mt-4">
                         <label name="labpasswordconfirm" for="passwordconfirm">Nouveau mot de passe</label>
-                        <input type="password" id="passwordconfirm" />
+                        <input v-model="newPassword" type="password" id="passwordconfirm" @keyup.enter="changePassword" />
                     </div>
                 </form>
             </div>
@@ -54,7 +58,8 @@
             </div>
         </div>
 
-        <div>
+        <div class="mt-3">
+            <h5>Sauvegarder les modifications apportées</h5>
             <button class="btn btn-primary">Sauvegarder</button>
         </div>
     </div>
@@ -71,8 +76,9 @@
         data() {
             return {
                 user: null,
-
-                description: 'Pas de description'
+                password: null,
+                newPassword: null,
+                description: null
             }
         },
 
@@ -89,6 +95,7 @@
         },
 
         methods: {
+
             changeDescription() {
                 this.description = document.getElementById('changeDescription').value;
 
@@ -102,13 +109,35 @@
                     },
                 })
                 .then((res) => {
+                    window.location.reload();
                     console.log(res);
                 })
                 .catch((err) => {
                     console.log(err);
                 })
             },
-        }
+
+            changePassword() {
+                console.log(this.newPassword);
+                const data = {
+                    password: this.password,
+                    newPassword: this.newPassword 
+                };
+
+                const url = '/users/' + this.user.id + '/change-password';
+                axios.put(url, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            }
+        },
     }
 </script>
 
@@ -122,11 +151,11 @@
 
     .flexbox {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         padding-right: 15px;
         padding-left: 15px;
-        padding-top: 15px;
-        padding-bottom: 25px;
+        padding-top: 20px;
+        padding-bottom: 30px;
     }
 
     .color {
@@ -191,4 +220,8 @@
         margin-bottom: 0;
     }
 
+    .file {
+        display: flex;
+        flex-direction: column;
+    }
 </style>
