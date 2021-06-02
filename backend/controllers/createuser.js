@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { connect } = require('../app');
+const { user } = require('../models');
 
 const db = require("../models");
 
@@ -95,6 +96,16 @@ exports.findUser = (req, res, next) => {
 
 
 
-exports.profilUser = (req, res) => {
-    
+exports.profilUser = async (req, res) => {
+    // Chercher le user qui correspond à req.params.id dans la bdd.
+    const user = await  db.user.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+    user.description = req.body.description;
+    console.log('user', user);
+    user.save()
+    .then(() => res.status(200).json({ message: 'User modifié' }))
+    .catch(error => res.status(400).json({ error }));
 };

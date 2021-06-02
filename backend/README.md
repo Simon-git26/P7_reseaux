@@ -15,6 +15,7 @@ Installation de morgan : npm install morgan
 -Instalation de password Validator : npm install password-validator 
 -Installation de helmet: npm install helmet
 -Installation de ratelimit : npm install --save express-rate-limit
+-Installation d emulter : npm install --save multer
 
 
 Documentation:

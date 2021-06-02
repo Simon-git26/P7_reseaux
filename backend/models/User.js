@@ -33,6 +33,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         defaultValue: "",
       },
+
+      description: {
+        type: Sequelize.STRING(124),
+        defaultValue: "",
+      }
     },
     {
       //Indiquez le nom de la table dans mysql

@@ -10,7 +10,8 @@
                 <div class="border border-secondary">
                     <i class="fas fa-user-circle"></i>
                     <div class="border-top border-secondary">
-                        <p class="mb-0 pb-2 pt-2 pl-1 pr-1 background">Changer ma photo de profil</p>
+                        <label for="image">Changer ma photo de profil</label>
+                        <input type="file" id="image" name="image" />
                     </div>
                 </div>
             </div>
@@ -52,6 +53,10 @@
                 <button class="btn btn-primary">Supprimer</button>
             </div>
         </div>
+
+        <div>
+            <button class="btn btn-primary">Sauvegarder</button>
+        </div>
     </div>
 </template>
 
@@ -85,8 +90,24 @@
 
         methods: {
             changeDescription() {
-                this.description = document.getElementById('changeDescription').value
-            }
+                this.description = document.getElementById('changeDescription').value;
+
+                const data = {
+                    description: this.description
+                };
+
+                axios.put("/users/" + this.user.id, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            },
         }
     }
 </script>
@@ -132,10 +153,6 @@
         flex-direction: column;
         border: 1px black solid;
         border-radius: 2px;
-    }
-
-    .background {
-        background-color: #8aafff;
     }
 
     textarea {
