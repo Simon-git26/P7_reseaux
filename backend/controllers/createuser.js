@@ -14,8 +14,8 @@ exports.signup = (req, res, next) => {
    var isValid = passwordValidator.validate(req.body.password);
    if (!isValid) {
        res.status(400).json({ error : "mot de passe non valide pour le package password validator" });
-   }
-    //Haché le mot de passe
+   } else {
+       //Haché le mot de passe
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         db.user.create({
@@ -28,6 +28,7 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(400).json({ error: error.message }));
     })
     .catch(error => res.status(500).json({ error: error.message }));
+   }
 };
 
 
@@ -112,22 +113,27 @@ exports.profilUser = async (req, res, next) => {
 
 
 exports.changePassword = async (req, res) => {
-    try {
-        const user = await  db.user.findOne({
-            where: {
-                id: req.params.id
+    var isValid = passwordValidator.validate(req.body.newPassword);
+    if (!isValid) {
+        res.status(400).json({ error : "mot de passe non valide pour le package password validator" });
+    } else {
+        try {
+            const user = await  db.user.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            const valid = await bcrypt.compare(req.body.password, user.password);
+            console.log('valid', valid);
+            if (!valid) {
+                return res.status(401).json({ error: 'Mot de passe incorrect !' });
             }
-        });
-        const valid = await bcrypt.compare(req.body.password, user.password);
-        console.log('valid', valid);
-        if (!valid) {
-            return res.status(401).json({ error: 'Mot de passe incorrect !' });
+            user.password = await bcrypt.hash(req.body.newPassword, 10);
+            console.log('user', user);
+            await user.save();
+            res.status(200).json({ message: 'Mot de passe mis à jour' });
+        } catch (error) {
+            res.status(500).json({ error });
         }
-        user.password = await bcrypt.hash(req.body.newPassword, 10);
-        console.log('user', user);
-        await user.save();
-        res.status(200).json({ message: 'Mot de passe mis à jour' });
-    } catch (error) {
-        res.status(500).json({ error });
     }
 };

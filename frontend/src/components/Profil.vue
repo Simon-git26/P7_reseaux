@@ -1,7 +1,7 @@
 <template>
     
     <div v-if="!!user" class="width">
-        <p v-if="password">
+        <p v-if="passwordError">
         <b>Le mot de passe ne correspond pas.</b><br />
         </p>
         <div>
@@ -78,7 +78,8 @@
                 user: null,
                 password: null,
                 newPassword: null,
-                description: null
+                description: null,
+                passwordError: false
             }
         },
 
@@ -118,7 +119,7 @@
             },
 
             changePassword() {
-                console.log(this.newPassword);
+                this.passwordError = false;
                 const data = {
                     password: this.password,
                     newPassword: this.newPassword 
@@ -132,9 +133,12 @@
                 })
                 .then((res) => {
                     console.log(res);
+                    alert('Le mot de passe a été mis à jour.');
                 })
                 .catch((err) => {
                     console.log(err);
+                    console.log(err.error);
+                    this.passwordError = true;
                 })
             }
         },
