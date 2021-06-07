@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a v-if="isConnected" v-on:click="deconnection" href="Login" class="nav-link color pos">Deconnection<i class="fas fa-power-off"></i></a>
+              <a v-if="isConnected" v-on:click="deconnection" href="Login" class="nav-link color pos">Deconnexion<i class="fas fa-power-off"></i></a>
               <a v-else href="Login" class="nav-link color">Connexion</a>
             </li>
             <li class="nav-item">
