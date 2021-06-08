@@ -19,6 +19,11 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
                 defaultValue: "",
             },
+        },
+
+        {
+            //Indiquez le nom de la table dans mysql
+            tableName: "posts",
         }
     );
 

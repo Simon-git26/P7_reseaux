@@ -112,7 +112,7 @@ exports.profilUser = async (req, res, next) => {
 };
 
 
-exports.changePassword = async (req, res) => {
+exports.changePassword = async (req, res, next) => {
     var isValid = passwordValidator.validate(req.body.newPassword);
     if (!isValid) {
         res.status(400).json({ error : "mot de passe non valide pour le package password validator" });
