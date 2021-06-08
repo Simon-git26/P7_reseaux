@@ -9,11 +9,6 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            postuserId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-
             post: {
                 type: Sequelize.STRING(250),
                 allowNull: false,

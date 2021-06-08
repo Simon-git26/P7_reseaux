@@ -9,17 +9,7 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            commentsuserId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-
-            publishId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-
-            commentaires: {
+            comments: {
                 type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",
