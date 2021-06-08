@@ -9,9 +9,8 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            userId: {
+            postuserId: {
                 type: Sequelize.INTEGER,
-                autoIncrement: true,
                 allowNull: false,
             },
 

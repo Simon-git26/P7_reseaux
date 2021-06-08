@@ -9,15 +9,13 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            userId: {
+            commentsuserId: {
                 type: Sequelize.INTEGER,
-                autoIncrement: true,
                 allowNull: false,
             },
 
-            postId: {
+            publishId: {
                 type: Sequelize.INTEGER,
-                autoIncrement: true,
                 allowNull: false,
             },
 
