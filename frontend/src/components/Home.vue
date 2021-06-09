@@ -4,15 +4,23 @@
             <p v-if="user">Bienvenue {{ user.firstName }} {{ user.lastName }}</p>
             <button v-on:click="show" type="button" class="btn btn-style"><i class="far fa-times-circle"></i></button>
         </div>
+
+        <Publish />
     </div>
 </template>
 
 
 
 <script>
+    import Publish from './Publish'
     import axios from '../api'
+
     export default {
         name: 'Home',
+
+        components: {
+            Publish,
+        },
 
         data() {
             return {

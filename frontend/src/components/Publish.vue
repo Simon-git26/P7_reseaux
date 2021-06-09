@@ -25,9 +25,22 @@
             }
         },
 
+        async created() {
+            const connected = localStorage.getItem('token');
+            if (!connected) {
+                this.$router.push('/login');
+            }
+
+            console.log(localStorage.getItem('token'));
+            const res = await axios.get('user');
+
+            this.user = res.data;
+        },
+
         methods : {
 
             publish() {
+                
                 this.post = document.getElementById('public').value;
 
                 console.log("data");
