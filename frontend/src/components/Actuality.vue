@@ -1,6 +1,16 @@
 <template>
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
+
+        <div class="poststructure">
+            <p v-for="{UserId} in posts" :key="UserId">
+                {{ UserId }}
+            </p>
+
+            <p v-for="{post} in posts" :key="post">
+                {{ post }}
+            </p>
+        </div>
     </div>
 </template>
 
@@ -54,5 +64,10 @@
     .actuality h3 {
         text-decoration: underline;
         color: #191f2e;
+    }
+
+    .poststructure {
+        height: 150px;
+        border: 1px black solid;
     }
 </style>
