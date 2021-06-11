@@ -3,9 +3,9 @@
         <h3>Fil d'Actualitée</h3>
 
         <div class="poststructure">
-            <p v-for="{UserId} in posts" :key="UserId">
+            <!--<p v-for="{UserId} in posts" :key="UserId">
                 {{ UserId }}
-            </p>
+            </p>-->
 
             <p v-for="{post} in posts" :key="post">
                 {{ post }}
@@ -30,8 +30,8 @@
             }
         },
 
-        mounted() {
-            
+        methods: {
+            onMounted() {
             const url = '/actuality';
             axios.get(url, {
                 headers: {
@@ -41,12 +41,18 @@
 
             .then((response) => {
                 console.log(response);
-                this.posts = response.data; 
+                this.posts = response.data;
                 })
 
                 .catch((err) => {
                 console.log(err);
                 });
+            },
+        },
+        
+
+        mounted() {
+            this.onMounted();
         }
     }
 
