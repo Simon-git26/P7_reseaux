@@ -7,6 +7,7 @@ const router = express.Router();
 const userCtrl = require('../controllers/createuser');
 const postCtrl = require('../controllers/post');
 
+
 //Importer le middleware auth 
 const auth = require('../middleware/auth');
 
@@ -21,5 +22,6 @@ router.put('/users/:id', auth, userCtrl.profilUser);
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
 router.post('/users/:id/publication', auth, postCtrl.publish);
+router.get('/actuality', auth, postCtrl.findAllPosts);
 
 module.exports = router;

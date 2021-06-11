@@ -6,6 +6,7 @@
         </div>
 
         <Publish />
+        <Actuality />
     </div>
 </template>
 
@@ -13,6 +14,7 @@
 
 <script>
     import Publish from './Publish'
+    import Actuality from './Actuality.vue'
     import axios from '../api'
 
     export default {
@@ -20,6 +22,7 @@
 
         components: {
             Publish,
+            Actuality,
         },
 
         data() {
