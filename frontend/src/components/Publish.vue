@@ -5,7 +5,10 @@
         <textarea id="public" type="text" placeholder="Crée votre publication"></textarea>
 
         <div class="btn-pos">
-            <button class="btn btn-primary">Choisir une image</button>
+            <div class="border-secondary">
+                <label for="image">Joindre une image</label>
+                <input type="file" id="image" name="image" />
+            </div>
             <button class="btn btn-primary" v-on:click="publish">Publier !</button>
         </div>
     </div>
@@ -58,6 +61,7 @@
 
                     .then((res) => {
                     console.log(res);
+                    window.location.reload();
 
                     })
                     .catch((err) => {
