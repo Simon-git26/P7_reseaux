@@ -19,6 +19,9 @@ const cors = require('cors');
 
 const morgan = require('morgan');
 
+//------------------------donne acces au chemin de notre systeme de fichier--------------------------
+const path = require('path');
+
 //Importer le router
 const userRoutes = require('./routes/routeuser');
 
@@ -58,6 +61,10 @@ app.use(cors());
 /* app.options('*', cors());*/
 
 app.use(morgan('combined'));
+
+
+//---------------------Dire a application de servir ce dossier images -------------------------
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/', userRoutes);
 
