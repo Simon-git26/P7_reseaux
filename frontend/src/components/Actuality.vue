@@ -2,15 +2,13 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div class="poststructure">
+        <div class="poststructure" v-for="{post} in posts" :key="post">
+            {{ post }}
             <!--<p v-for="{UserId} in posts" :key="UserId">
                 {{ UserId }}
             </p>-->
-
-            <p v-for="{post} in posts" :key="post">
-                {{ post }}
-            </p>
         </div>
+
     </div>
 </template>
 
