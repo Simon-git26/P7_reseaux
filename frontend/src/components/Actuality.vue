@@ -2,11 +2,11 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div class="poststructure" v-for="{post} in posts" :key="post">
+        <div class="poststructure" v-for="{post, UserId, id, createdAt} in posts" :key="post, UserId, id, createdAt">
             {{ post }}
-            <!--<p v-for="{UserId} in posts" :key="UserId">
-                {{ UserId }}
-            </p>-->
+            {{ UserId }}
+            {{ id }}
+            {{ createdAt }}
         </div>
 
     </div>
@@ -71,7 +71,7 @@
     }
 
     .poststructure {
-        height: 150px;
+        height: 50px;
         border: 1px black solid;
     }
 </style>
