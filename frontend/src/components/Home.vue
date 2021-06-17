@@ -5,24 +5,21 @@
             <button v-on:click="show" type="button" class="btn btn-style"><i class="far fa-times-circle"></i></button>
         </div>
 
-        <Publish />
-        <Actuality />
+        <Feed />
     </div>
 </template>
 
 
 
 <script>
-    import Publish from './Publish'
-    import Actuality from './Actuality.vue'
+    import Feed from './Feed.vue'
     import axios from '../api'
 
     export default {
         name: 'Home',
 
         components: {
-            Publish,
-            Actuality,
+            Feed
         },
 
         data() {

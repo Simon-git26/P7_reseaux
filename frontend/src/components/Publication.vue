@@ -2,17 +2,11 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div class="poststructure" v-for="{post, UserId, id, createdAt} in posts" :key="post">
+        <div v-for="{post} in posts" :key="post">
             {{ post }}
-            {{ UserId }}
-            {{ id }}
-            {{ createdAt }}
         </div>
-
     </div>
 </template>
-
-
 
 
 
@@ -20,7 +14,7 @@
     import axios from '../api'
 
     export default {
-        name: 'Actuality',
+        name: 'Publication',
 
         data() {
             return {
@@ -30,7 +24,7 @@
 
         methods: {
             onMounted() {
-            const url = '/actuality';
+            const url = '/publications';
             axios.get(url, {
                 headers: {
                     "Content-Type": "application/json",
@@ -54,9 +48,7 @@
         }
     }
 
-
 </script>
-
 
 
 
@@ -68,10 +60,5 @@
     .actuality h3 {
         text-decoration: underline;
         color: #191f2e;
-    }
-
-    .poststructure {
-        height: 50px;
-        border: 1px black solid;
     }
 </style>
