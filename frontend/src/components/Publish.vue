@@ -69,17 +69,15 @@
 
             onFileSelected(event) {
                 this.selectedFile = event.target.files[0];
+                console.log(this.selectedFile);
             },
 
             onUpload() {
                 const url = '/users/' + this.user.id + '/publication';
+
                 const fd = new FormData();
                 fd.append('image', this.selectedFile, this.selectedFile.name)
-                axios.post(url, fd, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
+                axios.post(url, fd)
                 .then(res => {
                     console.log(res);
                 })
