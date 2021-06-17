@@ -2,13 +2,12 @@
     <div class="publication">
         <h4>Crée une publication...</h4>
         
-        <textarea id="createPost" type="text" placeholder="Crée votre publication"></textarea>
-        <!--v-model="createPost"-->
+        <textarea id="createPost" v-model="post" type="text" placeholder="Crée votre publication"></textarea>
         
         <div class="btn-pos">
             <div class="border-secondary">
-                <label for="image">Joindre une image</label>
-                <input type="file" id="image" name="image" />
+                <input type="file" id="image" @change="onFileSelected" />
+                <button @click="onUpload">Upload</button>
             </div>
             <button class="btn btn-primary" v-on:click="publish">Publier !</button>
         </div>
@@ -25,9 +24,8 @@
 
         data() {
             return {
-                /*createPost: "",*/
                 post: "",
-                /*image: ;*/
+                selectedFile: null
             }
         },
 
@@ -46,12 +44,8 @@
         methods : {
 
             publish() {
-                
-                this.post = document.getElementById('createPost').value;
-
                 console.log("data");
                 const data = {
-                    /*createPost: this.createPost,*/
                     post: this.post,
                 };
 
@@ -71,6 +65,24 @@
                     .catch((err) => {
                     console.log(err);
                     });
+            },
+
+            onFileSelected(event) {
+                this.selectedFile = event.target.files[0];
+            },
+
+            onUpload() {
+                const url = '/users/' + this.user.id + '/publication';
+                const fd = new FormData();
+                fd.append('image', this.selectedFile, this.selectedFile.name)
+                axios.post(url, fd, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then(res => {
+                    console.log(res);
+                })
             }
         },
     }
