@@ -1,9 +1,10 @@
 <template>
     <div class="publication">
         <h4>Crée une publication...</h4>
-
-        <textarea id="public" type="text" placeholder="Crée votre publication"></textarea>
-
+        
+        <textarea id="createPost" type="text" placeholder="Crée votre publication"></textarea>
+        <!--v-model="createPost"-->
+        
         <div class="btn-pos">
             <div class="border-secondary">
                 <label for="image">Joindre une image</label>
@@ -24,6 +25,7 @@
 
         data() {
             return {
+                /*createPost: "",*/
                 post: "",
                 /*image: ;*/
             }
@@ -45,10 +47,11 @@
 
             publish() {
                 
-                this.post = document.getElementById('public').value;
+                this.post = document.getElementById('createPost').value;
 
                 console.log("data");
                 const data = {
+                    /*createPost: this.createPost,*/
                     post: this.post,
                 };
 
@@ -87,7 +90,7 @@
         margin-bottom: 20px;
     }
 
-    #public {
+    #createPost {
         width: 100%;
         height: 100px;
     }
