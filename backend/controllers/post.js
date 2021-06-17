@@ -3,12 +3,12 @@ const db = require("../models");
 
 //Publier un post
 exports.publish = (req, res, next) => {
-    const multerObject = JSON.parse(res.body.Post);
+    /*const multerObject = JSON.parse(res.body.Post);*/
 
     db.post.create({
         post: req.body.post,
         UserId: req.params.id,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        /*imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`*/
     })
 
     .then((created) => res.status(201).json(created))

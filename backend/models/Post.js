@@ -13,13 +13,13 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",
-            },
+            }
 
-            imageUrl: {
+            /*imageUrl: {
                 type: Sequelize.STRING(150),
                 allowNull: true,
                 defaultValue: ""
-            }
+            }*/
         },
 
         {

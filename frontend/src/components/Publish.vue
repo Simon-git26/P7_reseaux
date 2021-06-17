@@ -24,7 +24,8 @@
 
         data() {
             return {
-                post: ""
+                post: "",
+                /*image: ;*/
             }
         },
 
