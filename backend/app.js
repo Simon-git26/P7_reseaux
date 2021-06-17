@@ -23,7 +23,7 @@ const morgan = require('morgan');
 const path = require('path');
 
 //Importer le router
-const userRoutes = require('./routes/routeuser');
+const userRoutes = require('./routes/route');
 
 
 //Rate Limit

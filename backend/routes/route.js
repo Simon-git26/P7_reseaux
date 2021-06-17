@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 //Importer le controller user
-const userCtrl = require('../controllers/createuser');
+const userCtrl = require('../controllers/user');
 const postCtrl = require('../controllers/post');
 
 
