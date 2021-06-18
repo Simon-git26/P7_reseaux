@@ -21,7 +21,8 @@ router.get('/user', auth, userCtrl.findUser);
 router.put('/users/:id', auth, userCtrl.profilUser);
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
-router.post('/users/:id/publication', auth, multer, postCtrl.publish);
+router.post('/users/:id/publication', auth, postCtrl.publish);
+router.post('/users/:id/publication', auth, multer, postCtrl.onUpload);
 router.get('/publications', auth, postCtrl.findAllPosts);
 
 

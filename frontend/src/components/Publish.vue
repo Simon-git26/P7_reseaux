@@ -25,7 +25,8 @@
         data() {
             return {
                 post: "",
-                selectedFile: null
+                selectedFile: null,
+                imageUrl: "",
             }
         },
 
@@ -75,11 +76,17 @@
             onUpload() {
                 const url = '/users/' + this.user.id + '/publication';
 
+                const data = {
+                    imageUrl: this.imageUrl
+                }
+
                 const fd = new FormData();
+
                 fd.append('image', this.selectedFile, this.selectedFile.name)
-                axios.post(url, fd)
+                axios.post(url, data, fd)
                 .then(res => {
                     console.log(res);
+                    console.log(this.selectedFile);
                 })
             }
         },
