@@ -7,6 +7,7 @@ exports.publish = (req, res, next) => {
     db.post.create({
         post: req.body.post,
         UserId: req.params.id,
+        /*imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`*/
     })
 
     .then((created) => res.status(201).json(created))

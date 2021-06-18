@@ -40,7 +40,7 @@ app.use("/login", apiLimiter); */
 
 //Importer le fichier models et ajouter les modifs sur la table users
 const db = require("./models");
-db.sequelize.sync({ alter: true });
+db.sequelize.sync({ alter : true });
 
 //Vérifier que la connection s'effectue
 const verification = async function () {
@@ -65,7 +65,7 @@ app.use(morgan('combined'));
 
 
 //---------------------Dire a application de servir ce dossier images -------------------------
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('backend/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/', userRoutes);
 

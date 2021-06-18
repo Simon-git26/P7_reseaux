@@ -7,7 +7,7 @@
         <div class="btn-pos">
             <div class="border-secondary">
                 <input type="file" id="image" @change="onFileSelected" />
-                <button @click="onUpload">Upload</button>
+                <button @click="onUpload">Joindre l'image</button>
             </div>
             <button class="btn btn-primary" v-on:click="publish">Publier !</button>
         </div>
