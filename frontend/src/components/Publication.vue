@@ -2,8 +2,8 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div v-for="{post} in posts" :key="post">
-            {{ post }}
+        <div v-for="posts in posts" :key="posts">
+            {{ posts }}
         </div>
     </div>
 </template>
@@ -25,6 +25,7 @@
         methods: {
             onMounted() {
             const url = '/publications';
+
             axios.get(url, {
                 headers: {
                     "Content-Type": "application/json",

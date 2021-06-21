@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
             },
 
             imagePath: {
-                type: Sequelize.STRING(150),
+                type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",
             }

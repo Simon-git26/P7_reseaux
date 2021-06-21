@@ -1,10 +1,11 @@
 
+const { post } = require("../models");
 const db = require("../models");
 
 
 //Publier un post
 exports.publish = (req, res, next) => {
-    
+
     db.post.create({
         post: req.body.post,
         UserId: req.params.id,
@@ -17,10 +18,18 @@ exports.publish = (req, res, next) => {
 
 
 //Récuperer tous les post sur le Component Actuality
-exports.findAllPosts = async (req, res, next) => {
+exports.findAllPosts = async (req, res) => {
+
     db.post.findAll()
     .then((posts) => {
-        res.status(200).json(posts);
+
+        if (post.imagePath) {
+            posts = posts.forEach(post => post.imageUrl = `${req.protocol}://${req.get('host')}/images/${post.imagePath}`);
+            
+        } else {
+            res.status(200).json(posts);
+        }
+        
     })
     .catch(error => res.status(404).json({ error }));
 };

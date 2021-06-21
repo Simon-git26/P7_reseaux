@@ -22,7 +22,7 @@ router.put('/users/:id', auth, userCtrl.profilUser);
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
-router.get('/publications', auth, postCtrl.findAllPosts);
+router.get('/publications', auth, multer, postCtrl.findAllPosts);
 
 
 
