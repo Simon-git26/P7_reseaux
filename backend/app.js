@@ -65,7 +65,7 @@ app.use(morgan('combined'));
 
 
 //---------------------Dire a application de servir ce dossier images -------------------------
-app.use('backend/images', express.static(path.join(__dirname, 'images')));
+app.use('images', express.static(path.join(__dirname, 'images')));
 
 app.use('/', userRoutes);
 

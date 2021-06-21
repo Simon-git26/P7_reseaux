@@ -7,7 +7,6 @@
         <div class="btn-pos">
             <div class="border-secondary">
                 <input type="file" id="image" @change="onFileSelected" />
-                <button @click="onUpload">Joindre l'image</button>
             </div>
             <button class="btn btn-primary" v-on:click="publish">Publier !</button>
         </div>
@@ -26,7 +25,7 @@
             return {
                 post: "",
                 selectedFile: null,
-                imageUrl: "",
+                imagePath: "",
             }
         },
 
@@ -44,50 +43,29 @@
 
         methods : {
 
-            publish() {
-                console.log("data");
-                const data = {
-                    post: this.post,
-                };
-
-                const url = '/users/' + this.user.id + '/publication';
-                axios
-                    .post(url, data, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    })
-
-                    .then((res) => {
-                    console.log(res);
-                    window.location.reload();
-
-                    })
-                    .catch((err) => {
-                    console.log(err);
-                    });
-            },
-
             onFileSelected(event) {
                 this.selectedFile = event.target.files[0];
                 console.log(this.selectedFile);
             },
 
-            onUpload() {
+            publish() {
+
                 const url = '/users/' + this.user.id + '/publication';
-
-                const data = {
-                    imageUrl: this.imageUrl
-                }
-
+                
                 const fd = new FormData();
 
-                fd.append('image', this.selectedFile, this.selectedFile.name)
-                axios.post(url, data, fd)
-                .then(res => {
+                fd.append('image', this.selectedFile, this.selectedFile.name);
+                fd.append('post', this.post);
+
+                axios.post(url, fd)
+                .then((res) => {
                     console.log(res);
-                    console.log(this.selectedFile);
+                    window.location.reload();
+
                 })
+                .catch((err) => {
+                    console.log(err);
+                });
             }
         },
     }
