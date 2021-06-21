@@ -19,6 +19,12 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",
+            },
+
+            imageUrl: {
+                type: Sequelize.STRING(250),
+                allowNull: false,
+                defaultValue: "",
             }
         },
 

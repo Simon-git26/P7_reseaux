@@ -17,19 +17,18 @@ exports.publish = (req, res, next) => {
 };
 
 
-//Récuperer tous les post sur le Component Actuality
+//Récuperer tous les post + affichage des images 
 exports.findAllPosts = async (req, res) => {
 
     db.post.findAll()
-    .then((posts) => {
 
-        if (post.imagePath) {
-            posts = posts.forEach(post => post.imageUrl = `${req.protocol}://${req.get('host')}/images/${post.imagePath}`);
-            
-        } else {
-            res.status(200).json(posts);
-        }
-        
-    })
+    .then((posts) => {
+        posts.forEach(post => {
+            if (post.imagePath) {
+                post.imageUrl = `${req.protocol}://${req.get('host')}/${post.imagePath}`
+            }
+        })
+        res.status(200).json(posts);
+    }) 
     .catch(error => res.status(404).json({ error }));
 };

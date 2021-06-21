@@ -2,8 +2,9 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div v-for="posts in posts" :key="posts">
-            {{ posts }}
+        <div v-for="{post, imageUrl} in posts" :key="post">
+            <img :src="imageUrl" />
+            {{ post }}
         </div>
     </div>
 </template>
@@ -19,6 +20,7 @@
         data() {
             return {
                 posts : [],
+                imageUrl: "",
             }
         },
 
