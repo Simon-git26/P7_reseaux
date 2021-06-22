@@ -64,8 +64,8 @@ app.use(cors());
 app.use(morgan('combined'));
 
 
-//---------------------Dire a application de servir ce dossier images -------------------------
-app.use('images', express.static(path.join(__dirname, 'images')));
+//---------------------Dire a application de servir ce dossier images pour recup les images -------------------------
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/', userRoutes);
 

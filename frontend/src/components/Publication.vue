@@ -2,7 +2,7 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div v-for="{post, imageUrl} in posts" :key="post">
+        <div class="publication" v-for="{post, imageUrl} in posts" :key="post">
             <img :src="imageUrl" />
             {{ post }}
         </div>
@@ -26,9 +26,8 @@
 
         methods: {
             onMounted() {
-            const url = '/publications';
 
-            axios.get(url, {
+            axios.get('/publications', {
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -63,5 +62,12 @@
     .actuality h3 {
         text-decoration: underline;
         color: #191f2e;
+    }
+
+    .publication {
+        height: 100px;
+        width: 100%;
+        border: 1px black solid;
+        margin-bottom: 20px;
     }
 </style>
