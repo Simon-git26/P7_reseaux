@@ -16,7 +16,6 @@ Installation de morgan : npm install morgan
 -Installation de helmet: npm install helmet
 -Installation de ratelimit : npm install --save express-rate-limit
 -Installation d emulter : npm install --save multer
--Intstallation de Sharp: npm install sharp
 
 
 Documentation:

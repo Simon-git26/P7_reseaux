@@ -24,9 +24,6 @@ const multer = require('./middleware/multer-config');
 const path = require('path');
 
 
-/*//Importation de sharp pour le redimensionemenet des images
-const sharp = require('sharp');*/
-
 //Importer le router
 const userRoutes = require('./routes/route');
 

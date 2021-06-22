@@ -3,10 +3,6 @@ const { post } = require("../models");
 const db = require("../models");
 
 
-/*//Importation de sharp pour le redimensionemenet des images
-const sharp = require('sharp');*/
-
-
 //Publier un post
 exports.publish = async (req, res, next) => {
 
