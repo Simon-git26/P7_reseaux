@@ -3,8 +3,12 @@ const { post } = require("../models");
 const db = require("../models");
 
 
+/*//Importation de sharp pour le redimensionemenet des images
+const sharp = require('sharp');*/
+
+
 //Publier un post
-exports.publish = (req, res, next) => {
+exports.publish = async (req, res, next) => {
 
     db.post.create({
         post: req.body.post,
@@ -15,6 +19,8 @@ exports.publish = (req, res, next) => {
     .then((created) => res.status(201).json(created))
     .catch(error => res.status(400).json({ error }));
 };
+
+
 
 
 //Récuperer tous les post + affichage des images 

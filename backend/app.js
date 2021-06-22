@@ -23,6 +23,10 @@ const morgan = require('morgan');
 const multer = require('./middleware/multer-config');
 const path = require('path');
 
+
+/*//Importation de sharp pour le redimensionemenet des images
+const sharp = require('sharp');*/
+
 //Importer le router
 const userRoutes = require('./routes/route');
 
@@ -66,6 +70,7 @@ app.use(morgan('combined'));
 
 //---------------------Dire a application de servir ce dossier images pour recup les images -------------------------
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 app.use('/', userRoutes);
 

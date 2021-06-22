@@ -3,7 +3,7 @@
         <h3>Fil d'Actualitée</h3>
 
         <div class="publication" v-for="{post, imageUrl} in posts" :key="post">
-            <img :src="imageUrl" />
+            <img class="resize" :src="imageUrl" />
             {{ post }}
         </div>
     </div>
@@ -69,5 +69,10 @@
         width: 100%;
         border: 1px black solid;
         margin-bottom: 20px;
+    }
+
+    .resize {
+        height: 98px;
+        width: 150px;
     }
 </style>
