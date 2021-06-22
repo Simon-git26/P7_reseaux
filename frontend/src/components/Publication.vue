@@ -8,8 +8,12 @@
             <div class="comments">
                 <h4>Commentaires</h4>
                 <form @submit.prevent="commentMethod">
-                <input id="commentId" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
+                <input class="commentId" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
                 </form>
+
+                <!-- <div v-for="{comment} in comments" :key="comment">
+                    {{ comment }}
+                </div> -->
             </div>
         </div>
     </div>
@@ -28,6 +32,7 @@
                 posts : [],
                 imageUrl: "",
                 comment: "",
+                /*comments: [],*/
             }
         },
 
@@ -62,6 +67,23 @@
                 });
             },
 
+            /*onComments() {
+                axios.get('/comments', {
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                console.log(response);
+                this.posts = response.data;
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            },*/
+
 
             commentMethod() {
                 const data = {
@@ -88,6 +110,7 @@
 
         mounted() {
             this.onMounted();
+            /*this.onComments();*/
         }
     }
 
@@ -122,7 +145,7 @@
         width: 150px;
     }
 
-    #commentId {
+    .commentId {
         width: 80%;
         display: flex;
         margin: auto;
