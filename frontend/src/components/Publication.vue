@@ -2,12 +2,12 @@
     <div class="actuality">
         <h3>Fil d'Actualitée</h3>
 
-        <div class="publication" v-for="{post, imageUrl} in posts" :key="post">
-            <img class="resize" :src="imageUrl" />
-            {{ post }}
+        <div class="publication" v-for="post in posts" :key="post.id">
+            <img class="resize" :src="post.imageUrl" />
+            {{ post.post }}
             <div class="comments">
                 <h4>Commentaires</h4>
-                <form @submit.prevent="commentMethod">
+                <form @submit.prevent="commentPost(post)">
                 <input class="commentId" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
                 </form>
 
@@ -85,12 +85,13 @@
             },*/
 
 
-            commentMethod() {
+            commentPost( post ) {
+
                 const data = {
                     comment: this.comment
                 };
 
-                const url = '/users/' + this.user.id + '/comment';
+                const url = '/posts/' + post.id + '/comment';
 
                 axios
                     .post(url, data, {
@@ -100,6 +101,7 @@
                 })
                 .then((res) => {
                 console.log(res);
+                window.location.reload();
                 })
                 .catch((err) => {
                 console.log(err);

@@ -4,9 +4,11 @@ const db = require("../models");
 
 //Poster un commentaire
 exports.postComment = async (req, res, next) => {
+    console.log(req.userId);
+
     db.comments.create({
-        UserId: req.params.id,
-        /*PostId: req.params.id,*/
+        UserId: req.userId,
+        PostId: req.params.id,
         comments: req.body.comment
     })
     

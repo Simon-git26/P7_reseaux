@@ -27,7 +27,8 @@ router.post('/users/:id/publication', auth, multer, postCtrl.publish);
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
 
 //Route Comments
-router.post('/users/:id/comment', auth, commentCtrl.postComment);
+router.post('/posts/:id/comment', auth, commentCtrl.postComment);
+
 /*router.get('/comments', auth, commentCtrl.findAllComments);*/
 
 
