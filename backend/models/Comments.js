@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            comments: {
+            comment: {
                 type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",

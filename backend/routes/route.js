@@ -29,7 +29,7 @@ router.get('/publications', auth, multer, postCtrl.findAllPosts);
 //Route Comments
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 
-/*router.get('/comments', auth, commentCtrl.findAllComments);*/
+router.get('/comments', auth, commentCtrl.findAllComments);
 
 
 module.exports = router;

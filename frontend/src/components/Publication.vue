@@ -5,15 +5,17 @@
         <div class="publication" v-for="post in posts" :key="post.id">
             <img class="resize" :src="post.imageUrl" />
             {{ post.post }}
+            
             <div class="comments">
                 <h4>Commentaires</h4>
+
                 <form @submit.prevent="commentPost(post)">
                 <input class="commentId" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
                 </form>
 
-                <!-- <div v-for="{comment} in comments" :key="comment">
-                    {{ comment }}
-                </div> -->
+                <div v-for="comment in comments" :key="comment.id">
+                    {{ comment.comment }}
+                </div>
             </div>
         </div>
     </div>
@@ -32,7 +34,7 @@
                 posts : [],
                 imageUrl: "",
                 comment: "",
-                /*comments: [],*/
+                comments: [],
             }
         },
 
@@ -42,7 +44,6 @@
                 this.$router.push('/login');
             }
 
-            console.log(localStorage.getItem('token'));
             const res = await axios.get('user');
 
             this.user = res.data;
@@ -67,7 +68,7 @@
                 });
             },
 
-            /*onComments() {
+            onComments() {
                 axios.get('/comments', {
                     headers: {
                     "Content-Type": "application/json",
@@ -76,13 +77,13 @@
 
                 .then((response) => {
                 console.log(response);
-                this.posts = response.data;
+                this.comments = response.data;
                 })
 
                 .catch((err) => {
                 console.log(err);
                 });
-            },*/
+            },
 
 
             commentPost( post ) {
@@ -112,7 +113,7 @@
 
         mounted() {
             this.onMounted();
-            /*this.onComments();*/
+            this.onComments();
         }
     }
 

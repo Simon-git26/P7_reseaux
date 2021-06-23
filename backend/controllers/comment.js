@@ -9,7 +9,7 @@ exports.postComment = async (req, res, next) => {
     db.comments.create({
         UserId: req.userId,
         PostId: req.params.id,
-        comments: req.body.comment
+        comment: req.body.comment
     })
     
 
@@ -18,11 +18,11 @@ exports.postComment = async (req, res, next) => {
 };
 
 
-/*//Récuperer tous commentaires
+//Récuperer tous commentaires
 exports.findAllComments = async (req, res) => {
 
     db.comments.findAll()
 
     .then((comment) => res.status(201).json(comment))
     .catch(error => res.status(400).json({ error }));
-};*/
+};

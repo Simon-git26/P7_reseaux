@@ -35,7 +35,6 @@
                 this.$router.push('/login');
             }
 
-            console.log(localStorage.getItem('token'));
             const res = await axios.get('user');
 
             this.user = res.data;
