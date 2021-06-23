@@ -15,20 +15,29 @@ const auth = require('../middleware/auth');
 //Impoter multer
 const multer = require('../middleware/multer-config');
 
-//Route User
+//-------------Route User-------------
+//Incription user
 router.post('/register', userCtrl.signup);
+//Connection user
 router.post('/login', userCtrl.login);
+//Trouver un user
 router.get('/user', auth, userCtrl.findUser);
+//Le profil des users
 router.put('/users/:id', auth, userCtrl.profilUser);
+//Changer le password user
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
-//Route Post
+//------------Route Post---------------
+//Création Publication
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
+//Récuperation publication
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
 
-//Route Comments
-router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 
+//-----------Route Comments------------
+//Création commentaires
+router.post('/posts/:id/comment', auth, commentCtrl.postComment);
+//Récupération Commentaires
 router.get('/comments', auth, commentCtrl.findAllComments);
 
 

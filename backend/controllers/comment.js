@@ -18,7 +18,7 @@ exports.postComment = async (req, res, next) => {
 };
 
 
-//Récuperer tous commentaires
+//Récuperer tous les commentaires
 exports.findAllComments = async (req, res) => {
 
     db.comments.findAll()

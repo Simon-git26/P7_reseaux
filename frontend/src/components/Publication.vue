@@ -50,6 +50,7 @@
         },
 
         methods: {
+            //Récuperer toutes les publications
             onMounted() {
 
             axios.get('/publications', {
@@ -68,6 +69,7 @@
                 });
             },
 
+            //Récuperer tous les commantaires
             onComments() {
                 axios.get('/comments', {
                     headers: {
@@ -85,7 +87,7 @@
                 });
             },
 
-
+            //Crée les commentaires
             commentPost( post ) {
 
                 const data = {
