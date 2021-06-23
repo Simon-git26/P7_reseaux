@@ -44,16 +44,19 @@
 
             onFileSelected(event) {
                 this.selectedFile = event.target.files[0];
-                console.log(this.selectedFile);
+                console.log('selectedFile', this.selectedFile);
             },
 
             publish() {
 
                 const url = '/users/' + this.user.id + '/publication';
-                
+
                 const fd = new FormData();
 
-                fd.append('image', this.selectedFile, this.selectedFile.name);
+                if (this.selectedFile) {
+                    fd.append('image', this.selectedFile, this.selectedFile.name);
+                }
+                
                 fd.append('post', this.post);
 
                 axios.post(url, fd)
