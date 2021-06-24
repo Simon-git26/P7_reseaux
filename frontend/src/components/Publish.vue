@@ -2,7 +2,7 @@
     <div class="publication">
         <h4>Crée une publication...</h4>
         
-        <textarea id="createPost" v-model="post" type="text" placeholder="Crée votre publication"></textarea>
+        <textarea class="rounded" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
         
         <div class="btn-pos">
             <div class="border-secondary">

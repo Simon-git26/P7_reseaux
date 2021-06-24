@@ -2,7 +2,7 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img :src="post.imageUrl" class="img-fluid rounded-start" alt="...">
+                <img :src="post.imageUrl" class="img-fluid rounded-start" alt="#">
             </div>
 
             <div class="col-md-8">
@@ -21,7 +21,7 @@
             <h5 class="d-flex justify-content-center">Commentaires</h5>
 
             <form @submit.prevent="commentPost()">
-                <div class="input-group">
+                <div class="input-group mb-2">
                     <!-- ref="inputRef"  sert a enregistrer une reference inputRef afin de pouvoir sans servir sur tous le composant ou il est installé -->
                     <input class="form-control" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
                     <button class="btn btn-outline-primary" @click.prevent="commentPost()" type="button" :disabled="comment.lenght < 3">Envoyer</button>
@@ -29,15 +29,23 @@
             </form>
 
 
-            <figure v-for="comment in comments" :key="comment.id">
-                <blockquote class="blockquote">
+            <figure v-for="comment in comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2">
+                <div>
+                    <blockquote class="blockquote">
                     <p>{{ comment.comment }}</p>
-                </blockquote>
+                    </blockquote>
 
-                <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
-                <figcaption class="blockquote-footer">
-                    Posté par Utilisateur n°{{ comment.UserId }}
-                </figcaption>
+                    <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
+                    <figcaption class="blockquote-footer">
+                        Posté par Utilisateur n°{{ comment.UserId }}
+                    </figcaption>
+                </div>
+
+                <div>
+                    <button type="button" class="btn-sm btn-info" @click.prevent="changeComment()">Modifier</button>
+                    <button type="button" class="btn-sm btn-danger ml-2">Supprimer</button>
+                </div>
+                
 
                 <!-- <figcaption class="blockquote-footer">
                     Posté par {{ this.$App.user.firstName }}
@@ -67,6 +75,7 @@
                 seeComments: false,
                 comment: "",
                 comments: [],
+                newComment: null,
             }
         },
 
@@ -117,7 +126,34 @@
                 .catch((err) => {
                 console.log(err);
                 });
-            }
+            },
+
+            /*//Modifier un commentaire
+            changeComment() {
+
+                const data = {
+                    comment: this.comment,
+                    newComment: this.newComment,
+                }
+
+                console.log();
+
+                const url = '/comments/' + this.post.id + '/changeComment';
+
+                axios.put(url, data, {
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                this.comments = response.data;
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            }*/
         },
 
         watch: {

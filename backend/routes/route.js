@@ -40,5 +40,8 @@ router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 //Récupération Commentaires
 router.get('/comments/:id', auth, commentCtrl.findAllComments);
 
+/*//Modifier un commentaire
+router.put('/comments/post/:id/changeComment', auth, commentCtrl.changeComment)*/
+
 
 module.exports = router;
