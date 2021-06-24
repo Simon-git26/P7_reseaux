@@ -53,9 +53,9 @@
 
                 const fd = new FormData();
 
-                if (this.selectedFile) {
-                    fd.append('image', this.selectedFile, this.selectedFile.name);
-                }
+                
+
+                fd.append('image', this.selectedFile, this.selectedFile.name);
                 
                 fd.append('post', this.post);
 

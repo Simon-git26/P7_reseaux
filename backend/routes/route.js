@@ -38,7 +38,7 @@ router.get('/publications', auth, multer, postCtrl.findAllPosts);
 //Création commentaires
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 //Récupération Commentaires
-router.get('/comments', auth, commentCtrl.findAllComments);
+router.get('/comments/:id', auth, commentCtrl.findAllComments);
 
 
 module.exports = router;

@@ -21,7 +21,11 @@ exports.postComment = async (req, res, next) => {
 //Récuperer tous les commentaires
 exports.findAllComments = async (req, res) => {
 
-    db.comments.findAll()
+    db.comments.findAll({
+        where: {
+            PostId: req.params.id
+        }
+    })
 
     .then((comment) => res.status(201).json(comment))
     .catch(error => res.status(400).json({ error }));
