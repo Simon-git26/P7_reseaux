@@ -32,9 +32,8 @@ exports.findAllComments = async (req, res, next) => {
 };
 
 
-/*//Modifier son commentaire
+//Modifier son commentaire
 exports.changeComment = async (req, res) => {
-    // Chercher le user qui correspond à req.params.id dans la bdd.
     const comment = await  db.comments.findOne({
         where: {
             id: req.params.id
@@ -45,4 +44,4 @@ exports.changeComment = async (req, res) => {
     comment.save()
     .then(() => res.status(200).json({ message: 'Commentaire changé !' }))
     .catch(error => res.status(400).json({ error }));
-};*/
+};

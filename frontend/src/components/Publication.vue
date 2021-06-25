@@ -42,8 +42,18 @@
                 </div>
 
                 <div>
-                    <button type="button" class="btn-sm btn-info" @click.prevent="changeComment()">Modifier</button>
-                    <button type="button" class="btn-sm btn-danger ml-2">Supprimer</button>
+                    <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                        Modifier
+                    </button>
+
+                    <div v-if="seeInput">
+                        <form @submit.prevent="changeComment(comment)">
+                            <div class="input-group">
+                                <input class="form-control" type="text" v-model="commentChange" placeholder="Ecrivez un commentaire" />
+                                <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 
 
@@ -73,9 +83,10 @@
         data() {
             return {
                 seeComments: false,
+                seeInput: false,
                 comment: "",
+                commentChange: "",
                 comments: [],
-                newComment: null,
             }
         },
 
@@ -128,17 +139,18 @@
                 });
             },
 
-            /*//Modifier un commentaire
-            changeComment() {
+            //Modifier un commentaire
+            changeComment(comment) {
 
+                console.log('comment', comment);
+                
                 const data = {
-                    comment: this.comment,
-                    newComment: this.newComment,
+                    comment: this.commentChange
                 }
 
                 console.log();
 
-                const url = '/comments/' + this.post.id + '/changeComment';
+                const url = '/comments/' + comment.id ;
 
                 axios.put(url, data, {
                     headers: {
@@ -148,12 +160,14 @@
 
                 .then((response) => {
                 this.comments = response.data;
+                this.commentChange = "",
+                this.onComments()
                 })
 
                 .catch((err) => {
                 console.log(err);
                 });
-            }*/
+            }
         },
 
         watch: {
