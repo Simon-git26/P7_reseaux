@@ -137,3 +137,34 @@ exports.changePassword = async (req, res, next) => {
         }
     }
 };
+
+/* //Enregistrer une image profil
+exports.savePicture = async (req, res) => {
+    db.user.create({
+        id: req.params.id,
+        imagePath: req.file.path
+    })
+
+    .then((savePicture) => res.status(201).json(savePicture))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+exports.findPicture = async (req, res) => {
+
+    db.user.findOne({
+        where: {
+            id: userId
+        }
+    })
+
+    .then((users) => {
+        users.forEach(user => {
+            if (user.imagePath) {
+                user.imageUrl = `${req.protocol}://${req.get('host')}/${user.imagePath}`
+            }
+        })
+        res.status(200).json(users);
+    }) 
+    .catch(error => res.status(404).json({ error }));
+}; */

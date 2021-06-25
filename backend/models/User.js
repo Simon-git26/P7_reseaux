@@ -37,8 +37,20 @@ module.exports = (sequelize, Sequelize) => {
       description: {
         type: Sequelize.STRING(124),
         defaultValue: "",
-      }
-    },
+      },
+
+      /* imagePath: {
+        type: Sequelize.STRING(250),
+        allowNull: false,
+        defaultValue: "",
+      },
+
+      imageUrl: {
+          type: Sequelize.STRING(250),
+          allowNull: false,
+          defaultValue: "",
+        }*/
+      },
     {
       //Indiquez le nom de la table dans mysql
       tableName: "users",

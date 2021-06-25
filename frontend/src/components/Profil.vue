@@ -10,12 +10,13 @@
 
         <div class="font flexbox">
             <div>
+                <!-- <img :src="user.imageUrl" class="img-fluid rounded-start" alt="#"> -->
                 <h5>Photo de Profil</h5>
                 <div class="border border-secondary">
                     <i class="fas fa-user-circle"></i>
                     <div class="border-top border-secondary file">
                         <label for="image">Changer ma photo de profil</label>
-                        <input type="file" id="image" name="image" />
+                        <input type="file" id="image" name="image" /> <!-- @change="onFileSelected" -->
                     </div>
                 </div>
             </div>
@@ -60,7 +61,7 @@
 
         <div class="mt-3">
             <h5>Sauvegarder les modifications apportées</h5>
-            <button class="btn btn-primary">Sauvegarder</button>
+            <button class="btn btn-primary">Sauvegarder</button> <!-- v-on:click="save" -->
         </div>
     </div>
 </template>
@@ -79,7 +80,10 @@
                 password: null,
                 newPassword: null,
                 description: null,
-                passwordError: false
+                passwordError: false,
+                /* selectedFile: null,
+                imagePath: "", */
+
             }
         },
 
@@ -139,8 +143,53 @@
                     console.log(err);
                     this.passwordError = true;
                 })
-            }
+            },
+
+            /* onFileSelected(event) {
+                this.selectedFile = event.target.files[0];
+                console.log('selectedFile', this.selectedFile);
+            },
+
+            save() {
+                const url = '/users/' + this.user.id + '/picture';
+
+                const file = new FormData();
+
+                file.append('image', this.selectedFile, this.selectedFile.name);
+
+                axios.post(url, file)
+                .then((res) => {
+                    console.log(res);
+                    window.location.reload();
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            },
+
+            //Affichage de l'image
+            fetchPicture () {
+                axios.get('/picture', {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                    console.log(response);
+                    this.users = response.data;
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            } */
         },
+
+        /* mounted () {
+            this.fetchPicture()
+        }, */
     }
 </script>
 

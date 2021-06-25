@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
-                <div>
+                <div class="d-flex flex-row-reverse">
                     <div class="d-flex">   
                         <div v-if="!seeInput">
                             <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
@@ -166,7 +166,7 @@
                 this.comments = response.data;
                 this.commentChange = "",
                 this.onComments()
-                window.location.reload();
+                
                 })
 
                 .catch((err) => {

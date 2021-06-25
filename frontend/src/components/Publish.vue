@@ -50,10 +50,7 @@
             publish() {
 
                 const url = '/users/' + this.user.id + '/publication';
-
                 const fd = new FormData();
-
-                
 
                 fd.append('image', this.selectedFile, this.selectedFile.name);
                 

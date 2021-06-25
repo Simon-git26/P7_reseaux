@@ -27,6 +27,12 @@ router.put('/users/:id', auth, userCtrl.profilUser);
 //Changer le password user
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 
+/* //Mettre une image de Profil
+router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
+//Récuperer l'image de progil user
+router.get('/picture', auth, multer, userCtrl.findPicture); */
+
+
 //------------Route Post---------------
 //Création Publication
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
