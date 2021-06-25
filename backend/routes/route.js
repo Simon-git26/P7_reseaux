@@ -41,6 +41,7 @@ router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 router.get('/comments/:id', auth, commentCtrl.findAllComments);
 //Modifier un commentaire
 router.put('/comments/:id', auth, commentCtrl.changeComment)
-
+//Supprimer un commentaire
+router.delete('/comments/:id/delete', auth, commentCtrl.deleteComment)
 
 module.exports = router;

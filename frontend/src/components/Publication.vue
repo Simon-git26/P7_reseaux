@@ -24,7 +24,7 @@
                 <div class="input-group mb-2">
                     <!-- ref="inputRef"  sert a enregistrer une reference inputRef afin de pouvoir sans servir sur tous le composant ou il est installé -->
                     <input class="form-control" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
-                    <button class="btn btn-outline-primary" @click.prevent="commentPost()" type="button" :disabled="comment.lenght < 3">Envoyer</button>
+                    <button class="btn btn-outline-primary" @click.prevent="commentPost()" type="button" :disabled="comment.length < 3">Envoyer</button>
                 </div>
             </form>
 
@@ -41,15 +41,27 @@
                     </figcaption>
                 </div>
 
+                <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
                 <div>
-                    <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                        Modifier
-                    </button>
+                    <div class="d-flex">   
+                        <div v-if="!seeInput">
+                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                Modifier
+                            </button>
+                        </div>
 
+                        <div>
+                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    
                     <div v-if="seeInput">
                         <form @submit.prevent="changeComment(comment)">
                             <div class="input-group">
-                                <input class="form-control" type="text" v-model="commentChange" placeholder="Ecrivez un commentaire" />
+                                <input class="form-control" type="text" ref="commentRef" v-model="commentChange" placeholder="Modifier un commentaire" />
                                 <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
                             </div>
                         </form>
@@ -100,7 +112,6 @@
                 })
 
                 .then((response) => {
-                
                 this.comments = response.data;
                 })
 
@@ -111,7 +122,6 @@
 
             //Crée les commentaires
             commentPost() {
-
                 //Empeche l'envoi du commentaire si il est inferieur à 2 caractères
                 if (this.comment.length < 2) {
                     return
@@ -122,7 +132,6 @@
                 };
 
                 const url = '/posts/' + this.post.id + '/comment';
-
                 axios
                     .post(url, data, {
                     headers: {
@@ -141,17 +150,12 @@
 
             //Modifier un commentaire
             changeComment(comment) {
-
                 console.log('comment', comment);
-                
                 const data = {
                     comment: this.commentChange
                 }
 
-                console.log();
-
                 const url = '/comments/' + comment.id ;
-
                 axios.put(url, data, {
                     headers: {
                     "Content-Type": "application/json",
@@ -161,6 +165,31 @@
                 .then((response) => {
                 this.comments = response.data;
                 this.commentChange = "",
+                this.onComments()
+                window.location.reload();
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            },
+
+            //Suprimer un commantaire
+            deleteComment(comment) {
+
+                const data = {
+                    comment: this.comment
+                }
+
+                const url = '/comments/' + comment.id + '/delete' ;
+                axios.delete(url, data, {
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                this.comments = response.data;
                 this.onComments()
                 })
 
@@ -180,7 +209,15 @@
                         this.$refs.inputRef.focus()
                     })
                 }
-            }
+            },
+
+            /*seeInput: function (value) {
+                if (value) {
+                    this.$nextTick(() => {
+                        this.$refs.commentRef.focus()
+                    })
+                }
+            }*/
         },
 
         //Une fois monté j'appelle la fonction
@@ -188,7 +225,6 @@
             this.onComments();
         }
     }
-
 </script>
 
 
