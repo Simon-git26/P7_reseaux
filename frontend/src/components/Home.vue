@@ -2,7 +2,7 @@
     <div>
         <div class="popup" v-if="isDisplay">
             <p v-if="user">Bienvenue {{ user.firstName }} {{ user.lastName }}</p>
-            <button v-on:click="show" type="button" class="btn btn-style"><i class="far fa-times-circle"></i></button>
+            <button v-on:click="show" type="button" class="btn btn-style"><em class="far fa-times-circle"></em></button>
         </div>
 
         <Feed />

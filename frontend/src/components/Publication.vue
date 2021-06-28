@@ -1,7 +1,7 @@
 <template>
     <div class="card mb-3 border border-secondary">
         <div class="row g-0">
-            <div class="col-md-4">
+            <div class="col-md-4" v-if="post.imageUrl">
                 <img :src="post.imageUrl" class="img-fluid rounded-start" alt="#">
             </div>
 
@@ -11,7 +11,7 @@
                     <p class="card-text"><small class="text-muted">{{ post.createdAt }}</small></p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': comments.length > 0, 'btn-secondary': comments.length === 0}" 
                             @click.prevent="seeComments = !seeComments">
-                        Afficher les commentaires <i class="far fa-comment-alt"></i> ({{ comments.length }}) 
+                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ comments.length }}) 
                     </button>
                 </div>
             </div>
@@ -142,7 +142,12 @@
                 //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
                 this.comment = "",
-                this.onComments()
+                this.onComments();
+                    Vue.notify({
+                        group: 'foo',
+                        title: 'Notifications',
+                        text: 'Commentaire envoyé !'
+                    })
                 })
                 .catch((err) => {
                 console.log(err);

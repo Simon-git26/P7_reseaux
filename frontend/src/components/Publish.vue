@@ -16,7 +16,7 @@
 
 
 <script>
-    import axios from '../api'
+    import axios from '../api';
 
     export default {
         name: 'Publish',
@@ -46,15 +46,16 @@
                 const url = '/users/' + this.user.id + '/publication';
                 const fd = new FormData();
 
-                fd.append('image', this.selectedFile, this.selectedFile.name);
-                
+                if (this.selectedFile) {
+                    fd.append('image', this.selectedFile, this.selectedFile.name);
+                }
+
                 fd.append('post', this.post);
 
                 axios.post(url, fd)
                 .then((res) => {
                     console.log(res);
                     window.location.reload();
-
                 })
                 .catch((err) => {
                     console.log(err);

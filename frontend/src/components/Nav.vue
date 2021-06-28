@@ -3,17 +3,17 @@
       <div class="container">
         <a href="/" class="navbar-brand">Accueil</a>
         <div class="img">
-          <img src="@/assets/iconegroupo.png"/>
+          <img src="@/assets/iconegroupo.png" alt="#"/>
         </div>
         
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a v-if="isConnected" v-on:click="deconnection" href="Login" class="nav-link color pos">Deconnexion<i class="fas fa-power-off"></i></a>
+              <a v-if="isConnected" v-on:click="deconnection" href="Login" class="nav-link color pos">Deconnexion<em class="fas fa-power-off"></em></a>
               <a v-else href="Login" class="nav-link color">Connexion</a>
             </li>
             <li class="nav-item">
-              <a v-if="isConnected" href="Profil" class="nav-link color pos">Profil<i class="fas fa-user-circle"></i></a>
+              <a v-if="isConnected" href="Profil" class="nav-link color pos">Profil<em class="fas fa-user-circle"></em></a>
               <a v-else href="Register" class="nav-link color">Inscription</a>
             </li>
           </ul>

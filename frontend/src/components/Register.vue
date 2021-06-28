@@ -1,12 +1,12 @@
 <template>
   <div>
     <p v-if="password !== passwordConfirm && password && passwordConfirm">
-      <b
+      <strong
         >Veuillez renseignez le bon mot de passe:<br />
         * Majuscule obligatoire *<br />
         * Chiffres Obligatoires *<br />
         * Caractères spcéciaux Obligatoire *
-      </b>
+      </strong>
     </p>
 
     <form @submit.prevent="handleSubmit">

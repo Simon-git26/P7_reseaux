@@ -60,7 +60,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 //Porbleme de cors au cas ou
-/* app.options('*', cors());*/
+// app.options('*', cors());
 
 app.use(morgan('combined'));
 

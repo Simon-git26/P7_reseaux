@@ -1,8 +1,8 @@
 <template>
   <div>
     <p v-if="password && email">
-      <b>Le mot de passe ne correspond pas à l'email.</b><br />
-      <b>Vous disposez de {{ count }} essaie</b>
+      <strong>Le mot de passe ne correspond pas à l'email.</strong><br />
+      <strong>Vous disposez de {{ count }} essaie</strong>
     </p>
 
     <form @submit.prevent="handlelogsubmit">
