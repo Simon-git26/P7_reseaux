@@ -17,7 +17,6 @@
 
 <script>
 import Nav from './components/Nav.vue'
-import axios from './api'
 
 
 export default {
@@ -31,17 +30,6 @@ export default {
     return {
       user: null,
     }
-  },
-
-  async created() {
-    const connected = localStorage.getItem('token');
-    if (!connected) {
-        this.$router.push('/login');
-    }
-
-    const res = await axios.get('user');
-
-    this.user = res.data;
   },
 }
 </script>

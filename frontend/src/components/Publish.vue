@@ -30,13 +30,7 @@
         },
 
         async created() {
-            const connected = localStorage.getItem('token');
-            if (!connected) {
-                this.$router.push('/login');
-            }
-
             const res = await axios.get('user');
-
             this.user = res.data;
         },
 

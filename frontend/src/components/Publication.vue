@@ -1,5 +1,5 @@
 <template>
-    <div class="card mb-3">
+    <div class="card mb-3 border border-secondary">
         <div class="row g-0">
             <div class="col-md-4">
                 <img :src="post.imageUrl" class="img-fluid rounded-start" alt="#">
@@ -17,19 +17,19 @@
             </div>
         </div>
 
-        <div v-if="seeComments">
+        <div v-if="seeComments" class="mt-3">
             <h5 class="d-flex justify-content-center">Commentaires</h5>
 
             <form @submit.prevent="commentPost()">
                 <div class="input-group mb-2">
                     <!-- ref="inputRef"  sert a enregistrer une reference inputRef afin de pouvoir sans servir sur tous le composant ou il est installé -->
-                    <input class="form-control" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
-                    <button class="btn btn-outline-primary" @click.prevent="commentPost()" type="button" :disabled="comment.length < 3">Envoyer</button>
+                    <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
+                    <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
                 </div>
             </form>
 
 
-            <figure v-for="comment in comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2">
+            <figure v-for="comment in comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
                 <div>
                     <blockquote class="blockquote">
                     <p>{{ comment.comment }}</p>

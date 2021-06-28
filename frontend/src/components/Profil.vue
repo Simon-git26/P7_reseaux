@@ -2,7 +2,7 @@
     
     <div v-if="!!user" class="width">
         <p v-if="passwordError">
-        <b>Le mot de passe ne correspond pas.</b><br />
+    <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
         <div>
             <h3 class="font color" v-if="user">{{ user.firstName }} {{ user.lastName }}</h3>
@@ -13,7 +13,7 @@
                 <!-- <img :src="user.imageUrl" class="img-fluid rounded-start" alt="#"> -->
                 <h5>Photo de Profil</h5>
                 <div class="border border-secondary">
-                    <i class="fas fa-user-circle"></i>
+                    <em class="fas fa-user-circle"></em>
                     <div class="border-top border-secondary file">
                         <label for="image">Changer ma photo de profil</label>
                         <input type="file" id="image" name="image" /> <!-- @change="onFileSelected" -->
@@ -55,7 +55,7 @@
 
             <div>
                 <h5>Supprimer mon compte</h5>
-                <button class="btn btn-primary">Supprimer</button>
+                <button class="btn btn-danger" @click.prevent="deleteUser(user)">Supprimer</button>
             </div>
         </div>
 
@@ -145,6 +145,32 @@
                 })
             },
 
+            //Supprimer son compte
+            deleteUser(user) {
+
+                const data = {
+                    user: this.user
+                }
+
+                const url = '/users/' + user.id + '/delete';
+
+                axios.delete(url, data, {
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                    this.$router.push("/Register");
+                    console.log(response);
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            },
+
+
             /* onFileSelected(event) {
                 this.selectedFile = event.target.files[0];
                 console.log('selectedFile', this.selectedFile);
@@ -195,7 +221,6 @@
 
 
 <style scoped>
-
     .width {
         width: 45rem;
         text-align: center;
