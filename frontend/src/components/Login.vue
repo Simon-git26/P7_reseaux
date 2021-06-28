@@ -46,6 +46,7 @@
 <script>
 import axios, { refreshHeaders } from "../api";
 import store from '../store';
+import Vue from 'vue';
 
 export default {
   
@@ -80,6 +81,11 @@ export default {
           store.setIsConnected(true);
           refreshHeaders();
           this.$router.push("/");
+          Vue.notify({
+            group: 'foo',
+            title: 'Notifications',
+            text: 'Connection réussi !'
+          })
           console.log(res);
         })
         .catch((err) => {

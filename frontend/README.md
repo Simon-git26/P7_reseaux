@@ -25,3 +25,5 @@ Documentation:
 Vue.js → doc: https://vuejs.org/v2/guide/
 
 Axios → doc: https://fr.vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+
+Vue-notification: npm install --save vue-notification

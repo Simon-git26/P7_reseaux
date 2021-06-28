@@ -80,7 +80,8 @@
 
 
 <script>
-    import axios from '../api'
+    import axios from '../api';
+    import Vue from 'vue';
 
     export default {
         name: 'Publication',
@@ -166,6 +167,11 @@
                 this.comments = response.data;
                 this.commentChange = "",
                 this.onComments()
+                    Vue.notify({
+                        group: 'foo',
+                        title: 'Notifications',
+                        text: 'Commentaire Modifié !'
+                    })
                 })
 
                 .catch((err) => {

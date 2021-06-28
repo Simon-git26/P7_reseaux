@@ -2,6 +2,7 @@
   <div id="app">
 
     <Nav />
+    <notifications group="foo" />
 
     <div class="auth-wrapper">
       <div class="auth-inner">

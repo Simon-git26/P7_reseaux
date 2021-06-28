@@ -78,6 +78,7 @@
 
 <script>
 import axios from "../api";
+import Vue from 'vue';
 
 export default {
   name: "Register",
@@ -110,6 +111,11 @@ export default {
         })
         .then((res) => {
           this.$router.push("/login");
+          Vue.notify({
+            group: 'foo',
+            title: 'Notifications',
+            text: 'Inscription réalisée !'
+          })
           console.log(res);
         })
         .catch((err) => {
