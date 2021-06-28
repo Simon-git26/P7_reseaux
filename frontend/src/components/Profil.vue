@@ -32,7 +32,7 @@
                 
                 <div class="column">
                     <label name="lab" for="changeDescription">Changer ma description</label>
-                    <textarea id="changeDescription" type="text" @keyup.enter="changeDescription" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
+                    <textarea id="changeDescription" v-model="description" type="text" @keyup.enter="changeDescription" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
                 </div>
             </div>
         </div>
@@ -102,10 +102,9 @@
         methods: {
 
             changeDescription() {
-                this.description = document.getElementById('changeDescription').value;
 
                 const data = {
-                    description: this.description
+                    description: this.description,
                 };
 
                 axios.put("/users/" + this.user.id, data, {

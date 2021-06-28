@@ -11,7 +11,7 @@
                     <p class="card-text"><small class="text-muted">{{ post.createdAt }}</small></p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': comments.length > 0, 'btn-secondary': comments.length === 0}" 
                             @click.prevent="seeComments = !seeComments">
-                        Afficher les commentaires ({{ comments.length }})
+                        Afficher les commentaires <i class="far fa-comment-alt"></i> ({{ comments.length }}) 
                     </button>
                 </div>
             </div>
@@ -166,7 +166,6 @@
                 this.comments = response.data;
                 this.commentChange = "",
                 this.onComments()
-                
                 })
 
                 .catch((err) => {
