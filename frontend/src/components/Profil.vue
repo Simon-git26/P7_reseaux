@@ -2,7 +2,7 @@
     
     <div v-if="!!user" class="width">
         <p v-if="passwordError">
-    <strong>Le mot de passe ne correspond pas.</strong><br />
+            <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
         <div>
             <h3 class="font color" v-if="user">{{ user.firstName }} {{ user.lastName }}</h3>
@@ -148,26 +148,32 @@
             //Supprimer son compte
             deleteUser(user) {
 
-                const data = {
+                const valid = window.confirm('Ete vous sur de vouloir supprimer votre compte ?')
+
+                if (!valid) {
+                    window.alert('Ok, vous avez fait le bon choix :)');
+                } else {
+                    const data = {
                     user: this.user
-                }
+                    }
 
-                const url = '/users/' + user.id + '/delete';
+                    const url = '/users/' + user.id + '/delete';
 
-                axios.delete(url, data, {
-                    headers: {
-                    "Content-Type": "application/json",
-                    },
-                })
+                    axios.delete(url, data, {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                    })
 
-                .then((response) => {
-                    this.$router.push("/Register");
-                    console.log(response);
-                })
+                    .then((response) => {
+                        this.$router.push("/Register");
+                        console.log(response);
+                    })
 
-                .catch((err) => {
-                console.log(err);
-                });
+                    .catch((err) => {
+                    console.log(err);
+                    });
+                } 
             },
 
 
