@@ -20,12 +20,6 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
                 defaultValue: "",
             },
-
-            imageUrl: {
-                type: Sequelize.STRING(250),
-                allowNull: false,
-                defaultValue: "",
-            }
         },
 
         {

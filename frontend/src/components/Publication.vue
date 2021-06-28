@@ -1,17 +1,17 @@
 <template>
     <div class="card mb-3 border border-secondary">
         <div class="row g-0">
-            <div class="col-md-4" v-if="post.imageUrl">
-                <img :src="post.imageUrl" class="img-fluid rounded-start" alt="#">
+            <div class="col-md-4" v-if="post.imagePath">
+                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
             </div>
 
             <div class="col-md-8">
                 <div class="card-body">
                     <p class="card-text">{{ post.post }}</p>
                     <p class="card-text"><small class="text-muted">{{ post.createdAt }}</small></p>
-                    <button class="btn-primary btn-sm" :class="{'btn-primary': comments.length > 0, 'btn-secondary': comments.length === 0}" 
+                    <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                             @click.prevent="seeComments = !seeComments">
-                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ comments.length }}) 
+                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
                     </button>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             </form>
 
 
-            <figure v-for="comment in comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
+            <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
                 <div>
                     <blockquote class="blockquote">
                     <p>{{ comment.comment }}</p>
@@ -99,28 +99,10 @@
                 seeInput: false,
                 comment: "",
                 commentChange: "",
-                comments: [],
             }
         },
 
         methods: {
-            //Récuperer tous les commantaires
-            onComments() {
-                axios.get('/comments/' + this.post.id, {
-                    headers: {
-                    "Content-Type": "application/json",
-                    },
-                })
-
-                .then((response) => {
-                this.comments = response.data;
-                })
-
-                .catch((err) => {
-                console.log(err);
-                });
-            },
-
             //Crée les commentaires
             commentPost() {
                 //Empeche l'envoi du commentaire si il est inferieur à 2 caractères
@@ -142,7 +124,6 @@
                 //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
                 this.comment = "",
-                this.onComments();
                     Vue.notify({
                         group: 'foo',
                         title: 'Notifications',
@@ -171,7 +152,6 @@
                 .then((response) => {
                 this.comments = response.data;
                 this.commentChange = "",
-                this.onComments()
                     Vue.notify({
                         group: 'foo',
                         title: 'Notifications',
@@ -200,7 +180,6 @@
 
                 .then((response) => {
                 this.comments = response.data;
-                this.onComments()
                 })
 
                 .catch((err) => {
@@ -229,11 +208,6 @@
                 }
             }*/
         },
-
-        //Une fois monté j'appelle la fonction
-        mounted() {
-            this.onComments();
-        }
     }
 </script>
 

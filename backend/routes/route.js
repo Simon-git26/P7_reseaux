@@ -45,8 +45,10 @@ router.get('/publications', auth, multer, postCtrl.findAllPosts);
 //-----------Route Comments------------
 //Création commentaires
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
+
 //Récupération Commentaires
 router.get('/comments/:id', auth, commentCtrl.findAllComments);
+
 //Modifier un commentaire
 router.put('/comments/:id', auth, commentCtrl.changeComment)
 //Supprimer un commentaire

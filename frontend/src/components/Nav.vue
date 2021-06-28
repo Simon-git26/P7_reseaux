@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand navbar-light fixed-top">
+    <nav class="navbar navbar-expand navbar-light">
       <div class="container">
         <a href="/" class="navbar-brand">Accueil</a>
         <div class="img">
@@ -54,6 +54,10 @@
 
 
 <style scoped>
+  .navbar {
+    margin-bottom: 12rem;
+  }
+
   .color {
     color: black !important;
   }
