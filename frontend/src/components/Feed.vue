@@ -2,7 +2,7 @@
     <div>
         <Publish />
 
-        <div class="actuality">
+        <div class="mt-4">
             <h3>Fil d'Actualitée</h3>
             <Publication v-for="post in posts" :key="post.id" :post="post" />
         </div>
@@ -61,12 +61,5 @@
 
 
 <style scoped>
-    .actuality {
-        margin-top: 40px;
-    }
 
-    .actuality h3 {
-        text-decoration: underline;
-        color: #191f2e;
-    }
 </style>

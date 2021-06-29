@@ -1,10 +1,10 @@
 <template>
-    <div class="publication">
-        <h4>Crée une publication...</h4>
+    <div class="mt-5 border border-secondary p-3 rounded">
+        <h4 class="mb-3">Crée une publication...</h4>
         
-        <textarea class="rounded" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
+        <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
         
-        <div class="btn-pos">
+        <div class="mt-3 d-flex justify-content-between">
             <div class="border-secondary">
                 <input type="file" id="image" @change="onFileSelected" />
             </div>
@@ -68,25 +68,7 @@
 
 
 <style scoped>
-    .publication {
-        margin-top: 40px;
-        border: 1px gray solid;
-        padding: 15px;
-        border-radius: 8px;
-    }
-
-    .publication h4 {
-        margin-bottom: 20px;
-    }
-
     #createPost {
-        width: 100%;
         height: 100px;
-    }
-
-    .btn-pos {
-        margin-top: 15px;
-        display: flex;
-        justify-content: space-between;
     }
 </style>

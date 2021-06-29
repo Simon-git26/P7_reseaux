@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="popup" v-if="isDisplay">
-            <p v-if="user">Bienvenue {{ user.firstName }} {{ user.lastName }}</p>
-            <button v-on:click="show" type="button" class="btn btn-style"><em class="far fa-times-circle"></em></button>
+        <div class="popup d-flex justify-content-between rounded align-items-center pl-3 pr-3" v-if="isDisplay">
+            <p class="mt-3 fs-5" v-if="user">Bienvenue {{ user.firstName }} {{ user.lastName }}</p>
+            <button v-on:click="show" type="button" class="btn"><em class="text-dark fs-1 d-flex justify-content-center align-content-center far fa-times-circle"></em></button>
         </div>
 
         <Feed />
@@ -52,43 +52,8 @@
 
 
 <style scoped>
-    h3 {
-        font-size: 1.65rem;
-    }
-
-    p {
-        text-align: center;
-        margin: 0;
-        line-height: 1;
-        padding-bottom: 20px;
-    }
-
-    .log {
-    display: flex;
-    justify-content: space-around;
-    }
-
     .popup {
         background-color: #c2d8ff;
-        display: flex;
-        justify-content: space-between;
         border: 1px #6f84a8 solid;
-        align-items: center;
-        border-radius: 5px;
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .popup p {
-        margin-top: 20px;
-        font-size: 20px;
-    }
-
-    .fa-times-circle {
-        color: black;
-        font-size: 40px;
-        display: flex;
-        justify-content: center;
-        align-content: center;
     }
 </style>

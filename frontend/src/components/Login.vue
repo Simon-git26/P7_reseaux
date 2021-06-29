@@ -31,7 +31,7 @@
       </div>
 
       <button
-        class="btn btn-primary btn-block"
+        class="mb-2 btn btn-primary btn-block"
         v-on:click="countLimit"
         :disabled="btnlogdisable"
       >
@@ -134,8 +134,6 @@ export default {
 };
 </script>
 
+
 <style scoped>
-button {
-  margin-bottom: 20px;
-}
 </style>

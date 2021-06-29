@@ -31,7 +31,7 @@
 
             <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
                 <div>
-                    <blockquote class="blockquote">
+                    <blockquote class="blockquote fs-5">
                     <p>{{ comment.comment }}</p>
                     </blockquote>
 
@@ -61,17 +61,12 @@
                     <div v-if="seeInput">
                         <form @submit.prevent="changeComment(comment)">
                             <div class="input-group">
-                                <input class="form-control" type="text" ref="commentRef" v-model="commentChange" placeholder="Modifier un commentaire" />
+                                <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
                                 <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                
-
-                <!-- <figcaption class="blockquote-footer">
-                    Posté par {{ this.$App.user.firstName }}
-                </figcaption> -->
             </figure>
         </div>
     </div>
@@ -103,6 +98,7 @@
         },
 
         methods: {
+
             //Crée les commentaires
             commentPost() {
                 //Empeche l'envoi du commentaire si il est inferieur à 2 caractères
@@ -129,6 +125,7 @@
                         title: 'Notifications',
                         text: 'Commentaire envoyé !'
                     })
+                window.location.reload();
                 })
                 .catch((err) => {
                 console.log(err);
@@ -199,14 +196,6 @@
                     })
                 }
             },
-
-            /*seeInput: function (value) {
-                if (value) {
-                    this.$nextTick(() => {
-                        this.$refs.commentRef.focus()
-                    })
-                }
-            }*/
         },
     }
 </script>
@@ -214,11 +203,4 @@
 
 
 <style scoped>
-    .blockquote {
-        font-size: 1.1em;
-    }
-
-    .card {
-        border: 1px black solid
-    }
 </style>

@@ -67,7 +67,7 @@
         />
       </div>
 
-      <button class="btn btn-primary btn-block" :disabled="btndisable">
+      <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">
         Inscription !
       </button>
 
@@ -193,13 +193,7 @@ export default {
 };
 </script>
 
-<style scoped>
-button {
-  margin-bottom: 20px;
-}
 
-b {
-  display: flex;
-  justify-content: center;
-}
+<style scoped>
+
 </style>
