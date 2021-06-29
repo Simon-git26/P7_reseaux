@@ -22,7 +22,6 @@
 
             <form @submit.prevent="commentPost()">
                 <div class="input-group mb-2">
-                    <!-- ref="inputRef"  sert a enregistrer une reference inputRef afin de pouvoir sans servir sur tous le composant ou il est installé -->
                     <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
                     <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
                 </div>
@@ -123,7 +122,7 @@
                 })
                 //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
-                this.comment = "",
+                
                     Vue.notify({
                         group: 'foo',
                         title: 'Notifications',
@@ -152,7 +151,7 @@
 
                 .then((response) => {
                 this.comments = response.data;
-                this.commentChange = "",
+                window.location.reload();
                     Vue.notify({
                         group: 'foo',
                         title: 'Notifications',
