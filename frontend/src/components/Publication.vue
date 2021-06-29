@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <p class="card-text">{{ post.post }}</p>
-                    <p class="card-text"><small class="text-muted">{{ post.createdAt }}</small></p>
+                    <p class="card-text"><small class="text-muted">{{ formatDate(post.createdAt) }}</small></p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                             @click.prevent="seeComments = !seeComments">
                         Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
@@ -37,7 +37,7 @@
 
                     <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
                     <figcaption class="blockquote-footer">
-                        Posté par Utilisateur n°{{ comment.UserId }}
+                        Posté par {{ post.User.firstName }} {{ post.User.lastName }} le {{ formatDate(comment.createdAt) }}
                     </figcaption>
                 </div>
 
@@ -98,6 +98,10 @@
         },
 
         methods: {
+
+            formatDate(date) {
+                return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
+            },
 
             //Crée les commentaires
             commentPost() {
@@ -177,6 +181,7 @@
 
                 .then((response) => {
                 this.comments = response.data;
+                window.location.reload();
                 })
 
                 .catch((err) => {

@@ -47,7 +47,7 @@ router.get('/publications', auth, multer, postCtrl.findAllPosts);
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
 
 //Récupération Commentaires
-router.get('/comments/:id', auth, commentCtrl.findAllComments);
+//router.get('/comments/:id', auth, commentCtrl.findAllComments);
 
 //Modifier un commentaire
 router.put('/comments/:id', auth, commentCtrl.changeComment)

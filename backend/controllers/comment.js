@@ -19,17 +19,17 @@ exports.postComment = async (req, res, next) => {
 
 
 //Récuperer tous les commentaires
-exports.findAllComments = async (req, res, next) => {
-
-    db.comments.findAll({
-        where: {
-            PostId: req.params.id
-        }
-    })
-
-    .then((comment) => res.status(201).json(comment))
-    .catch(error => res.status(400).json({ error }));
-};
+//exports.findAllComments = async (req, res, next) => {
+//
+//    db.comments.findAll({
+//        where: {
+//            PostId: req.params.id
+//        }
+//    })
+//
+//    .then((comment) => res.status(201).json(comment))
+//    .catch(error => res.status(400).json({ error }));
+//};
 
 
 //Modifier son commentaire
