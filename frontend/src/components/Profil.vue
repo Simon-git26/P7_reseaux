@@ -9,7 +9,7 @@
 
         <div class="border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
             <div class="row d-flex justify-content-between">
-                <div class="col-lg-7 col-sm-6 col-12 border border-secondary rounded">
+                <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
                     <!-- <img :src="user.imageUrl" class="img-fluid rounded-start" alt="#"> -->
                     <h5>Photo de Profil</h5>
                     <div class="rounded d-flex flex-column border-secondary">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 col-sm-6 col-12">
+                <div class="col-lg-5 col-md-6 col-sm-12">
                     <h5>Email</h5>
                     <p>{{ user.email }}</p>
 
@@ -40,7 +40,7 @@
 
         <div class="border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
             <div class="row d-flex justify-content-between">
-                <div class="col-lg-7 col-sm-6 col-12">
+                <div class="col-lg-7 col-md-6 col-sm-12">
                     <h5>Changer votre Mot de passe</h5>
                     <form class="d-flex flex-column">
                         <div class="d-flex flex-column">
@@ -55,7 +55,7 @@
                     </form>
                 </div>
 
-                <div class="col-lg-5 col-sm-6 col-12">
+                <div class="col-lg-5 col-md-6 col-sm-12">
                     <h5>Supprimer mon compte</h5>
                     <button class="btn btn-danger" @click.prevent="deleteUser(user)">Supprimer</button>
                 </div>
