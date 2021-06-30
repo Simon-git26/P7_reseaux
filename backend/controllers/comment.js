@@ -36,10 +36,16 @@ exports.postComment = async (req, res, next) => {
 exports.changeComment = async (req, res, next) => {
     const comment = await  db.comments.findOne({
         where: {
-            //UserId: req.userId,
+            UserId: req.userId,
             id: req.params.id
         }
     });
+
+    if (!comment) {
+        res.status(400).json({ error : "Impossible de récuperer le commentaire !" });
+        return
+    }
+
     comment.comment = req.body.comment;
     console.log('comment', comment);
     

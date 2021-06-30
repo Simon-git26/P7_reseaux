@@ -11,7 +11,7 @@
                     <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
                     <p class="card-text">{{ post.post }}</p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                            @click.prevent="seeComments = !seeComments, showModal = true">
+                            @click.prevent="seeComments = !seeComments, showModal = true, onSeeModif()">
                         Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
                     </button>
                 </div>
@@ -74,9 +74,9 @@
 
                                 <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
                                 <div class="d-flex flex-row-reverse">
-                                    <div class="d-flex">   
+                                    <div class="d-flex" v-if="!seeModif">   
                                         <div v-if="!seeInput">
-                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput, seeModif = !seeModif">
                                                 Modifier
                                             </button>
                                         </div>
@@ -137,6 +137,7 @@
                 comment: "",
                 commentChange: "",
                 showModal: false,
+                seeModif: false,
             }
         },
 
@@ -144,6 +145,15 @@
 
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
+            },
+
+            onSeeModif() {
+
+                console.log(this.post.Comments.id);
+
+                if (!this.seeModif) {
+                    this.post.User.id = this.post.Comments.id
+                }
             },
 
             //Crée les commentaires
@@ -166,11 +176,10 @@
                 })
                 //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
-                
                     Vue.notify({
                         group: 'foo',
                         title: 'Notifications',
-                        text: 'Commentaire envoyé !'
+                        text: 'Commentaire Posté !',
                     })
                 window.location.reload();
                 })
@@ -196,11 +205,6 @@
                 .then((response) => {
                 this.comments = response.data;
                 window.location.reload();
-                    Vue.notify({
-                        group: 'foo',
-                        title: 'Notifications',
-                        text: 'Commentaire Modifié !'
-                    })
                 })
 
                 .catch((err) => {
