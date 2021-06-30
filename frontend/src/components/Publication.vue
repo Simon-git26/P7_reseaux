@@ -7,66 +7,109 @@
 
             <div class="col-md-8">
                 <div class="card-body">
+                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
                     <p class="card-text">{{ post.post }}</p>
-                    <p class="card-text"><small class="text-muted">{{ formatDate(post.createdAt) }}</small></p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                            @click.prevent="seeComments = !seeComments">
+                            @click.prevent="seeComments = !seeComments, showModal = true">
                         Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
                     </button>
                 </div>
             </div>
         </div>
 
-        <div v-if="seeComments" class="mt-3">
-            <h5 class="d-flex justify-content-center">Commentaires</h5>
+        <!------------ Afficher les commentaires en modal ----------->
+        <div v-if="showModal">
+            <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
 
-            <form @submit.prevent="commentPost()">
-                <div class="input-group mb-2">
-                    <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
-                    <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
-                </div>
-            </form>
-
-
-            <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
-                <div>
-                    <blockquote class="blockquote fs-5">
-                    <p>{{ comment.comment }}</p>
-                    </blockquote>
-
-                    <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
-                    <figcaption class="blockquote-footer">
-                        Posté par {{ post.User.firstName }} {{ post.User.lastName }} le {{ formatDate(comment.createdAt) }}
-                    </figcaption>
-                </div>
-
-                <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
-                <div class="d-flex flex-row-reverse">
-                    <div class="d-flex">   
-                        <div v-if="!seeInput">
-                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                Modifier
-                            </button>
-                        </div>
-
-                        <div>
-                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
-                                Supprimer
-                            </button>
-                        </div>
+                    <div class="modal-header">
+                        <h5 class="d-flex justify-content-center">Commentaires</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" @click="showModal = false">&times;</span>
+                        </button>
                     </div>
-                    
-                    
-                    <div v-if="seeInput">
-                        <form @submit.prevent="changeComment(comment)">
-                            <div class="input-group">
-                                <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
-                                <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
+
+                    <div class="modal-body">
+                         <div class="row g-0">
+                            <div class="col-md-4" v-if="post.imagePath">
+                                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
                             </div>
-                        </form>
+
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
+                                    <p class="card-text">{{ post.post }}</p>
+                                    <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+                                            @click.prevent="seeComments = !seeComments, showModal = true">
+                                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="seeComments" class="mt-3">
+
+                            <form @submit.prevent="commentPost()">
+                                <div class="input-group mb-2">
+                                    <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
+                                    <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
+                                </div>
+                            </form>
+
+                            <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
+                                <div>
+                                    <blockquote class="blockquote fs-5">
+                                    <p>{{ comment.comment }}</p>
+                                    </blockquote>
+
+                                    <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
+                                    <figcaption class="blockquote-footer">
+                                        Posté par {{ post.User.firstName }} {{ post.User.lastName }} le {{ formatDate(comment.createdAt) }}
+                                    </figcaption>
+                                </div>
+
+                                <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="d-flex">   
+                                        <div v-if="!seeInput">
+                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                                Modifier
+                                            </button>
+                                        </div>
+
+                                        <div>
+                                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                                Supprimer
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div v-if="seeInput">
+                                        <form @submit.prevent="changeComment(comment)">
+                                            <div class="input-group">
+                                                <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
+                                                <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="showModal = false">Fermer</button>
+                    </div>
                     </div>
                 </div>
-            </figure>
+                </div>
+            </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -93,6 +136,7 @@
                 seeInput: false,
                 comment: "",
                 commentChange: "",
+                showModal: false,
             }
         },
 
@@ -207,4 +251,25 @@
 
 
 <style scoped>
+
+.modal-dialog {
+    max-width: 800px;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
 </style>

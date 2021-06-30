@@ -12,7 +12,6 @@ exports.postComment = async (req, res, next) => {
         comment: req.body.comment
     })
     
-
     .then((commentOk) => res.status(201).json(commentOk))
     .catch(error => res.status(400).json({ error }));
 };
@@ -32,19 +31,24 @@ exports.postComment = async (req, res, next) => {
 //};
 
 
+
 //Modifier son commentaire
 exports.changeComment = async (req, res, next) => {
     const comment = await  db.comments.findOne({
         where: {
+            //UserId: req.userId,
             id: req.params.id
         }
     });
     comment.comment = req.body.comment;
     console.log('comment', comment);
+    
     comment.save()
     .then(() => res.status(200).json({ message: 'Commentaire changé !' }))
     .catch(error => res.status(400).json({ error }));
 };
+
+
 
 //Suprimer un commantaire
 exports.deleteComment = async (req, res) => {
