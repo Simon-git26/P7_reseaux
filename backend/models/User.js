@@ -39,17 +39,11 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: "",
       },
 
-      /* imagePath: {
+      imagePath: {
         type: Sequelize.STRING(250),
         allowNull: false,
         defaultValue: "",
       },
-
-      imageUrl: {
-          type: Sequelize.STRING(250),
-          allowNull: false,
-          defaultValue: "",
-        }*/
       },
     {
       //Indiquez le nom de la table dans mysql

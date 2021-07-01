@@ -11,7 +11,7 @@
                     <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
                     <p class="card-text">{{ post.post }}</p>
                     <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                            @click.prevent="seeComments = !seeComments, showModal = true, onSeeModif()">
+                            @click.prevent="seeComments = !seeComments, showModal = true">
                         Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
                     </button>
                 </div>
@@ -74,9 +74,9 @@
 
                                 <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
                                 <div class="d-flex flex-row-reverse">
-                                    <div class="d-flex" v-if="!seeModif">   
-                                        <div v-if="!seeInput">
-                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput, seeModif = !seeModif">
+                                    <div class="d-flex">   
+                                        <div v-if="!seeInput"><!--&& isConnected && comment.UserId === user.id-->
+                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
                                                 Modifier
                                             </button>
                                         </div>
@@ -119,6 +119,7 @@
 <script>
     import axios from '../api';
     import Vue from 'vue';
+    //import store from '../store';
 
     export default {
         name: 'Publication',
@@ -137,9 +138,15 @@
                 comment: "",
                 commentChange: "",
                 showModal: false,
-                seeModif: false,
+                //sharedState: store.state
             }
         },
+
+        //computed: {
+        //    isConnected: function() {
+        //        return this.sharedState.isConnected;
+        //    }
+        //},
 
         methods: {
 
@@ -147,14 +154,6 @@
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
 
-            onSeeModif() {
-
-                console.log(this.post.Comments.id);
-
-                if (!this.seeModif) {
-                    this.post.User.id = this.post.Comments.id
-                }
-            },
 
             //Crée les commentaires
             commentPost() {
@@ -204,7 +203,7 @@
 
                 .then((response) => {
                 this.comments = response.data;
-                window.location.reload();
+                //window.location.reload();
                 })
 
                 .catch((err) => {

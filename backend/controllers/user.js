@@ -139,7 +139,7 @@ exports.changePassword = async (req, res, next) => {
 };
 
 //Supprimer un user de la BDD
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req, res, next) => {
     const user = await db.user.findOne({
         where: {
             id: req.params.id
@@ -153,18 +153,31 @@ exports.deleteUser = async (req, res) => {
 };
 
 
+
+
 //Enregistrer une image profil
-// exports.savePicture = async (req, res) => {
-//     db.user.create({
-//         id: req.params.id,
-//         imagePath: req.file.path
-//     })
-// 
-//     .then((savePicture) => res.status(201).json(savePicture))
-//     .catch(error => res.status(400).json({ error }));
-// };
-// 
-// 
+exports.savePicture = async (req, res) => {
+
+    const user = await db.user.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    user.imagePath = req.file.path
+
+    user.save()
+
+    .then((Picture) => res.status(201).json(Picture))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+
+
+
+
+
 // exports.findPicture = async (req, res) => {
 // 
 //     db.user.findOne({

@@ -16,7 +16,7 @@
                         <em class="fas fa-user-circle fs-0"></em>
                         <div class="border-top border-secondary d-flex flex-column">
                             <label for="image">Changer ma photo de profil</label>
-                            <input type="file" id="image" name="image" /> <!-- @change="onFileSelected" -->
+                            <input type="file" id="image" name="image" @change="onFileSelected" />
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     </div>
                     
                     <div class="d-flex flex-column">
-                        <label class="border-top border-left border-right border-secondary pt-2 pb-2 mb-0" name="lab" for="changeDescription">Changer ma description</label>
+                        <label class="border border-secondary pt-2 pb-2 mb-0" name="lab" for="changeDescription">Changer ma description</label>
                         <textarea id="changeDescription" v-model="description" type="text" @keyup.enter="changeDescription" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
 
         <div class="mt-3">
             <h5>Sauvegarder les modifications apportées</h5>
-            <button class="btn btn-primary">Sauvegarder</button> <!-- v-on:click="save" -->
+            <button class="btn btn-primary" v-on:click="save">Sauvegarder</button>
         </div>
     </div>
 </template>
@@ -84,25 +84,22 @@
                 newPassword: null,
                 description: null,
                 passwordError: false,
-                /* selectedFile: null,
-                imagePath: "", */
+                selectedFile: null,
+                imagePath: "",
 
             }
         },
 
         async created() {
-            const connected = localStorage.getItem('token');
-            if (!connected) {
-                this.$router.push('/login');
-            }
-
-            console.log(localStorage.getItem('token'));
             const res = await axios.get('user');
-
             this.user = res.data;
         },
 
         methods: {
+            onFileSelected(event) {
+                this.selectedFile = event.target.files[0];
+                console.log('selectedFile', this.selectedFile);
+            },
 
             changeDescription() {
 
@@ -179,10 +176,6 @@
             },
 
 
-            /* onFileSelected(event) {
-                this.selectedFile = event.target.files[0];
-                console.log('selectedFile', this.selectedFile);
-            },
 
             save() {
                 const url = '/users/' + this.user.id + '/picture';
@@ -194,31 +187,31 @@
                 axios.post(url, file)
                 .then((res) => {
                     console.log(res);
-                    window.location.reload();
+                    //window.location.reload();
 
                 })
                 .catch((err) => {
                     console.log(err);
                 });
             },
-
+            
             //Affichage de l'image
-            fetchPicture () {
-                axios.get('/picture', {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-
-                .then((response) => {
-                    console.log(response);
-                    this.users = response.data;
-                })
-
-                .catch((err) => {
-                console.log(err);
-                });
-            } */
+            //fetchPicture () {
+            //    axios.get('/picture', {
+            //        headers: {
+            //            "Content-Type": "application/json",
+            //        },
+            //    })
+//
+            //    .then((response) => {
+            //        console.log(response);
+            //        this.users = response.data;
+            //    })
+//
+            //    .catch((err) => {
+            //    console.log(err);
+            //    });
+            //}
         },
 
         /* mounted () {

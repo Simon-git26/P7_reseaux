@@ -30,7 +30,8 @@ router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 router.delete('/users/:id/delete', auth, userCtrl.deleteUser);
 
 //Mettre une image de Profil
-// router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
+router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
+
 // Récuperer l'image de progil user
 // router.get('/picture', auth, multer, userCtrl.findPicture); */
 
