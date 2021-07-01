@@ -75,10 +75,12 @@
                                 <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
                                 <div class="d-flex flex-row-reverse">
                                     <div class="d-flex">   
-                                        <div v-if="!seeInput"><!--&& isConnected && comment.UserId === user.id-->
-                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                                Modifier
-                                            </button>
+                                        <div v-if="isConnected && comment.UserId === user.id">
+                                            <div v-if="!seeInput">
+                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                                    Modifier
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div>
@@ -119,7 +121,7 @@
 <script>
     import axios from '../api';
     import Vue from 'vue';
-    //import store from '../store';
+    import store from '../store';
 
     export default {
         name: 'Publication',
@@ -138,15 +140,20 @@
                 comment: "",
                 commentChange: "",
                 showModal: false,
-                //sharedState: store.state
+                sharedState: store.state
             }
         },
 
-        //computed: {
-        //    isConnected: function() {
-        //        return this.sharedState.isConnected;
-        //    }
-        //},
+        async created() {
+            const res = await axios.get('user');
+            this.user = res.data;
+        },
+
+        computed: {
+            isConnected: function() {
+                return this.sharedState.isConnected;
+            }
+        },
 
         methods: {
 
@@ -203,7 +210,7 @@
 
                 .then((response) => {
                 this.comments = response.data;
-                //window.location.reload();
+                window.location.reload();
                 })
 
                 .catch((err) => {

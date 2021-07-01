@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!!user" class="container-fluid w-100 text-center">
+    <div v-if="!!user" class="card container-fluid w-100 text-center">
         <p v-if="passwordError">
             <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
@@ -7,23 +7,20 @@
             <h3 class="border-bottom border-secondary color" v-if="user">{{ user.firstName }} {{ user.lastName }}</h3>
         </div>
 
-        <div class="border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
-            <div class="row d-flex justify-content-between">
+        <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
+            <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
-                    <h5>Photo de Profil</h5>
-                    <div class="d-flex flex-column border-secondary">
-
-                        <div class="col-md-4" v-if="user.imagePath">
-                            <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start" alt="#">
-                        </div>
-                        <div v-if="!user.imagePath">
-                            <em class="fas fa-user-circle fs-0"></em>
-                        </div>
-                        
-                        <div class="border-top border-secondary d-flex flex-column">
-                            <label for="image">Changer ma photo de profil</label>
-                            <input type="file" id="image" name="image" @change="onFileSelected" />
-                        </div>
+                    <h5 class="card-title">Photo de Profil</h5>
+                    <div class="col-md-12 d-flex mx-auto" v-if="user.imagePath">
+                        <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start" alt="#">
+                    </div>
+                    <div v-if="!user.imagePath">
+                        <em class="fas fa-user-circle fs-0"></em>
+                    </div>
+                    
+                    <div class="border-top border-secondary d-flex flex-column">
+                        <label for="image">Changer ma photo de profil</label>
+                        <input type="file" id="image" name="image" @change="onFileSelected" />
                     </div>
                 </div>
 
