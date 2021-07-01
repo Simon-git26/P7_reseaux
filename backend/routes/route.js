@@ -28,12 +28,8 @@ router.put('/users/:id', auth, userCtrl.profilUser);
 router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 //Supprimer un user de la BDD
 router.delete('/users/:id/delete', auth, userCtrl.deleteUser);
-
 //Mettre une image de Profil
 router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
-
-// Récuperer l'image de progil user
-// router.get('/picture', auth, multer, userCtrl.findPicture); */
 
 
 //------------Route Post---------------

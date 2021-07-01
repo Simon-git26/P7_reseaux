@@ -10,10 +10,16 @@
         <div class="border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
             <div class="row d-flex justify-content-between">
                 <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
-                    <!-- <img :src="user.imageUrl" class="img-fluid rounded-start" alt="#"> -->
                     <h5>Photo de Profil</h5>
-                    <div class="rounded d-flex flex-column border-secondary">
-                        <em class="fas fa-user-circle fs-0"></em>
+                    <div class="d-flex flex-column border-secondary">
+
+                        <div class="col-md-4" v-if="user.imagePath">
+                            <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start" alt="#">
+                        </div>
+                        <div v-if="!user.imagePath">
+                            <em class="fas fa-user-circle fs-0"></em>
+                        </div>
+                        
                         <div class="border-top border-secondary d-flex flex-column">
                             <label for="image">Changer ma photo de profil</label>
                             <input type="file" id="image" name="image" @change="onFileSelected" />
@@ -176,7 +182,6 @@
             },
 
 
-
             save() {
                 const url = '/users/' + this.user.id + '/picture';
 
@@ -187,36 +192,14 @@
                 axios.post(url, file)
                 .then((res) => {
                     console.log(res);
-                    //window.location.reload();
+                    window.location.reload();
 
                 })
                 .catch((err) => {
                     console.log(err);
                 });
             },
-            
-            //Affichage de l'image
-            //fetchPicture () {
-            //    axios.get('/picture', {
-            //        headers: {
-            //            "Content-Type": "application/json",
-            //        },
-            //    })
-//
-            //    .then((response) => {
-            //        console.log(response);
-            //        this.users = response.data;
-            //    })
-//
-            //    .catch((err) => {
-            //    console.log(err);
-            //    });
-            //}
         },
-
-        /* mounted () {
-            this.fetchPicture()
-        }, */
     }
 </script>
 
