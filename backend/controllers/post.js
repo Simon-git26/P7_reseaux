@@ -25,11 +25,11 @@ exports.publish = async (req, res, next) => {
 };
 
 
-//Récuperer tous les post + affichage des images 
+//Récuperer tous les post
 exports.findAllPosts = async (req, res) => {
 
     db.post.findAll({
-        include: [user, comments],
+        include: { all: true, nested: true }
     })
 
     .then((posts) => {

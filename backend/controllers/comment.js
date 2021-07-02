@@ -17,21 +17,6 @@ exports.postComment = async (req, res, next) => {
 };
 
 
-//Récuperer tous les commentaires
-//exports.findAllComments = async (req, res, next) => {
-//
-//    db.comments.findAll({
-//        where: {
-//            PostId: req.params.id
-//        }
-//    })
-//
-//    .then((comment) => res.status(201).json(comment))
-//    .catch(error => res.status(400).json({ error }));
-//};
-
-
-
 //Modifier son commentaire
 exports.changeComment = async (req, res, next) => {
     const comment = await  db.comments.findOne({
@@ -68,3 +53,17 @@ exports.deleteComment = async (req, res) => {
     .then(() => res.status(200).json({ message: 'Commentaire supprimé !' }))
     .catch(error => res.status(400).json({ error }));
 };
+
+//Récuperer tous les commentaires
+//exports.findAllComments = async (req, res, next) => {
+//
+//    db.comments.findAll({
+//        where: {
+//            PostId: req.params.id
+//        },
+//        include: [user]
+//    })
+//
+//    .then((comment) => res.status(201).json(comment))
+//    .catch(error => res.status(400).json({ error }));
+//};

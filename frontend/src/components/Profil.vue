@@ -12,7 +12,7 @@
                 <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
                     <div class="col-md-12 d-flex" v-if="user.imagePath">
-                        <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start mx-auto" alt="#">
+                        <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle mx-auto" alt="#">
                     </div>
                     <div v-if="!user.imagePath">
                         <em class="fas fa-user-circle fs-0"></em>

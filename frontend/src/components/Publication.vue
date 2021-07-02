@@ -1,29 +1,28 @@
 <template>
     <div class="card mb-3 border border-secondary">
         <div class="row g-0">
-            <div class="card-img-top" v-if="post.imagePath">
-                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
-            </div>
-
             <div class="col-md-12">
                 <div class="card-body">
                     <div class="d-flex">
-                        <div class="col-md-3" v-if="post.User.imagePath">
-                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-start" alt="#">
+                        <div class="col-md-2" v-if="post.User.imagePath">
+                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-10">
                             <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
                             <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                            <p class="card-text">{{ post.post }}</p>
                         </div>
-                    </div>
-
-                    <button class="btn-primary btn-sm mt-2" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                            @click.prevent="seeComments = !seeComments, showModal = true">
-                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
-                    </button>
+                    </div> 
                 </div>
             </div>
+
+            <div v-if="post.imagePath">
+                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+            </div>
+            <p class="card-text">{{ post.post }}</p>
+            <button class="btn-primary btn-sm mt-2 col-md-4 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+                    @click.prevent="seeComments = !seeComments, showModal = true">
+                Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
+            </button>
         </div>
 
         <!------------ Afficher les commentaires en modal ----------->
@@ -31,91 +30,98 @@
             <transition name="modal">
             <div class="modal-mask">
                 <div class="modal-wrapper">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-dialog-scrollable mx-auto" role="document">
+                        <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h5 class="d-flex justify-content-center">Commentaires</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" @click="showModal = false">&times;</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                         <div class="row g-0">
-                            <div class="col-md-4 card-img-top" v-if="post.imagePath">
-                                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
-                            </div>
-
-                             <div class="col-md-12">
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="col-md-3" v-if="post.User.imagePath">
-                                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-start" alt="#">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                                            <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                                            <p class="card-text">{{ post.post }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-header">
+                            <h5 class="d-flex justify-content-center">Commentaires</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" @click="showModal = false">&times;</span>
+                            </button>
                         </div>
-                        <div v-if="seeComments" class="mt-3">
 
-                            <form @submit.prevent="commentPost()">
-                                <div class="input-group mb-2">
-                                    <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
-                                    <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
-                                </div>
-                            </form>
-
-                            <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
-                                <div>
-                                    <blockquote class="blockquote fs-5">
-                                    <p>{{ comment.comment }}</p>
-                                    </blockquote>
-
-                                    <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
-                                    <figcaption class="blockquote-footer">
-                                        Posté par {{ post.User.firstName }} {{ post.User.lastName }} le {{ formatDate(comment.createdAt) }}
-                                    </figcaption>
-
-                                    <div v-if="seeInput">
-                                        <form @submit.prevent="changeComment(comment)">
-                                            <div class="input-group">
-                                                <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
-                                                <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
+                        <div class="modal-body">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="col-md-2" v-if="post.User.imagePath">
+                                                <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                                             </div>
-                                        </form>
+                                            <div class="col-md-10">
+                                                <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                                <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
+                                            </div>
+                                        </div> 
                                     </div>
                                 </div>
 
-                                <div class="d-flex">
-                                    <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
-                                        <div v-if="!seeInput">
-                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                                Modifier
-                                            </button>
+                                <div v-if="post.imagePath">
+                                    <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+                                </div>
+                                <p class="card-text">{{ post.post }}</p>
+                            </div>
+                            <div v-if="seeComments" class="mt-3">
+
+                                <form @submit.prevent="commentPost()">
+                                    <div class="input-group mb-2">
+                                        <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
+                                        <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
+                                    </div>
+                                </form>
+
+                                <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
+                                    <div>
+                                        <div class="d-flex">
+                                            <div class="col-md-3" v-if="post.User.imagePath">
+                                                <img :src="`http://localhost:3000/${comment.User.imagePath}`" class="img-fluid rounded-circle" alt="#">
+                                            </div>
+                                            <div>
+                                                <blockquote class="blockquote fs-5">
+                                                    <p>{{ comment.comment }}</p>
+                                                </blockquote>
+
+                                                <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
+                                                <figcaption class="blockquote-footer">
+                                                    Posté par {{ comment.User.firstName }} {{ comment.User.lastName }} le {{ formatDate(comment.createdAt) }}
+                                                </figcaption>
+                                            </div>
                                         </div>
 
-                                        <div v-if="isConnected && comment.UserId === user.id">
-                                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
-                                                Supprimer
-                                            </button>
+                                        <div v-if="seeInput">
+                                            <form @submit.prevent="changeComment(comment)">
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
+                                                    <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                </div>
-                            </figure>
+
+                                    <div class="d-flex">
+                                        <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
+                                            <div v-if="!seeInput">
+                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                                    Modifier
+                                                </button>
+                                            </div>
+
+                                            <div v-if="isConnected && comment.UserId === user.id">
+                                                <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                                    Supprimer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @click="showModal = false">Fermer</button>
+                        </div>
                         </div>
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" @click="showModal = false">Fermer</button>
-                    </div>
-                    </div>
-                </div>
                 </div>
             </div>
             </transition>
@@ -201,6 +207,7 @@
                 });
             },
 
+
             //Modifier un commentaire
             changeComment(comment) {
                 console.log('comment', comment);
@@ -268,9 +275,8 @@
 
 
 <style scoped>
-
-.modal-dialog {
-    max-width: 700px;
+.modal-dialog-scrollable {
+    width: 700px;
 }
 
 .modal-mask {

@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             },
 
             post: {
-                type: Sequelize.STRING(250),
+                type: Sequelize.STRING(500),
                 allowNull: false,
                 defaultValue: "",
             },
