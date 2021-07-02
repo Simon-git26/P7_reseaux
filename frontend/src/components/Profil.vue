@@ -11,14 +11,14 @@
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
-                    <div class="col-md-12 d-flex mx-auto" v-if="user.imagePath">
-                        <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start" alt="#">
+                    <div class="col-md-12 d-flex" v-if="user.imagePath">
+                        <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-start mx-auto" alt="#">
                     </div>
                     <div v-if="!user.imagePath">
                         <em class="fas fa-user-circle fs-0"></em>
                     </div>
                     
-                    <div class="border-top border-secondary d-flex flex-column">
+                    <div class=" border-secondary d-flex flex-column">
                         <label for="image">Changer ma photo de profil</label>
                         <input type="file" id="image" name="image" @change="onFileSelected" />
                     </div>
@@ -202,6 +202,10 @@
 
 
 <style scoped>
+    .img-fluid {
+        max-width: 75%;
+    }
+
     .color {
         color: #1c599e;
     }

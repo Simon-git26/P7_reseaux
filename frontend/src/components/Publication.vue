@@ -1,16 +1,24 @@
 <template>
     <div class="card mb-3 border border-secondary">
         <div class="row g-0">
-            <div class="col-md-4" v-if="post.imagePath">
+            <div class="card-img-top" v-if="post.imagePath">
                 <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card-body">
-                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                    <p class="card-text">{{ post.post }}</p>
-                    <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+                    <div class="d-flex">
+                        <div class="col-md-3" v-if="post.User.imagePath">
+                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-start" alt="#">
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                            <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
+                            <p class="card-text">{{ post.post }}</p>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary btn-sm mt-2" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                             @click.prevent="seeComments = !seeComments, showModal = true">
                         Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
                     </button>
@@ -35,19 +43,22 @@
 
                     <div class="modal-body">
                          <div class="row g-0">
-                            <div class="col-md-4" v-if="post.imagePath">
+                            <div class="col-md-4 card-img-top" v-if="post.imagePath">
                                 <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
                             </div>
 
-                            <div class="col-md-8">
+                             <div class="col-md-12">
                                 <div class="card-body">
-                                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                                    <p class="card-text">{{ post.post }}</p>
-                                    <button class="btn-primary btn-sm" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                                            @click.prevent="seeComments = !seeComments, showModal = true">
-                                        Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
-                                    </button>
+                                    <div class="d-flex">
+                                        <div class="col-md-3" v-if="post.User.imagePath">
+                                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-start" alt="#">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                            <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
+                                            <p class="card-text">{{ post.post }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,27 +81,7 @@
                                     <figcaption class="blockquote-footer">
                                         Posté par {{ post.User.firstName }} {{ post.User.lastName }} le {{ formatDate(comment.createdAt) }}
                                     </figcaption>
-                                </div>
 
-                                <!-- seeInput = true quand on clique sur modifier / Si seeInput = true alors Non affichage du bouton Modifier -->
-                                <div class="d-flex flex-row-reverse">
-                                    <div class="d-flex">   
-                                        <div v-if="isConnected && comment.UserId === user.id">
-                                            <div v-if="!seeInput">
-                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                                    Modifier
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
-                                                Supprimer
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                    
                                     <div v-if="seeInput">
                                         <form @submit.prevent="changeComment(comment)">
                                             <div class="input-group">
@@ -98,6 +89,22 @@
                                                 <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
+                                        <div v-if="!seeInput">
+                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                                Modifier
+                                            </button>
+                                        </div>
+
+                                        <div v-if="isConnected && comment.UserId === user.id">
+                                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                                Supprimer
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </figure>
@@ -263,7 +270,7 @@
 <style scoped>
 
 .modal-dialog {
-    max-width: 800px;
+    max-width: 700px;
 }
 
 .modal-mask {
