@@ -37,6 +37,7 @@
         },
 
         methods: {
+            //recuperer tous mes posts
             fetchPosts () {
                 axios.get('/publications', {
                     headers: {

@@ -19,6 +19,11 @@
                 <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
             </div>
             <p class="card-text">{{ post.post }}</p>
+
+
+
+
+
             <button class="btn-primary btn-sm mt-2 col-md-4 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                     @click.prevent="seeComments = !seeComments, showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
