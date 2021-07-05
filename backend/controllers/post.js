@@ -30,7 +30,8 @@ exports.findAllPosts = async (req, res, next) => {
 
     db.post.findAll({
         order: [
-            ['createdAt', 'DESC']
+            ['createdAt', 'DESC'],
+            [db.comments, 'createdAt', 'ASC'],
         ],
         include: { all: true, nested: true }
     })

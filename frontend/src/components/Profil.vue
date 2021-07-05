@@ -9,7 +9,7 @@
 
         <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
             <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12 border border-secondary rounded">
+                <div class="col-lg-6 col-md-6 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
                     <div class="col-md-12 d-flex" v-if="user.imagePath">
                         <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle mx-auto" alt="#">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12">
                     <h5>Email</h5>
                     <p>{{ user.email }}</p>
 

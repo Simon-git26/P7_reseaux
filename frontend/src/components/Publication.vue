@@ -70,10 +70,10 @@
                                     </div>
                                 </form>
 
-                                <figure v-for="comment in post.Comments" :key="comment.id" class="d-flex justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
+                                <figure v-for="comment in post.Comments" :key="comment.id" class="justify-content-between border-top border-bottom border-secondary rounded pt-2 pl-2 pr-2 bg-light">
                                     <div>
                                         <div class="d-flex">
-                                            <div class="col-md-3" v-if="post.User.imagePath">
+                                            <div class="col-md-2" v-if="comment.User.imagePath">
                                                 <img :src="`http://localhost:3000/${comment.User.imagePath}`" class="img-fluid rounded-circle" alt="#">
                                             </div>
                                             <div>
@@ -84,6 +84,24 @@
                                                 <figcaption class="blockquote-footer">
                                                     Posté par {{ comment.User.firstName }} {{ comment.User.lastName }} le {{ formatDate(comment.createdAt) }}
                                                 </figcaption>
+
+                                                <div class="d-flex">
+                                                    <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
+                                                        <div v-if="!seeInput">
+                                                            <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
+                                                                Modifier
+                                                            </button>
+                                                        </div>
+
+                                                        <div v-if="!seeInput">
+                                                            <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                                                Supprimer
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
                                         </div>
 
@@ -97,21 +115,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex">
-                                        <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
-                                            <div v-if="!seeInput">
-                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                                    Modifier
-                                                </button>
-                                            </div>
-
-                                            <div v-if="isConnected && comment.UserId === user.id">
-                                                <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
-                                                    Supprimer
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </figure>
                             </div>
                         </div>
