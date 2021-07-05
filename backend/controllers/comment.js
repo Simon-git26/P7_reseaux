@@ -9,7 +9,7 @@ exports.postComment = async (req, res, next) => {
     db.comments.create({
         UserId: req.userId,
         PostId: req.params.id,
-        comment: req.body.comment
+        comment: req.body.comment,
     })
     
     .then((commentOk) => res.status(201).json(commentOk))

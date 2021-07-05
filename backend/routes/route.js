@@ -39,11 +39,6 @@ router.post('/users/:id/publication', auth, multer, postCtrl.publish);
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
 
 
-//Like / Dislike
-//router.post('/post/:id/like', auth, postCtrl.likeDislike)
-
-
-
 //-----------Route Comments------------
 //Création commentaires
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);

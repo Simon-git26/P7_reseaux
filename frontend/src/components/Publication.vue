@@ -1,30 +1,25 @@
 <template>
-    <div class="card mb-3 border border-secondary">
+    <div class="card mb-4 border border-secondary">
         <div class="row g-0">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="col-md-2" v-if="post.User.imagePath">
-                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
-                        </div>
-                        <div class="col-md-10">
-                            <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                            <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                        </div>
-                    </div> 
+            <div class="d-flex mb-2">
+                <div class="col-md-2" v-if="post.User.imagePath">
+                    <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
+                </div>
+
+                <div class="col-md-10">
+                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                 </div>
             </div>
-
-            <div v-if="post.imagePath">
-                <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+        
+            <div class="card-body d-flex">
+                <div v-if="post.imagePath" class="col-md-6">
+                    <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+                </div>
+                <p class="card-text col-md-6">{{ post.post }}</p>
             </div>
-            <p class="card-text">{{ post.post }}</p>
-
-
-
-
-
-            <button class="btn-primary btn-sm mt-2 col-md-4 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+            
+            <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                     @click.prevent="seeComments = !seeComments, showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
@@ -40,32 +35,32 @@
 
                         <div class="modal-header">
                             <h5 class="d-flex justify-content-center">Commentaires</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click.prevent="reload()">
                             <span aria-hidden="true" @click="showModal = false">&times;</span>
                             </button>
                         </div>
 
                         <div class="modal-body">
                             <div class="row g-0">
-                                <div class="col-md-12">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="col-md-2" v-if="post.User.imagePath">
-                                                <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                                                <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p>
-                                            </div>
-                                        </div> 
+                                <div class="d-flex mb-2">
+                                    <div class="col-md-2" v-if="post.User.imagePath">
+                                        <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                        <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                                     </div>
                                 </div>
-
-                                <div v-if="post.imagePath">
-                                    <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+                            
+                                <div class="card-body">
+                                    <div v-if="post.imagePath" class="col-md-10 mx-auto pb-2">
+                                        <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+                                    </div>
+                                    <p class="card-text col-md-12 text-center">{{ post.post }}</p>
                                 </div>
-                                <p class="card-text">{{ post.post }}</p>
                             </div>
+
                             <div v-if="seeComments" class="mt-3">
 
                                 <form @submit.prevent="commentPost()">
@@ -86,7 +81,6 @@
                                                     <p>{{ comment.comment }}</p>
                                                 </blockquote>
 
-                                                <!--- blockquote-footer Permet un affichage un peu gris italique comme une citation -->
                                                 <figcaption class="blockquote-footer">
                                                     Posté par {{ comment.User.firstName }} {{ comment.User.lastName }} le {{ formatDate(comment.createdAt) }}
                                                 </figcaption>
@@ -96,7 +90,7 @@
                                         <div v-if="seeInput">
                                             <form @submit.prevent="changeComment(comment)">
                                                 <div class="input-group">
-                                                    <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
+                                                    <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" /> <!-- :value="comment.comment" -->
                                                     <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
                                                 </div>
                                             </form>
@@ -123,7 +117,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click="showModal = false">Fermer</button>
+                            <button type="button" class="btn btn-secondary" @click.prevent="reload()" @click="showModal = false">Fermer</button>
                         </div>
                         </div>
                     </div>
@@ -174,6 +168,10 @@
         },
 
         methods: {
+
+            reload() {
+                window.location.reload();
+            },
 
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
@@ -280,6 +278,11 @@
 
 
 <style scoped>
+
+.modal-body {
+    max-height: 800px;
+}
+
 .modal-dialog-scrollable {
     width: 700px;
 }

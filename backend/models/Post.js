@@ -20,26 +20,6 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
                 defaultValue: "",
             },
-
-            /*likes: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-
-            dislikes: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-            },
-
-            usersLiked: {
-                type: Sequelize.ARRAY(Sequelize.TEXT),
-                allowNull: false
-            },
-
-            usersDisliked: {
-                type: Sequelize.ARRAY(Sequelize.TEXT),
-                allowNull: false
-            },*/
         },
 
         {
