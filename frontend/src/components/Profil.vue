@@ -22,6 +22,11 @@
                         <label for="image">Changer ma photo de profil</label>
                         <input type="file" id="image" name="image" @change="onFileSelected" />
                     </div>
+
+                    <div class="mt-3" v-if="selectedFile">
+                        <h5>Sauvegarder les modifications apportées</h5>
+                        <button class="btn btn-primary" v-on:click="save">Sauvegarder</button>
+                    </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -63,11 +68,6 @@
                     <button class="btn btn-danger" @click.prevent="deleteUser(user)">Supprimer</button>
                 </div>
             </div>
-        </div>
-
-        <div class="mt-3">
-            <h5>Sauvegarder les modifications apportées</h5>
-            <button class="btn btn-primary" v-on:click="save">Sauvegarder</button>
         </div>
     </div>
 </template>
