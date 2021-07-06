@@ -17,6 +17,7 @@
 
 <script>
     import axios from '../api';
+    import Bus from '../bus'
 
     export default {
         name: 'Publish',
@@ -29,9 +30,8 @@
             }
         },
 
-        async created() {
-            const res = await axios.get('user');
-            this.user = res.data;
+        created() {
+            Bus.$emit('connected');
         },
 
         methods : {

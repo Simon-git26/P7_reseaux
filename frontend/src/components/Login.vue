@@ -45,8 +45,7 @@
 
 <script>
 import axios, { refreshHeaders } from "../api";
-import store from '../store';
-import Vue from 'vue';
+import Bus from '../bus';
 
 export default {
   
@@ -63,6 +62,7 @@ export default {
     };
   },
 
+
   methods: {
     handlelogsubmit() {
       const data = {
@@ -78,11 +78,10 @@ export default {
         })
         .then((res) => {
           localStorage.setItem("token", res.data.token);
-          store.setIsConnected(true);
           refreshHeaders();
+          Bus.$emit('connected', {token: res.data.token, ...res.data.user});
           this.$router.push("/");
-          Vue.notify({
-            group: 'foo',
+          this.$notify({
             title: 'Notifications',
             text: 'Connection réussi !'
           })

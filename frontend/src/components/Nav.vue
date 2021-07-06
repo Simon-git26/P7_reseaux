@@ -25,27 +25,20 @@
 
 
 <script>
-  import store from '../store';
+import Bus from '../bus'
 
   export default {
     name: 'Nav',
 
-    data() {
-      return {
-        sharedState: store.state
-      }
-    },
-
     methods: {
       deconnection: function() {
-        localStorage.removeItem("token");
+        Bus.$emit('disconnected')
       }
     },
-
 
     computed: {
       isConnected: function() {
-        return this.sharedState.isConnected;
+        return this.$root.user
       }
     }
 

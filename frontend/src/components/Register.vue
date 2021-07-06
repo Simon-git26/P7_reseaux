@@ -78,7 +78,7 @@
 
 <script>
 import axios from "../api";
-import Vue from 'vue';
+import Bus from '../bus';
 
 export default {
   name: "Register",
@@ -95,7 +95,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log("data");
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -110,9 +109,10 @@ export default {
           },
         })
         .then((res) => {
+
+          Bus.$emit('connected', res.data)
           this.$router.push("/login");
-          Vue.notify({
-            group: 'foo',
+          this.$notify({
             title: 'Notifications',
             text: 'Inscription réalisée !'
           })

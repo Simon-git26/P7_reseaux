@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" @click.prevent="reload()" @click="showModal = false">Fermer</button>
+                            <button type="button" class="btn btn-secondary"  @click="showModal = false">Fermer</button> <!-- @click.prevent="reload()" -->
                         </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
 <script>
     import axios from '../api';
     import Vue from 'vue';
-    import store from '../store';
+    import Bus from '../bus';
 
     export default {
         name: 'Publication',
@@ -156,18 +156,13 @@
                 comment: "",
                 commentChange: "",
                 showModal: false,
-                sharedState: store.state
             }
         },
 
-        async created() {
-            const res = await axios.get('user');
-            this.user = res.data;
-        },
-
+    
         computed: {
             isConnected: function() {
-                return this.sharedState.isConnected;
+                return this.$root.user;
             }
         },
 
