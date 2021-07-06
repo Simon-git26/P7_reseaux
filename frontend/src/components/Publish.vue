@@ -17,7 +17,6 @@
 
 <script>
     import axios from '../api';
-    import Bus from '../bus'
 
     export default {
         name: 'Publish',
@@ -27,11 +26,8 @@
                 post: "",
                 selectedFile: null,
                 imagePath: "",
+                user: null,
             }
-        },
-
-        created() {
-            Bus.$emit('connected');
         },
 
         methods : {
@@ -43,7 +39,7 @@
 
             publish() {
 
-                const url = '/users/' + this.user.id + '/publication';
+                const url = '/users/' + this.$root.user.id + '/publication';
                 const fd = new FormData();
 
                 if (this.selectedFile) {
@@ -55,6 +51,10 @@
                 axios.post(url, fd)
                 .then((res) => {
                     console.log(res);
+                    this.$notify({
+                        title: 'Notifications',
+                        text: ' Publication réalisée !'
+                    })
                     window.location.reload();
                 })
                 .catch((err) => {

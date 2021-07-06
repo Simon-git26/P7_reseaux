@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import Notifications from 'vue-notification'
 import Bus from './bus'
+import axios from './api'
 
 Vue.config.productionTip = false
 Vue.use(Notifications)
@@ -15,9 +16,18 @@ new Vue({
     }
   },
 
-  mounted() {
+  async mounted() {
+
+    if (!this.user) {
+      if(localStorage.getItem('token')) {
+        const res = await axios.get('user');
+        this.user = res.data;
+        Bus.$emit('connected', {token: res.data.token, ...res.data.user});
+      }
+    }
+
     Bus.$on('connected', user => {
-      console.log(user);
+      console.log('user main', user);
       this.user = user;
     })
     

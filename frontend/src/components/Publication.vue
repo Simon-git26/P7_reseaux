@@ -86,7 +86,7 @@
                                                 </figcaption>
 
                                                 <div class="d-flex">
-                                                    <div class="d-flex" v-if="isConnected && comment.UserId === user.id">
+                                                    <div class="d-flex" v-if="isConnected && comment.UserId === $root.user.id">
                                                         <div v-if="!seeInput">
                                                             <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
                                                                 Modifier
@@ -121,7 +121,7 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"  @click="showModal = false">Fermer</button> <!-- @click.prevent="reload()" -->
+                            <button type="button" class="btn btn-secondary"  @click="showModal = false">Fermer</button>
                         </div>
                         </div>
                     </div>
@@ -137,7 +137,6 @@
 <script>
     import axios from '../api';
     import Vue from 'vue';
-    import Bus from '../bus';
 
     export default {
         name: 'Publication',
@@ -168,10 +167,6 @@
 
         methods: {
 
-            reload() {
-                window.location.reload();
-            },
-
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
@@ -197,10 +192,9 @@
                 })
                 //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
-                    Vue.notify({
-                        group: 'foo',
+                    this.$notify({
                         title: 'Notifications',
-                        text: 'Commentaire Posté !',
+                        text: 'Commentaire Publié !'
                     })
                 window.location.reload();
                 })

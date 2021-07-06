@@ -17,8 +17,6 @@
 
 <script>
 import Nav from './components/Nav.vue';
-import axios from './api'
-import Bus from './bus'
 
 
 export default {
@@ -27,22 +25,6 @@ export default {
   components: {
     Nav,
   },
-
-  data() {
-    return {
-      user: null,
-    }
-  },
-
-  async mounted() {
-    if (!this.user) {
-      if(localStorage.getItem('token')) {
-        const res = await axios.get('user');
-        this.user = res.data;
-        Bus.$emit('connected', {token: res.data.token, ...res.data.user});
-      }
-    }
-  }
 }
 </script>
 
