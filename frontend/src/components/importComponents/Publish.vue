@@ -16,7 +16,7 @@
 
 
 <script>
-    import axios from '../api';
+    import axios from '../../api';
 
     export default {
         name: 'Publish',

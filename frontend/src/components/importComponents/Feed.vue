@@ -14,9 +14,9 @@
 
 
 <script>
-    import Publish from './Publish'
-    import Publication from './Publication'
-    import axios from '../api'
+    import Publish from './Publish.vue'
+    import Publication from './Publication.vue'
+    import axios from '../../api'
    
     export default {
         name: 'Feed',

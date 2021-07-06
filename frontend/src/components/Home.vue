@@ -12,7 +12,7 @@
 
 
 <script>
-    import Feed from './Feed.vue'
+    import Feed from './importComponents/Feed.vue'
 
     export default {
         name: 'Home',

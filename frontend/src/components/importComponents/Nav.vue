@@ -25,7 +25,7 @@
 
 
 <script>
-import Bus from '../bus'
+import Bus from '../../bus'
 
   export default {
     name: 'Nav',

@@ -135,8 +135,7 @@
 
 
 <script>
-    import axios from '../api';
-    import Vue from 'vue';
+    import axios from '../../api';
 
     export default {
         name: 'Publication',

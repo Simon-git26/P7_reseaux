@@ -16,7 +16,7 @@
 
 
 <script>
-import Nav from './components/Nav.vue';
+import Nav from './components/importComponents/Nav.vue';
 
 
 export default {
