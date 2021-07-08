@@ -42,7 +42,7 @@ exports.changeComment = async (req, res, next) => {
 
 
 //Suprimer un commantaire
-exports.deleteComment = async (req, res) => {
+exports.deleteComment = async (req, res, next) => {
     const comment = await  db.comments.findOne({
         where: {
             id: req.params.id
@@ -54,16 +54,14 @@ exports.deleteComment = async (req, res) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+
 //Récuperer tous les commentaires
-//exports.findAllComments = async (req, res, next) => {
-//
-//    db.comments.findAll({
-//        where: {
-//            PostId: req.params.id
-//        },
-//        include: [user]
-//    })
-//
-//    .then((comment) => res.status(201).json(comment))
-//    .catch(error => res.status(400).json({ error }));
+//exports.findAllComments = async (req, res) => {
+
+    //db.comments.findAll({
+    //    include: { all: true, nested: true }
+    //})
+
+    //.then((comment) => res.status(201).json(comment))
+    //.catch(error => res.status(400).json({ error }));
 //};
