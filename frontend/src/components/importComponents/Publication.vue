@@ -65,40 +65,5 @@
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
         },
-
-        //watch: {
-        //    // Watcher sur data seeComments afin de faire marcher le focus de l'input au click sur commentaire
-        //    seeComments: function (value) {
-        //        if (value) {
-        //            this.$nextTick(() => {
-        //                this.$refs.inputRef.focus()
-        //            })
-        //        }
-        //    },
-        //},
-
-
-
-
-
-         //mounted() {
-        //    this.fetchComments();
-        //},
-
-        ////Recuperer tous les commentaires
-            //fetchComments () {
-            //    axios.get('/comments', {
-            //        headers: {
-            //            "Content-Type": "application/json",
-            //        },
-            //    })
-            //    .then((response) => {
-            //        console.log(response);
-            //        this.comments = response.data;
-            //    })
-            //    .catch((err) => {
-            //    console.log(err);
-            //    });
-            //},
     }
 </script>

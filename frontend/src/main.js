@@ -22,6 +22,7 @@ new Vue({
       if(localStorage.getItem('token')) {
         const res = await axios.get('user');
         this.user = res.data;
+        console.log('if main', this.user);
         Bus.$emit('connected', {token: res.data.token, ...res.data.user});
       }
     }

@@ -24,7 +24,7 @@ exports.signup = (req, res, next) => {
             email: req.body.email,
             password: hash
         })
-        .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
+        .then((createUser) => res.status(201).json({ createUser }))
         .catch(error => res.status(400).json({ error: error.message }));
     })
     .catch(error => res.status(500).json({ error: error.message }));
@@ -59,7 +59,7 @@ exports.login = (req, res, next) => {
             }
             res.status(200).json({
                 user: {
-                    userId: user.id,
+                    id: user.id,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email

@@ -215,6 +215,17 @@
                 });
             }
         },
+
+        watch: {
+            // Watcher sur data seeComments afin de faire marcher le focus de l'input au click sur commentaire
+            seeComments: function (value) {
+                if (value) {
+                    this.$nextTick(() => {
+                        this.$refs.inputRef.focus()
+                    })
+                }
+            },
+        },
     }
 </script>
 
