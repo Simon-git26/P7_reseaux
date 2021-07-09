@@ -1,7 +1,7 @@
 <template>
     <div class="card mb-4 border border-secondary">
         <div class="row g-0">
-            <div class="d-flex mb-2">
+            <div class="d-flex mb-2 pt-2">
                 <div class="col-md-2" v-if="post.User.imagePath">
                     <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                 </div>
