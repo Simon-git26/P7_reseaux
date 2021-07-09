@@ -17,6 +17,7 @@
 
 <script>
     import axios from '../../api';
+    import Bus from '../../bus'
 
     export default {
         name: 'Publish',

@@ -135,6 +135,21 @@
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
 
+            //fetchComments () {
+            //    axios.get('/comments', {
+            //        headers: {
+            //            "Content-Type": "application/json",
+            //        },
+            //    })
+            //    .then((response) => {
+            //        console.log(response);
+            //        this.comments = response.data;
+            //    })
+            //    .catch((err) => {
+            //    console.log(err);
+            //    });
+            //},
+
             //Crée les commentaires
             commentPost() {
                 //Empeche l'envoi du commentaire si il est inferieur à 2 caractères
@@ -153,13 +168,13 @@
                         "Content-Type": "application/json",
                     },
                 })
-                //Quand on commente et que le commentaire est partit sans erreur, je vide la variable comment afin de vider l'input commentaire
                 .then((res) => {
+                    window.location.reload();
                     this.$notify({
                         title: 'Notifications',
                         text: 'Commentaire Publié !'
                     })
-                window.location.reload();
+                    
                 })
                 .catch((err) => {
                 console.log(err);
@@ -215,6 +230,10 @@
                 });
             }
         },
+
+        //mounted() {
+        //    this.fetchComments()
+        //},
 
         watch: {
             // Watcher sur data seeComments afin de faire marcher le focus de l'input au click sur commentaire
