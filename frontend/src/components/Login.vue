@@ -8,33 +8,17 @@
     <form @submit.prevent="handlelogsubmit">
       <h3>Connexion</h3>
 
-      <div class="form-group">
-        <label>Email *</label>
-        <input
-          type="email"
-          class="form-control"
-          v-model="email"
-          placeholder="Email"
-          required
-        />
+      <div class="form-group mt-3">
+        <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
+        <input type="email" class="form-control" v-model="email" placeholder="Email" required />
       </div>
 
       <div class="form-group">
-        <label>Mot de Passe *</label>
-        <input
-          type="password"
-          class="form-control"
-          v-model="password"
-          placeholder="Mot de passe"
-          required
-        />
+        <em class="fas fa-lock"></em><label class="ml-2">Mot de Passe *</label>
+        <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
       </div>
 
-      <button
-        class="mb-2 btn btn-primary btn-block"
-        v-on:click="countLimit"
-        :disabled="btnlogdisable"
-      >
+      <button class="mb-2 btn btn-primary btn-block" v-on:click="countLimit" :disabled="btnlogdisable">
         Connexion
       </button>
 

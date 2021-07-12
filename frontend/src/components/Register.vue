@@ -13,58 +13,28 @@
       <h3>Inscription</h3>
 
       <div class="form-group">
-        <label>Votre Nom *</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="firstName"
-          placeholder="Votre nom"
-          required
-        />
+        <em class="fas fa-user-tie"></em><label class="ml-2">Votre Nom *</label>
+        <input type="text" class="form-control" v-model="firstName" placeholder="Votre nom" required />
       </div>
 
       <div class="form-group">
-        <label>Votre Prenom *</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="lastName"
-          placeholder="Votre Prenom"
-          required
-        />
+        <em class="fas fa-user-tie"></em><label class="ml-2">Votre Prenom *</label>
+        <input type="text" class="form-control" v-model="lastName" placeholder="Votre Prenom" required />
       </div>
 
       <div class="form-group">
-        <label>Email *</label>
-        <input
-          type="email"
-          class="form-control"
-          v-model="email"
-          placeholder="Email"
-          required
-        />
+        <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
+        <input type="email" class="form-control" v-model="email" placeholder="Email" required />
       </div>
 
       <div class="form-group">
-        <label>Mot de Passe *</label>
-        <input
-          type="password"
-          class="form-control"
-          v-model="password"
-          placeholder="Mot de passe"
-          required
-        />
+        <em class="fas fa-lock"></em><label class="ml-2">Mot de Passe *</label>
+        <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
       </div>
 
       <div class="form-group">
-        <label>Confirmez le Mot de Passe *</label>
-        <input
-          type="password"
-          class="form-control"
-          v-model="passwordConfirm"
-          placeholder="Confirmez le Mot de passe"
-          required
-        />
+        <em class="fas fa-lock"></em><label class="ml-2">Confirmez le Mot de Passe *</label>
+        <input type="password" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" required />
       </div>
 
       <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">

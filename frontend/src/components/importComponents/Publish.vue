@@ -17,7 +17,6 @@
 
 <script>
     import axios from '../../api';
-    import Bus from '../../bus'
 
     export default {
         name: 'Publish',
@@ -56,7 +55,8 @@
                         title: 'Notifications',
                         text: ' Publication réalisée !'
                     })
-                    window.location.reload();
+                    // Affichage de mes posts dynamique grace à l'appelle au parent (Feed) de la fonction fetchPosts()
+                    this.$parent.fetchPosts()
                 })
                 .catch((err) => {
                     console.log(err);

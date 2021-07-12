@@ -16,10 +16,13 @@
                 <div v-if="post.imagePath" class="col-md-6">
                     <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
                 </div>
-                <p class="card-text col-md-6">{{ post.post }}</p>
+                <div class="col-md-6">
+                    <p class="card-text">{{ post.post }}</p>
+                </div>
+                
             </div>
             
-            <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+            <button v-on:click="fetchComments()" class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                     @click.prevent="seeComments = !seeComments, showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
@@ -27,7 +30,7 @@
 
         <!------------ Afficher les commentaires en modal ----------->
         <div v-if="showModal">
-            <ModalComments :post="post" v-on:modal="showModal = false" />
+            <ModalComments :post="post" v-on:modal="showModal = false, seeComments = false" />
         </div>
     </div>
 </template>
@@ -36,6 +39,7 @@
 
 <script>
     import ModalComments from './ModalComments.vue'
+    import axios from '../../api'
 
     export default {
         name: 'Publication',
@@ -63,6 +67,21 @@
 
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
+            },
+
+            fetchComments () {
+                axios.get('/comments', {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                    this.comments = response.data;
+                })
+                .catch((err) => {
+                console.log(err);
+                });
             },
         },
     }

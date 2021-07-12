@@ -8,7 +8,7 @@
                     <div class="modal-header">
                         <h5 class="d-flex justify-content-center">Commentaires</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" v-on:click="$emit('modal')">&times;</span>
+                        <span aria-hidden="true" v-on:click="$emit('modal'), $emit('seeCom')">&times;</span>
                         </button>
                     </div>
 
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"  v-on:click="$emit('modal')">Fermer</button>
+                    <button type="button" class="btn btn-secondary"  v-on:click="$emit('modal'), $emit('seeCom')">Fermer</button>
                 </div>
                 </div>
             </div>
@@ -135,24 +135,8 @@
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
 
-            //fetchComments () {
-            //    axios.get('/comments', {
-            //        headers: {
-            //            "Content-Type": "application/json",
-            //        },
-            //    })
-            //    .then((response) => {
-            //        console.log(response);
-            //        this.comments = response.data;
-            //    })
-            //    .catch((err) => {
-            //    console.log(err);
-            //    });
-            //},
-
-            //Crée les commentaires
+            // Crée les commentaires
             commentPost() {
-                //Empeche l'envoi du commentaire si il est inferieur à 2 caractères
                 if (this.comment.length < 2) {
                     return
                 }
@@ -169,7 +153,6 @@
                     },
                 })
                 .then((res) => {
-                    window.location.reload();
                     this.$notify({
                         title: 'Notifications',
                         text: 'Commentaire Publié !'
@@ -230,10 +213,6 @@
                 });
             }
         },
-
-        //mounted() {
-        //    this.fetchComments()
-        //},
 
         watch: {
             // Watcher sur data seeComments afin de faire marcher le focus de l'input au click sur commentaire
