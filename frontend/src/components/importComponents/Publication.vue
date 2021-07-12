@@ -22,15 +22,15 @@
                 
             </div>
             
-            <button v-on:click="fetchComments()" class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
-                    @click.prevent="seeComments = !seeComments, showModal = true">
+            <!--v-on:click="fetchComments()"--><button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+                    @click.prevent="showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
         </div>
 
         <!------------ Afficher les commentaires en modal ----------->
         <div v-if="showModal">
-            <ModalComments :post="post" v-on:modal="showModal = false, seeComments = false" />
+            <ModalComments :post="post" v-on:modal="showModal = false" />
         </div>
     </div>
 </template>
@@ -57,7 +57,6 @@
 
         data() {
             return {
-                seeComments: false,
                 showModal: false,
                 comments: [],
             }
@@ -69,20 +68,20 @@
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
 
-            fetchComments () {
-                axios.get('/comments', {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-                .then((response) => {
-                    console.log(response);
-                    this.comments = response.data;
-                })
-                .catch((err) => {
-                console.log(err);
-                });
-            },
+            //fetchComments () {
+            //    axios.get('/comments', {
+            //        headers: {
+            //            "Content-Type": "application/json",
+            //        },
+            //    })
+            //    .then((response) => {
+            //        console.log(response);
+            //        this.comments = response.data;
+            //    })
+            //    .catch((err) => {
+            //    console.log(err);
+            //    });
+            //},
         },
     }
 </script>

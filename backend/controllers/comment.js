@@ -8,11 +8,15 @@ exports.postComment = async (req, res, next) => {
 
     db.comments.create({
         UserId: req.userId,
-        PostId: req.params.id,
+        PostId: parseInt(req.params.id),
         comment: req.body.comment,
     })
     
-    .then((commentOk) => res.status(201).json(commentOk))
+    .then((commentOk) => {
+        console.log(commentOk);
+        res.status(201).json(commentOk)
+    })
+    
     .catch(error => res.status(400).json({ error }));
 };
 
@@ -56,12 +60,12 @@ exports.deleteComment = async (req, res, next) => {
 
 
 //Récuperer tous les commentaires
-exports.findAllComments = async (req, res) => {
-
-    db.comments.findAll({
-        include: { all: true, nested: true }
-    })
-
-    .then((comment) => res.status(201).json(comment))
-    .catch(error => res.status(400).json({ error }));
-};
+//exports.findAllComments = async (req, res) => {
+//
+//    db.comments.findAll({
+//        include: { all: true, nested: true }
+//    })
+//
+//    .then((comment) => res.status(201).json(comment))
+//    .catch(error => res.status(400).json({ error }));
+//};

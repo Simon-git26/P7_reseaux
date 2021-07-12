@@ -17,6 +17,7 @@
     import Publish from './Publish.vue'
     import Publication from './Publication.vue'
     import axios from '../../api'
+    import Bus from '../../bus'
    
     export default {
         name: 'Feed',
@@ -33,7 +34,8 @@
         },
 
         mounted () {
-            this.fetchPosts()
+            this.fetchPosts();
+            Bus.$on('refresh', () => this.fetchPosts());
         },
 
         methods: {

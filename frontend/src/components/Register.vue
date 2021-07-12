@@ -86,7 +86,7 @@ export default {
             title: 'Notifications',
             text: 'Inscription réalisée !'
           })
-          console.log(res);
+          
         })
         .catch((err) => {
           console.log(err);

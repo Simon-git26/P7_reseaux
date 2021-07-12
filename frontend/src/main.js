@@ -18,6 +18,7 @@ new Vue({
 
   async mounted() {
 
+    //enelever premier if si i gene pas
     if (!this.user) {
       if(localStorage.getItem('token')) {
         const res = await axios.get('user');
@@ -32,6 +33,7 @@ new Vue({
       this.user = user;
     })
     
+    //enelever utilisateur abevc user null et router ver login
     Bus.$on('disconnected', () => {
       localStorage.removeItem("token");
     })

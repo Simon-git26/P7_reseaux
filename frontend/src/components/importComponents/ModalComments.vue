@@ -8,7 +8,7 @@
                     <div class="modal-header">
                         <h5 class="d-flex justify-content-center">Commentaires</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" v-on:click="$emit('modal'), $emit('seeCom')">&times;</span>
+                        <span aria-hidden="true" v-on:click="$emit('modal')">&times;</span>
                         </button>
                     </div>
 
@@ -61,12 +61,10 @@
 
                                         <div class="d-flex">
                                             <div class="d-flex" v-if="isConnected && comment.UserId === $root.user.id">
-                                                <div v-if="!seeInput">
-                                                    <button class="btn-primary btn-sm" @click.prevent="seeInput = !seeInput">
-                                                        Modifier
-                                                    </button>
-                                                </div>
-
+                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = comment.id, commentChange = comment.comment">
+                                                    Modifier
+                                                </button>
+                                                
                                                 <div v-if="!seeInput">
                                                     <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
                                                         Supprimer
@@ -77,10 +75,12 @@
                                     </div>
                                 </div>
 
-                                <div v-if="seeInput">
+
+
+                                <div v-if="seeInput === comment.id">
                                     <form @submit.prevent="changeComment(comment)">
                                         <div class="input-group">
-                                            <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" /> <!-- :value="comment.comment" -->
+                                            <input class="form-control" type="text" v-model="commentChange" placeholder="Modifier un commentaire" />
                                             <button class="btn btn-outline-primary" @click.prevent="changeComment(comment)" type="button">Modifier</button>
                                         </div>
                                     </form>
@@ -104,6 +104,7 @@
 
 <script>
     import axios from '../../api';
+    import Bus from '../../bus'
 
     export default {
         name: 'ModalComments',
@@ -111,7 +112,7 @@
         data() {
             return {
                 commentChange: "",
-                seeInput: false,
+                seeInput: null,
                 comment: "",
                 
             }
@@ -128,6 +129,12 @@
             isConnected: function() {
                 return this.$root.user;
             }
+        },
+
+        mounted() {
+            this.$nextTick(() => {
+                this.$refs.inputRef.focus()
+            })
         },
 
         methods: {
@@ -152,7 +159,11 @@
                         "Content-Type": "application/json",
                     },
                 })
-                .then((res) => {
+
+                .then((createdComment) => {
+
+                    Bus.$emit('refresh');
+
                     this.$notify({
                         title: 'Notifications',
                         text: 'Commentaire Publié !'
@@ -180,8 +191,9 @@
                 })
 
                 .then((response) => {
-                this.comments = response.data;
-                window.location.reload();
+                    this.seeInput = null
+                    this.commentChange = ""
+                    Bus.$emit('refresh');
                 })
 
                 .catch((err) => {
@@ -204,26 +216,14 @@
                 })
 
                 .then((response) => {
-                this.comments = response.data;
-                window.location.reload();
+                    Bus.$emit('refresh');
                 })
 
                 .catch((err) => {
-                console.log(err);
+                    console.log(err);
                 });
             }
-        },
-
-        watch: {
-            // Watcher sur data seeComments afin de faire marcher le focus de l'input au click sur commentaire
-            seeComments: function (value) {
-                if (value) {
-                    this.$nextTick(() => {
-                        this.$refs.inputRef.focus()
-                    })
-                }
-            },
-        },
+        }
     }
 </script>
 
