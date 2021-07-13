@@ -30,6 +30,8 @@ router.put('/users/:id/change-password', auth, userCtrl.changePassword);
 router.delete('/users/:id/delete', auth, userCtrl.deleteUser);
 //Mettre une image de Profil
 router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
+//Recuperer tous les users
+router.get('/users', auth, userCtrl.findAllUsers);
 
 
 //------------Route Post---------------

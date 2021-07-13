@@ -154,7 +154,7 @@ exports.deleteUser = async (req, res, next) => {
 
 
 //Enregistrer une image profil
-exports.savePicture = async (req, res) => {
+exports.savePicture = async (req, res, next) => {
 
     const user = await db.user.findOne({
         where: {
@@ -167,5 +167,15 @@ exports.savePicture = async (req, res) => {
     user.save()
 
     .then((Picture) => res.status(201).json(Picture))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+//Récuperer tous les user pour page Menbre
+exports.findAllUsers = async (req, res) => {
+
+    db.user.findAll()
+
+    .then((users) => res.status(201).json(users))
     .catch(error => res.status(400).json({ error }));
 };
