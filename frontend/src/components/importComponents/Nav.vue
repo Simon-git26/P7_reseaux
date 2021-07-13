@@ -18,7 +18,11 @@
 
 
             <li class="nav-item">
-              <a v-if="isConnected" href="Profil" class="nav-link text-dark d-flex flex-column">Profil<em class="fs-1 text-primary fas fa-user-circle"></em></a>
+              <a v-if="isConnected" href="Profil" class="nav-link text-dark d-flex flex-column">Profil
+                <div v-if="$root.user.imagePath">
+                    <img :src="`http://localhost:3000/${$root.user.imagePath}`" class="img-fluid rounded-circle size" alt="#">
+                </div>
+                <em v-else class="fs-1 text-primary fas fa-user-circle"></em></a>
               <a v-else href="Register" class="nav-link text-dark">Inscription</a>
             </li>
           </ul>
@@ -56,5 +60,11 @@ import Bus from '../../bus'
     color: #545454 !important;
     text-decoration: underline;
     font-size: 17px;
+  }
+
+  .size {
+    width: 45px;
+    height: 40px;
+
   }
 </style>
