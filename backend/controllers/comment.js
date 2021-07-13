@@ -57,15 +57,3 @@ exports.deleteComment = async (req, res, next) => {
     .then(() => res.status(200).json({ message: 'Commentaire supprimé !' }))
     .catch(error => res.status(400).json({ error }));
 };
-
-
-//Récuperer tous les commentaires
-//exports.findAllComments = async (req, res) => {
-//
-//    db.comments.findAll({
-//        include: { all: true, nested: true }
-//    })
-//
-//    .then((comment) => res.status(201).json(comment))
-//    .catch(error => res.status(400).json({ error }));
-//};

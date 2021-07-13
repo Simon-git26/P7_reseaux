@@ -22,7 +22,7 @@
                 
             </div>
             
-            <!--v-on:click="fetchComments()"--><button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
+            <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                     @click.prevent="showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
@@ -39,7 +39,7 @@
 
 <script>
     import ModalComments from './ModalComments.vue'
-    import axios from '../../api'
+    
 
     export default {
         name: 'Publication',
@@ -67,21 +67,6 @@
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
-
-            //fetchComments () {
-            //    axios.get('/comments', {
-            //        headers: {
-            //            "Content-Type": "application/json",
-            //        },
-            //    })
-            //    .then((response) => {
-            //        console.log(response);
-            //        this.comments = response.data;
-            //    })
-            //    .catch((err) => {
-            //    console.log(err);
-            //    });
-            //},
         },
     }
 </script>

@@ -76,6 +76,7 @@
 
 <script>
     import axios from '../api'
+    import Bus from '../bus'
 
     export default {
         name: 'Profil',
@@ -111,12 +112,13 @@
                     },
                 })
                 .then((res) => {
+
+                    this.description = ""
+
                     this.$notify({
                         title: 'Notifications',
                         text: 'Description Changée !'
                     })
-                    window.location.reload();
-                    console.log(res);
                 })
                 .catch((err) => {
                     console.log(err);

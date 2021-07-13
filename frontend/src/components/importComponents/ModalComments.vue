@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"  v-on:click="$emit('modal'), $emit('seeCom')">Fermer</button>
+                    <button type="button" class="btn btn-secondary"  v-on:click="$emit('modal')">Fermer</button>
                 </div>
                 </div>
             </div>
@@ -161,7 +161,7 @@
                 })
 
                 .then((createdComment) => {
-
+                    this.comment = ""
                     Bus.$emit('refresh');
 
                     this.$notify({

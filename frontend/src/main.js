@@ -17,15 +17,12 @@ new Vue({
   },
 
   async mounted() {
-
-    //enelever premier if si i gene pas
-    if (!this.user) {
-      if(localStorage.getItem('token')) {
-        const res = await axios.get('user');
-        this.user = res.data;
-        console.log('if main', this.user);
-        Bus.$emit('connected', {token: res.data.token, ...res.data.user});
-      }
+    
+    if(localStorage.getItem('token')) {
+      const res = await axios.get('user');
+      this.user = res.data;
+      console.log('if main', this.user);
+      Bus.$emit('connected', {token: res.data.token, ...res.data.user});
     }
 
     Bus.$on('connected', user => {
@@ -33,9 +30,10 @@ new Vue({
       this.user = user;
     })
     
-    //enelever utilisateur abevc user null et router ver login
     Bus.$on('disconnected', () => {
       localStorage.removeItem("token");
+      this.user = null
+      this.$router.push("/login");
     })
   },
 
