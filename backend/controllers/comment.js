@@ -23,11 +23,11 @@ exports.postComment = async (req, res, next) => {
 
 //Modifier son commentaire
 exports.changeComment = async (req, res, next) => {
-    const comment = await  db.comments.findOne({
+    const comment = await db.comments.findOne({
         where: {
             UserId: req.userId,
             id: req.params.id
-        }
+        },
     });
 
     if (!comment) {

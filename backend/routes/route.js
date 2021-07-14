@@ -42,7 +42,7 @@ router.post('/users/:id/publication', auth, multer, postCtrl.publish);
 //Récuperation publication
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
 // Suppression de post par modo
-router.delete('/publications/:id/modo/delete', auth, postCtrl.modoDeletePosts);
+router.delete('/publications/:id', auth, postCtrl.modoDeletePosts);
 
 
 //-----------Route Comments------------

@@ -93,7 +93,7 @@
 
                     console.log('datatuconais', data);
 
-                    const url = '/publications/' + post.id + '/modo/delete';
+                    const url = '/publications/' + post.id;
 
                     axios.delete(url, data, {
                         headers: {

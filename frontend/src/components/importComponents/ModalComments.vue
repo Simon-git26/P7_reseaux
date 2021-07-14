@@ -60,12 +60,14 @@
                                         </figcaption>
 
                                         <div class="d-flex">
-                                            <div class="d-flex" v-if="isConnected && comment.UserId === $root.user.id || $root.user.id === 1">
+                                            <div v-if="isConnected && comment.UserId === $root.user.id">
                                                 <button class="btn-primary btn-sm" @click.prevent="seeInput = comment.id, commentChange = comment.comment">
                                                     Modifier
                                                 </button>
-                                                
-                                                <div v-if="!seeInput">
+                                            </div>
+
+                                            <div v-if="isConnected && comment.UserId === $root.user.id || $root.user.id === 1">
+                                                <div>
                                                     <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
                                                         Supprimer
                                                     </button>

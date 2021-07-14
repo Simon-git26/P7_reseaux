@@ -44,13 +44,14 @@ exports.findAllPosts = async (req, res, next) => {
 
 
 exports.modoDeletePosts = async (req, res) => {
+
     const post = await db.post.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
         }
     });
 
     post.destroy()
-    .then(() => res.status(200).json({ message: 'post supprimé !' }))
+    .then((deletePost) => res.status(200).json({ deletePost }))
     .catch(error => res.status(400).json({ error }));
 };
