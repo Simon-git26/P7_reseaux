@@ -48,7 +48,6 @@
                 })
 
                 .then((response) => {
-                    console.log(response);
                     this.posts = response.data;
                 })
 

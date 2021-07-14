@@ -44,7 +44,7 @@ exports.findAllPosts = async (req, res, next) => {
 
 
 exports.modoDeletePosts = async (req, res) => {
-    const post = await  db.post.findOne({
+    const post = await db.post.findOne({
         where: {
             id: req.params.id
         }

@@ -88,8 +88,10 @@
                     window.alert('Suppression annulée !');
                 } else {
                     const data = {
-                        post: post
+                        post: post,
                     }
+
+                    console.log('datatuconais', data);
 
                     const url = '/publications/' + post.id + '/modo/delete';
 

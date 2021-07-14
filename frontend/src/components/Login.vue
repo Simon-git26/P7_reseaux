@@ -69,7 +69,6 @@ export default {
             title: 'Notifications',
             text: 'Connection réussi !'
           })
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
