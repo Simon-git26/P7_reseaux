@@ -102,7 +102,7 @@ exports.profilUser = async (req, res, next) => {
     // Chercher le user qui correspond à req.params.id dans la bdd.
     const user = await  db.user.findOne({
         where: {
-            id: req.params.id
+            id: req.params.id,
         }
     });
     user.description = req.body.description;
@@ -173,10 +173,25 @@ exports.savePicture = async (req, res, next) => {
 
 
 //Récuperer tous les user pour page Menbre
-exports.findAllUsers = async (req, res) => {
+exports.findAllUsers = async (req, res, next) => {
 
     db.user.findAll()
 
     .then((users) => res.status(201).json(users))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+//Supprimer un User par le Modos
+exports.modoDeleteUser = async (req, res) => {
+    const modoDelete = await db.user.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+
+    modoDelete.destroy()
+
+    .then(() => res.status(200).json({ message: 'Utilisateur supprimé !' }))
     .catch(error => res.status(400).json({ error }));
 };

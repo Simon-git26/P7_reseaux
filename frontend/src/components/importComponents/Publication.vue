@@ -26,6 +26,12 @@
                     @click.prevent="showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
+
+            <div v-if="isConnected && $root.user.id === 1">
+                <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
+                    Supprimer
+                </button>
+            </div>
         </div>
 
         <!------------ Afficher les commentaires en modal ----------->
@@ -39,6 +45,7 @@
 
 <script>
     import ModalComments from './ModalComments.vue'
+    import axios from '../../api'
     
 
     export default {
@@ -62,11 +69,50 @@
             }
         },
 
+        computed: {
+            isConnected: function() {
+                return this.$root.user;
+            }
+        },
+
         methods: {
 
             formatDate(date) {
                 return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
             },
+
+            modoDeletePost(post) {
+                const valid = window.confirm('Supprimer ce post ?')
+
+                if (!valid) {
+                    window.alert('Suppression annulée !');
+                } else {
+                    const data = {
+                        post: post
+                    }
+
+                    const url = '/publications/' + post.id + '/modo/delete';
+
+                    axios.delete(url, data, {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                    })
+
+                    .then((response) => {
+                        this.$parent.fetchPosts()
+
+                        this.$notify({
+                            title: 'Notifications',
+                            text: 'Post Supprimé !'
+                        })
+                    })
+
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                }  
+            }
         },
     }
 </script>

@@ -1,13 +1,7 @@
 <template>
     <div>
-        <h3 class="d-flex justify-content-center mb-3">Notre Equipe</h3>
-        <div class="col-6 mx-auto breakword text-break mb-4">
-            <h4>Modérateur</h4>
-            
-        </div>
-    
+        <h3 class="d-flex justify-content-center mb-3">Nos Groupomaniens !</h3>
         <div class="col-6 mx-auto">
-            <h4>Employés</h4>
             <div v-for="user in users" :key="user.id" :user="user" class="d-flex border border-secondary rounded-3 mb-3">
                 <div class="col-4" v-if="user.imagePath">
                     <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
@@ -15,6 +9,13 @@
                 <div class="col-8 d-flex align-items-center">
                     <h5>{{ user.firstName }} {{ user.lastName }}</h5>
                 </div>
+
+                <div v-if="isConnected && $root.user.id === 1">
+                    <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
+                        Supprimer
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -38,6 +39,12 @@
             this.fetchUsers()
         },
 
+        computed: {
+            isConnected: function() {
+                return this.$root.user;
+            }
+        },
+
         methods: {
             fetchUsers () {
 
@@ -54,6 +61,41 @@
                 console.log(err);
                 });
             },
+
+
+            modoDeleteUser(user) {
+
+                const valid = window.confirm('Supprimer ce compte ?')
+
+                if (!valid) {
+                    window.alert('Suppression annulée !');
+                } else {
+                    const data = {
+                        user: user
+                    }
+
+                    const url = '/users/' + user.id + '/modo/delete';
+
+                    axios.delete(url, data, {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                    })
+
+                    .then((response) => {
+                        this.$notify({
+                            title: 'Notifications',
+                            text: 'Compte supprimé !'
+                        })
+
+                        this.fetchUsers()
+                    })
+
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                }  
+            }
         }
     }
 </script>

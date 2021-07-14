@@ -60,7 +60,7 @@
                                         </figcaption>
 
                                         <div class="d-flex">
-                                            <div class="d-flex" v-if="isConnected && comment.UserId === $root.user.id">
+                                            <div class="d-flex" v-if="isConnected && comment.UserId === $root.user.id || $root.user.id === 1">
                                                 <button class="btn-primary btn-sm" @click.prevent="seeInput = comment.id, commentChange = comment.comment">
                                                     Modifier
                                                 </button>

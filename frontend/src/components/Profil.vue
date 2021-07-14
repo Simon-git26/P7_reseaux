@@ -113,7 +113,6 @@
                 .then((res) => {
 
                     this.description = ""
-
                     this.$notify({
                         title: 'Notifications',
                         text: 'Description Changée !'
@@ -151,7 +150,7 @@
                 })
             },
 
-            //Supprimer son compte
+            //Supprimer son compte + posts associés
             deleteUser(user) {
 
                 const valid = window.confirm('Ete vous sur de vouloir supprimer votre compte ?')
@@ -172,6 +171,7 @@
                     })
 
                     .then((response) => {
+                        this.$root.user = null
                         this.$router.push("/Register");
                         console.log(response);
                     })

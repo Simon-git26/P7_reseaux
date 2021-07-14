@@ -32,6 +32,8 @@ router.delete('/users/:id/delete', auth, userCtrl.deleteUser);
 router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
 //Recuperer tous les users
 router.get('/users', auth, userCtrl.findAllUsers);
+// Delete un user par le Modo
+router.delete('/users/:id/modo/delete', auth, userCtrl.modoDeleteUser);
 
 
 //------------Route Post---------------
@@ -39,6 +41,8 @@ router.get('/users', auth, userCtrl.findAllUsers);
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
 //Récuperation publication
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
+// Suppression de post par modo
+router.delete('/publications/:id/modo/delete', auth, postCtrl.modoDeletePosts);
 
 
 //-----------Route Comments------------
