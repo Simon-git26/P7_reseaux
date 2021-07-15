@@ -55,9 +55,11 @@
                         title: 'Notifications',
                         text: ' Publication réalisée !'
                     })
+                    
                     // Affichage de mes posts dynamique grace à l'appelle au parent (Feed) de la fonction fetchPosts()
                     this.$parent.fetchPosts()
                     this.post = ""
+                    
                 })
                 .catch((err) => {
                     console.log(err);

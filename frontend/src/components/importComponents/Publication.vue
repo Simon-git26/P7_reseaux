@@ -6,9 +6,15 @@
                     <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
                     <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
+                </div>
+
+                <div class="col-md-2" v-if="isConnected && $root.user.id === 1">
+                    <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
+                        <em class="fas fa-trash-alt"></em>
+                    </button>
                 </div>
             </div>
         
@@ -26,12 +32,6 @@
                     @click.prevent="showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
             </button>
-
-            <div v-if="isConnected && $root.user.id === 1">
-                <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
-                    Supprimer
-                </button>
-            </div>
         </div>
 
         <!------------ Afficher les commentaires en modal ----------->

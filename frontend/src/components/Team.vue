@@ -6,16 +6,14 @@
                 <div class="col-4" v-if="user.imagePath">
                     <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                 </div>
-                <div class="col-8 d-flex align-items-center">
+                <div class="col-8 d-flex align-items-center justify-content-between">
                     <h5>{{ user.firstName }} {{ user.lastName }}</h5>
+                    <div v-if="isConnected && $root.user.id === 1">
+                        <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
+                            <em class="fas fa-trash-alt"></em>
+                        </button>
+                    </div>
                 </div>
-
-                <div v-if="isConnected && $root.user.id === 1">
-                    <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
-                        Supprimer
-                    </button>
-                </div>
-
             </div>
         </div>
     </div>
