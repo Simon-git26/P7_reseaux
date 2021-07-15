@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { connect } = require('../app');
-const { user } = require('../models');
+const { user, post, comments } = require("../models");
 
 const db = require("../models");
 
@@ -184,13 +184,16 @@ exports.findAllUsers = async (req, res, next) => {
 
 //Supprimer un User par le Modos
 exports.modoDeleteUser = async (req, res) => {
-    const modoDelete = await db.user.findOne({
+    const user = await db.user.findOne({
         where: {
             id: req.params.id
         }
     });
 
-    modoDelete.destroy()
+    await db.comments.destroy({ where: {UserId: user.id}})
+    await db.post.destroy({ where: {UserId: user.id}})
+
+    user.destroy()
 
     .then(() => res.status(200).json({ message: 'Utilisateur supprimé !' }))
     .catch(error => res.status(400).json({ error }));

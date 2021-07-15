@@ -72,7 +72,9 @@
                         user: user
                     }
 
-                    const url = '/users/' + user.id + '/modo/delete';
+                    console.log('datamodo', data);
+
+                    const url = '/users/' + user.id + '/modoDelete';
 
                     axios.delete(url, data, {
                         headers: {

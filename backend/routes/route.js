@@ -33,7 +33,7 @@ router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
 //Recuperer tous les users
 router.get('/users', auth, userCtrl.findAllUsers);
 // Delete un user par le Modo
-router.delete('/users/:id/modo/delete', auth, userCtrl.modoDeleteUser);
+router.delete('/users/:id/modoDelete', auth, userCtrl.modoDeleteUser);
 
 
 //------------Route Post---------------
