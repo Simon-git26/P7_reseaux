@@ -76,6 +76,7 @@
 
 <script>
     import axios from '../api'
+    import Bus from '../bus'
 
     export default {
         name: 'Profil',
@@ -171,9 +172,7 @@
                     })
 
                     .then((response) => {
-                        this.$root.user = null
-                        this.$router.push("/Register");
-                        console.log(response);
+                        Bus.$emit('disconnected')
                     })
 
                     .catch((err) => {

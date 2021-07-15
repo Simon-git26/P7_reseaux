@@ -17,13 +17,15 @@ new Vue({
   },
 
   async mounted() {
-    
-    if(localStorage.getItem('token')) {
-      const res = await axios.get('user');
-      this.user = res.data;
-      console.log('if main', this.user);
-      Bus.$emit('connected', {token: res.data.token, ...res.data.user});
+    if (!this.user) {
+      if(localStorage.getItem('token')) {
+        const res = await axios.get('user');
+        this.user = res.data;
+        console.log('if main', this.user);
+        Bus.$emit('connected', {token: res.data.token, ...res.data.user});
+      }
     }
+    
 
     Bus.$on('connected', user => {
       console.log('user main', user);

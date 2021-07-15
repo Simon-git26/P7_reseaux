@@ -147,6 +147,9 @@ exports.deleteUser = async (req, res, next) => {
         }
     });
 
+    await db.comments.destroy({ where: {UserId: user.id}})
+    await db.post.destroy({ where: {UserId: user.id}})
+
     user.destroy()
 
     .then(() => res.status(200).json({ message: 'Utilisateur supprimé !' }))
