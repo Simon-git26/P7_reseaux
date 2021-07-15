@@ -44,12 +44,15 @@ exports.findAllPosts = async (req, res, next) => {
 
 
 exports.modoDeletePosts = async (req, res) => {
-
     const post = await db.post.findOne({
         where: {
             id: req.params.id,
-        },
+        }
     });
+
+    await db.comments.destroy({ where: {PostId: post.id}})
+    
+    
 
     post.destroy()
     .then((deletePost) => res.status(200).json({ deletePost }))

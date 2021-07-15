@@ -2,19 +2,21 @@
     <div class="card mb-4 border border-secondary">
         <div class="row g-0">
             <div class="d-flex mb-2 pt-2">
-                <div class="col-md-2" v-if="post.User.imagePath">
+                <div class="col-md-3" v-if="post.User.imagePath">
                     <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                 </div>
 
-                <div class="col-md-8">
-                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
-                    <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
-                </div>
-
-                <div class="col-md-2" v-if="isConnected && $root.user.id === 1">
-                    <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
-                        <em class="fas fa-trash-alt"></em>
-                    </button>
+                <div class="col-md-9 d-flex">
+                    <div>
+                        <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                        <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
+                    </div>
+                    
+                    <div v-if="isConnected && $root.user.id === 1">
+                        <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
+                            <em class="fas fa-trash-alt"></em>
+                        </button>
+                    </div>
                 </div>
             </div>
         
@@ -92,8 +94,7 @@
                     }
 
                     console.log('datatuconais', data);
-
-                    const url = '/publications/' + post.id;
+                    const url = '/publications/' + post.id
 
                     axios.delete(url, data, {
                         headers: {
