@@ -12,7 +12,7 @@
                         <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                     </div>
                     
-                    <div v-if="isConnected && $root.user.id === 1">
+                    <div v-if="isConnected && post.UserId === $root.user.id || isConnected && $root.user.id === 1">
                         <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
                             <em class="fas fa-trash-alt"></em>
                         </button>
@@ -21,10 +21,10 @@
             </div>
         
             <div class="card-body d-flex">
-                <div v-if="post.imagePath" class="col-md-6">
+                <div v-if="post.imagePath" class="col-md-5">
                     <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-9">
                     <p class="card-text">{{ post.post }}</p>
                 </div>
                 
@@ -93,7 +93,7 @@
                         post: post,
                     }
 
-                    console.log('datatuconais', data);
+                    console.log('data', data);
                     const url = '/publications/' + post.id
 
                     axios.delete(url, data, {

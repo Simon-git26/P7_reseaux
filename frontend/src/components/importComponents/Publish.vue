@@ -37,13 +37,17 @@
                 console.log('selectedFile', this.selectedFile);
             },
 
-            publish() {
 
+            publish() {
                 const url = '/users/' + this.$root.user.id + '/publication';
                 const fd = new FormData();
 
                 if (this.selectedFile) {
                     fd.append('image', this.selectedFile, this.selectedFile.name);
+                }
+
+                if (!this.post && !this.selectedFile) {
+                    return 
                 }
 
                 fd.append('post', this.post);
