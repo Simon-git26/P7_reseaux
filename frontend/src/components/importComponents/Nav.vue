@@ -19,7 +19,6 @@
             <em v-else class="fs-1 text-primary fas fa-user-circle"></em></a>
           <a class="nav-link text-dark font-weight-bold px-3" v-else href="Register">Inscription</a>
         </li>
-        
       </ul>
     </nav>
 </template>
