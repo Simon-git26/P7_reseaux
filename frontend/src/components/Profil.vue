@@ -25,7 +25,7 @@
 
                     <div class="mt-3" v-if="selectedFile">
                         <h5>Sauvegarder les modifications apportées</h5>
-                        <button class="btn btn-primary" v-on:click="save">Sauvegarder</button>
+                        <button class="btn btn-primary" v-on:click="savePicture">Sauvegarder</button>
                     </div>
                 </div>
 
@@ -40,8 +40,14 @@
                     
                     <div class="d-flex flex-column">
                         <label class="border border-secondary pt-2 pb-2 mb-0" name="lab" for="changeDescription">Changer ma description</label>
-                        <textarea id="changeDescription" v-model="description" type="text" @keyup.enter="changeDescription" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
+                        <textarea id="changeDescription" v-model="description"> type="text" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
                     </div>
+
+                    <div class="mt-3" v-if="description">
+                        <h5>Sauvegarder les modifications apportées</h5>
+                        <button class="btn btn-primary" v-on:click="saveChangeDescription">Sauvegarder</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -53,14 +59,19 @@
                     <form class="d-flex flex-column">
                         <div class="d-flex flex-column">
                             <label class="mb-0" for="password">Mot de passe actuel</label>
-                            <input v-model="password" type="password" id="password" class="border-secondary border-top-0 border-start-0 border-end-0" @keyup.enter="changePassword" />
+                            <input v-model="password" type="password" id="password" class="border-secondary border-top-0 border-start-0 border-end-0" />
                         </div>
 
                         <div class="d-flex flex-column mt-4">
                             <label class="mb-0" for="passwordconfirm">Nouveau mot de passe</label>
-                            <input v-model="newPassword" type="password" id="passwordconfirm" class="border-secondary border-top-0 border-start-0 border-end-0" @keyup.enter="changePassword" />
+                            <input v-model="newPassword" type="password" id="passwordconfirm" class="border-secondary border-top-0 border-start-0 border-end-0" />
                         </div>
                     </form>
+
+                    <div class="mt-3" v-if="newPassword">
+                        <h5>Sauvegarder les modifications apportées</h5>
+                        <button class="btn btn-primary" v-on:click="saveChangePassword">Sauvegarder</button>
+                    </div>
                 </div>
 
                 <div class="col-lg-5 col-md-6 col-sm-12">
@@ -100,7 +111,7 @@
                 console.log('selectedFile', this.selectedFile);
             },
 
-            changeDescription() {
+            saveChangeDescription() {
 
                 const data = {
                     description: this.description,
@@ -114,17 +125,20 @@
                 .then((res) => {
 
                     this.description = ""
+                    
+
                     this.$notify({
                         title: 'Notifications',
                         text: 'Description Changée !'
                     })
+                    
                 })
                 .catch((err) => {
                     console.log(err);
                 })
             },
 
-            changePassword() {
+            saveChangePassword() {
                 this.passwordError = false;
                 const data = {
                     password: this.password,
@@ -138,12 +152,13 @@
                     },
                 })
                 .then((res) => {
-                    console.log(res);
+                    this.password = ""
+                    this.newPassword = ""
+                    
                     this.$notify({
                         title: 'Notifications',
                         text: 'Mot de Passe Changé !'
                     })
-                    alert('Le mot de passe a été mis à jour.');
                 })
                 .catch((err) => {
                     console.log(err);
@@ -182,7 +197,7 @@
             },
 
 
-            save() {
+            savePicture() {
                 const url = '/users/' + this.$root.user.id + '/picture';
 
                 const file = new FormData();
