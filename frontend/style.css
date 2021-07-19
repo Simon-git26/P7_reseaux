@@ -4,3 +4,7 @@ body {
   background: rgba(85, 108, 171, 0.9) !important;
   font-family: "Fira Sans", sans-serif;
 }
+
+.bg-white-custom {
+  background-color: rgba(255, 255, 255, 0.9);
+}

@@ -3,8 +3,12 @@
       <a class="nav-link" href="/"><img src="@/assets/iconegroupomania.png" alt="#"/></a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-dark font-weight-bold px-3 d-flex flex-column" v-if="isConnected" v-on:click="deconnection" href="Login">Deconnexion<em class="fs-1 text-primary fas fa-power-off"></em></a>
-          <a class="nav-link text-dark font-weight-bold px-3" v-else href="Login">Connexion</a>
+          <a class="nav-link text-dark font-weight-bold px-3 d-flex flex-column" v-if="isConnected" href="Profil">Profil
+            <div v-if="$root.user.imagePath">
+                <img :src="`http://localhost:3000/${$root.user.imagePath}`" class="img-fluid rounded-circle size" alt="#">
+            </div>
+            <em v-else class="fs-1 text-primary fas fa-user-circle"></em></a>
+          <a class="nav-link text-dark font-weight-bold px-3" v-else href="Register">Inscription</a>
         </li>
 
         <li class="nav-item">
@@ -12,12 +16,8 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link text-dark font-weight-bold px-3 d-flex flex-column" v-if="isConnected" href="Profil">Profil
-            <div v-if="$root.user.imagePath">
-                <img :src="`http://localhost:3000/${$root.user.imagePath}`" class="img-fluid rounded-circle size" alt="#">
-            </div>
-            <em v-else class="fs-1 text-primary fas fa-user-circle"></em></a>
-          <a class="nav-link text-dark font-weight-bold px-3" v-else href="Register">Inscription</a>
+          <a class="nav-link text-dark font-weight-bold px-3 d-flex flex-column" v-if="isConnected" v-on:click="deconnection" href="Login">Deconnexion<em class="fs-1 text-primary fas fa-power-off"></em></a>
+          <a class="nav-link text-dark font-weight-bold px-3" v-else href="Login">Connexion</a>
         </li>
       </ul>
     </nav>

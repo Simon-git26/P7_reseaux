@@ -7,7 +7,7 @@
             <h3 class="border-bottom border-secondary color" v-if="$root.user">{{ $root.user.firstName }} {{ $root.user.lastName }}</h3>
         </div>
 
-        <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
+        <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-4">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="border-bottom border-secondary pl-3 pr-3 pt-4 pb-5">
+        <div class="pl-3 pr-3 pt-4 pb-2">
             <div class="row d-flex justify-content-between">
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <h5>Changer votre Mot de passe</h5>
