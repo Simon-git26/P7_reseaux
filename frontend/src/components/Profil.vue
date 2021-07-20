@@ -37,14 +37,17 @@
                         <h5>Description</h5>
                         <p class="breakword text-break">{{ $root.user.description }}</p>
                     </div>
+
+                    <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showChangeDescription = true, description = $root.user.description">
+                        Changer ma description
+                    </button>
                     
-                    <div class="d-flex flex-column">
-                        <label class="border border-secondary pt-2 pb-2 mb-0" name="lab" for="changeDescription">Changer ma description</label>
-                        <textarea id="changeDescription" v-model="description"> type="text" placeholder="Entrez votre nouvelle description" name="monTexte"></textarea>
+                    <div class="d-flex flex-column mt-3" v-if="showChangeDescription">
+                        <textarea id="changeDescription" v-model="description" type="text" placeholder="Entrez votre nouvelle description..." name="monTexte"></textarea>
                     </div>
 
-                    <div class="mt-3" v-if="description">
-                        <h5>Sauvegarder les modifications apportées</h5>
+                    <div class="mt-3" v-if="description && description != $root.user.description">
+                        <h5>Sauvegarder la nouvelle description</h5>
                         <button class="btn btn-primary" v-on:click="saveChangeDescription">Sauvegarder</button>
                     </div>
                     
@@ -101,6 +104,7 @@
                 passwordError: false,
                 selectedFile: null,
                 imagePath: "",
+                showChangeDescription: false
 
             }
         },
