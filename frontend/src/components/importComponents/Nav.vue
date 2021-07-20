@@ -1,5 +1,6 @@
 <template>
-    <nav class="navbar navbar-expand-md bg-light justify-content-between">
+  <nav class="navbar navbar-expand-lg bg-light justify-content-between">
+    <div class="container-fluid">
       <a class="nav-link" href="/"><img src="@/assets/iconegroupomania.png" alt="#"/></a>
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -20,7 +21,8 @@
           <a class="nav-link text-dark font-weight-bold px-3" v-else href="Login">Connexion</a>
         </li>
       </ul>
-    </nav>
+    </div>
+  </nav>
 </template>
 
 
@@ -48,15 +50,14 @@ import Bus from '../../bus'
 
 
 <style scoped>
-  .text-dark:hover {
-    color: #545454 !important;
-    text-decoration: underline;
-    font-size: 17px;
-  }
 
   .size {
     width: 45px;
     height: 40px;
 
+  }
+
+  .navbar-nav {
+    flex-direction: inherit;
   }
 </style>

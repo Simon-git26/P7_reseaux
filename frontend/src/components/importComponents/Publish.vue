@@ -4,11 +4,13 @@
         
         <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
         
-        <div class="mt-3 d-flex justify-content-between">
-            <div class="border-secondary">
-                <input type="file" id="image" @change="onFileSelected" />
+        <div class="mt-3 col-12">
+            <div class="row">
+                <div class="border-secondary col-12 col-md-8">
+                    <input class="form-control" type="file" id="image" @change="onFileSelected">
+                </div>
+                <button class="col-12 col-md-4 btn btn-primary" v-on:click="publish">Publier !</button>
             </div>
-            <button class="btn btn-primary" v-on:click="publish">Publier !</button>
         </div>
     </div>
 </template>
