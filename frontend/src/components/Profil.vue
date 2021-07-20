@@ -9,7 +9,7 @@
 
         <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-4">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 border border-secondary rounded">
+                <div class="col-lg-5 col-md-5 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
                     <div class="col-md-12 d-flex" v-if="$root.user.imagePath">
                         <img :src="`http://localhost:3000/${$root.user.imagePath}`" class="img-fluid rounded-circle mx-auto" alt="#">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-7 col-md-7 col-sm-12">
                     <h5>Email</h5>
                     <p>{{ $root.user.email }}</p>
 
@@ -57,7 +57,7 @@
 
         <div class="pl-3 pr-3 pt-4 pb-2">
             <div class="row d-flex justify-content-between">
-                <div class="col-lg-7 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-5 col-sm-12">
                     <h5>Changer votre Mot de passe</h5>
                     <form class="d-flex flex-column">
                         <div class="d-flex flex-column">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-7 col-sm-12">
                     <h5>Supprimer mon compte</h5>
                     <button class="btn btn-danger" @click.prevent="deleteUser(user)">Supprimer</button>
                 </div>
