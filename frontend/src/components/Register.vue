@@ -14,17 +14,23 @@
 
       <div class="form-group">
         <em class="fas fa-user-tie"></em><label class="ml-2">Votre Nom *</label>
-        <input type="text" class="form-control" v-model="firstName" placeholder="Votre nom" required />
+        <input type="text" class="form-control validate" v-model="firstName" placeholder="Votre nom" required pattern="[A-z]{2,20}"/>
       </div>
 
       <div class="form-group">
         <em class="fas fa-user-tie"></em><label class="ml-2">Votre Prenom *</label>
-        <input type="text" class="form-control" v-model="lastName" placeholder="Votre Prenom" required />
+        <input type="text" class="form-control validate" v-model="lastName" placeholder="Votre Prenom" required pattern="[A-z]{2,20}" />
       </div>
 
-      <div class="form-group">
-        <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
-        <input type="email" class="form-control" v-model="email" placeholder="Email" required />
+      <div class="form-group input-group mb-3 d-flex flex-column">
+        <div>
+          <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
+        </div>
+
+        <div class="d-flex">
+          <input type="text" class="form-control validate" placeholder="Email" v-model="email" aria-label="Recipient's username" aria-describedby="basic-addon2" required pattern="[A-z, 0-9]{2,20}">
+          <span class="input-group-text" id="basic-addon2">@groupomania.com</span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -68,7 +74,7 @@ export default {
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
-        email: this.email,
+        email: this.email + `${'@groupomania.com'}`,
         password: this.password,
       };
 
@@ -166,4 +172,11 @@ export default {
 
 <style scoped>
 
+  .validate:valid {
+  background-color: #ddffdd;
+  }
+
+  .validate:required:valid {
+  border-color: #008000;
+  }
 </style>

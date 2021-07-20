@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light justify-content-between">
+  <nav class="navbar navbar-expand-lg bg-light justify-content-between border-bottom border-danger">
     <div class="container-fluid">
-      <a class="nav-link" href="/"><img src="@/assets/iconegroupomania.png" alt="#"/></a>
+      <a class="nav-link" href="/"><img src="@/assets/iconegroupo.png" alt="#"/></a>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link text-dark font-weight-bold px-3 d-flex flex-column" v-if="isConnected" href="Profil">Profil

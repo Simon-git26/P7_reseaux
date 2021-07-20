@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
 body {
-  background: rgba(85, 108, 171, 0.9) !important;
+  background-color: #ffffff;
+  background-image:  radial-gradient(#88acff 2px, transparent 2px), radial-gradient(#88acff 2px, #ffffff 2px);
+  background-size: 80px 80px;
+  background-position: 0 0,40px 40px;
   font-family: "Fira Sans", sans-serif;
 }
 

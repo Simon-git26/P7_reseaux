@@ -125,7 +125,7 @@
                 .then((res) => {
 
                     this.description = ""
-                    
+                    window.location.reload()
 
                     this.$notify({
                         title: 'Notifications',
