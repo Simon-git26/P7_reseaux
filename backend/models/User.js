@@ -44,7 +44,14 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         defaultValue: "",
       },
-      },
+
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      }
+    },
+
     {
       //Indiquez le nom de la table dans mysql
       tableName: "users",

@@ -66,7 +66,7 @@
                                                 </button>
                                             </div>
 
-                                            <div v-if="isConnected && comment.UserId === $root.user.id || $root.user.id === 1">
+                                            <div v-if="isConnected && comment.UserId === $root.user.id || $root.user.isAdmin == true">
                                                 <div>
                                                     <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
                                                         Supprimer

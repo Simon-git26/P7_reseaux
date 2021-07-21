@@ -12,7 +12,7 @@
                         <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                     </div>
                     
-                    <div v-if="isConnected && post.UserId === $root.user.id || isConnected && $root.user.id === 1">
+                    <div v-if="isConnected && post.UserId === $root.user.id || isConnected && $root.user.isAdmin == true">
                         <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeletePost(post)">
                             <em class="fas fa-trash-alt"></em>
                         </button>
