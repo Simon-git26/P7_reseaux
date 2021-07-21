@@ -8,7 +8,7 @@
                         <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                     </div>
                     <div class="col-8 d-flex align-items-center justify-content-between breakword text-break">
-                        <h5>{{ user.firstName }} {{ user.lastName }}</h5>
+                        <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
                         <div v-if="isConnected && $root.user.isAdmin == true">
                             <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
                                 <em class="fas fa-trash-alt"></em>

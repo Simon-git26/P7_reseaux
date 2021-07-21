@@ -22,7 +22,7 @@
                                 </div>
 
                                 <div class="col-md-10">
-                                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                    <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}<span class="ml-1" v-if="post.UserId === $root.user.id && $root.user.isAdmin == true || post.User.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
                                     <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                                         </blockquote>
 
                                         <figcaption class="blockquote-footer">
-                                            Posté par {{ comment.User.firstName }} {{ comment.User.lastName }} le {{ formatDate(comment.createdAt) }}
+                                            Posté par {{ comment.User.firstName }} {{ comment.User.lastName }}<span class="ml-1" v-if="comment.UserId === $root.user.id && $root.user.isAdmin == true || comment.User.isAdmin == true"><em class="fs-6 fas fa-star"></em></span> le {{ formatDate(comment.createdAt) }}
                                         </figcaption>
 
                                         <div class="d-flex">

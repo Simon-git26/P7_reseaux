@@ -4,7 +4,7 @@
             <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
         <div>
-            <h3 class="border-bottom border-secondary color" v-if="$root.user">{{ $root.user.firstName }} {{ $root.user.lastName }}</h3>
+            <h3 class="border-bottom border-secondary color" v-if="$root.user">{{ $root.user.firstName }} {{ $root.user.lastName }}<span class="ml-1" v-if="$root.user.isAdmin == true"><em class="fs-5 fas fa-star"></em></span></h3>
         </div>
 
         <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-4">

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="popup d-flex justify-content-between rounded align-items-center pl-3 pr-3" v-if="isDisplay">
-            <p class="mt-3 fs-5" v-if="$root.user">Bienvenue {{ $root.user.firstName }} {{ $root.user.lastName }}</p>
+            <p class="mt-3 fs-5" v-if="$root.user">Bienvenue {{ $root.user.firstName }} {{ $root.user.lastName }}<span class="ml-1" v-if="$root.user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></p>
             <button v-on:click="show" type="button" class="btn"><em class="text-dark fs-1 d-flex justify-content-center align-content-center far fa-times-circle"></em></button>
         </div>
 

@@ -8,7 +8,7 @@
 
                 <div class="col-md-10 d-flex">
                     <div>
-                        <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                        <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}<span class="ml-1" v-if="isConnected && post.UserId === $root.user.id && $root.user.isAdmin == true || post.User.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
                         <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
                     </div>
                     

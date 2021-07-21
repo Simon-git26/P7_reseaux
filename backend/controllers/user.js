@@ -63,7 +63,8 @@ exports.login = (req, res, next) => {
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    imagePath: user.imagePath
+                    imagePath: user.imagePath,
+                    isAdmin: user.isAdmin
                 },
                 token: jwt.sign(
                     { userId: user.id },
