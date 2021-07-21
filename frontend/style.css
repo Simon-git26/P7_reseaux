@@ -1,13 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
 body {
-  background-color: #ffffff;
-  background-image:  radial-gradient(#88acff 2px, transparent 2px), radial-gradient(#88acff 2px, #ffffff 2px);
-  background-size: 80px 80px;
-  background-position: 0 0,40px 40px;
-  font-family: "Fira Sans", sans-serif;
-}
 
-.bg-white-custom {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(104, 104, 104, 0.4);
+  background-image:  radial-gradient(rgba(19, 48, 173, 0.4) 1.7000000000000002px, transparent 1.7000000000000002px), radial-gradient(rgba(19, 48, 173, 0.4) 1.7000000000000002px, rgba(104, 104, 104, 0.4) 1.7000000000000002px);
+  background-size: 68px 68px;
+  background-position: 0 0,34px 34px;
+
+  font-family: "Fira Sans", sans-serif;
 }
