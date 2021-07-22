@@ -2,10 +2,9 @@
 
 body {
 
-  background-color: rgba(104, 104, 104, 0.4);
-  background-image:  radial-gradient(rgba(19, 48, 173, 0.4) 1.7000000000000002px, transparent 1.7000000000000002px), radial-gradient(rgba(19, 48, 173, 0.4) 1.7000000000000002px, rgba(104, 104, 104, 0.4) 1.7000000000000002px);
-  background-size: 68px 68px;
-  background-position: 0 0,34px 34px;
+  background-color: #ffffff;
+  background: radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0.8) 80%, transparent 80%, transparent) 22.5px 22.5px, linear-gradient(rgba(168, 168, 168, 0.8) 1.8px, transparent 1.8px) 0 -0.9px, linear-gradient(90deg, rgba(168, 168, 168, 0.8) 1.8px, #ffffff 1.8px) -0.9px 0;
+  background-size: 45px 45px, 45px 45px, 22.5px 22.5px, 22.5px 22.5px;
 
   font-family: "Fira Sans", sans-serif;
 }
