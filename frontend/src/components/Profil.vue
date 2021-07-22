@@ -29,6 +29,7 @@
                     </div>
                 </div>
 
+
                 <div class="col-lg-7 col-md-7 col-sm-12">
                     <h5>Email</h5>
                     <p>{{ $root.user.email }}</p>

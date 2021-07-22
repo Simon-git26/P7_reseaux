@@ -1,29 +1,37 @@
 <template>
   <div>
-    <p v-if="password && email">
-      <strong>Le mot de passe ne correspond pas à l'email.</strong><br />
-      <strong>Vous disposez de {{ count }} essaie</strong>
-    </p>
+    <div class="bg-white col-md-4 border border-secondary rounded mb-3" v-if="password && email">
+        <strong>Le mot de passe ne correspond pas à l'email.</strong><br />
+        <strong>Vous disposez de {{ count }} essaie</strong>
+    </div>
 
-    <form @submit.prevent="handlelogsubmit">
-      <h3>Connexion</h3>
+    <div class="card">
+      <form @submit.prevent="handlelogsubmit">
+        <div class="card-header text-center">
+          <h3>Connexion</h3>
+        </div>
 
-      <div class="form-group mt-3">
-        <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
-        <input type="email" class="form-control" v-model="email" placeholder="Email" required />
-      </div>
+        <div class="card-body">
+          <div class="form-group">
+            <em class="fas fa-envelope"></em><label class="ml-2" for="email">Email *</label>
+            <input type="email" id="email" class="form-control" v-model="email" placeholder="Email" required />
+          </div>
 
-      <div class="form-group">
-        <em class="fas fa-lock"></em><label class="ml-2">Mot de Passe *</label>
-        <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
-      </div>
+          <div class="form-group">
+            <em class="fas fa-lock"></em><label class="ml-2" for="password">Mot de Passe *</label>
+            <input type="password" id="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
+          </div>
 
-      <button class="mb-2 btn btn-primary btn-block" v-on:click="countLimit" :disabled="btnlogdisable">
-        Connexion
-      </button>
+          <button class="mb-2 btn btn-primary btn-block" v-on:click="countLimit" :disabled="btnlogdisable">
+            Connexion
+          </button>
+        </div>
 
-      <p>Vous n'avez pas de compte ?<a href="Register">Inscrivez vous !</a></p>
-    </form>
+        <div class="card-footer text-muted">
+          <p>Vous n'avez pas de compte ?<a href="Register">Inscrivez vous !</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
