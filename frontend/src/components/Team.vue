@@ -1,21 +1,28 @@
 <template>
     <div>
         <h3 class="d-flex justify-content-center mb-3">Nos Groupomaniens !</h3>
-        <div class="mx-auto col-12 col-md-6">
-            <div v-for="user in users" :key="user.id" :user="user" class="d-flex border border-secondary rounded-3 mb-3 container-fluid">
-                    <div class="col-4" v-if="user.imagePath">
+
+        <div v-for="user in users" :key="user.id" :user="user" class="d-flex mb-3 container-fluid">
+            <div class="card mb-3 mx-auto col-12 col-md-6 border border-dark">
+                <div class="row g-0">
+
+                    <div class="col-md-4" v-if="user.imagePath">
                         <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                     </div>
-                    <div class="col-8 d-flex align-items-center justify-content-between breakword text-break">
-                        <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
-                        <div v-if="isConnected && $root.user.isAdmin == true">
-                            <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
-                                <em class="fas fa-trash-alt"></em>
-                            </button>
+
+                    <div class="col-md-8 d-flex align-items-center text-center">
+                        <div class="card-body d-flex justify-content-between breakword text-break">
+                            <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
+                            <div v-if="isConnected && $root.user.isAdmin == true">
+                                <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
+                                    <em class="fas fa-trash-alt"></em>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
+        </div>      
     </div>
 </template>
 

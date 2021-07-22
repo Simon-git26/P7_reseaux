@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!!$root.user" class="card container-fluid w-100 text-center">
+    <div v-if="!!$root.user" class="card container-fluid pt-2 pb-2 w-100 text-center">
         <p v-if="passwordError">
             <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
