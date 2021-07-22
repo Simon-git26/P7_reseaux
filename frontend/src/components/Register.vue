@@ -1,54 +1,63 @@
 <template>
   <div>
-    <p v-if="password !== passwordConfirm && password && passwordConfirm">
+    <div class="bg-white col-md-4 border border-secondary rounded mb-3" v-if="password !== passwordConfirm && password && passwordConfirm">
       <strong
         >Veuillez renseignez le bon mot de passe:<br />
         * Majuscule obligatoire *<br />
         * Chiffres Obligatoires *<br />
         * Caractères spcéciaux Obligatoire *
       </strong>
-    </p>
+    </div>
 
-    <form @submit.prevent="handleSubmit">
-      <h3>Inscription</h3>
 
-      <div class="form-group">
-        <em class="fas fa-user-tie"></em><label class="ml-2">Votre Nom *</label>
-        <input type="text" class="form-control validate" v-model="firstName" placeholder="Votre nom" required pattern="[A-z]{2,20}"/>
-      </div>
-
-      <div class="form-group">
-        <em class="fas fa-user-tie"></em><label class="ml-2">Votre Prenom *</label>
-        <input type="text" class="form-control validate" v-model="lastName" placeholder="Votre Prenom" required pattern="[A-z]{2,20}" />
-      </div>
-
-      <div class="form-group input-group mb-3 d-flex flex-column">
-        <div>
-          <em class="fas fa-envelope"></em><label class="ml-2">Email *</label>
+    <div class="card">
+      <form @submit.prevent="handleSubmit">
+        <div class="card-header">
+          <h3>Inscription</h3>
         </div>
 
-        <div class="d-flex">
-          <input type="text" class="form-control validate" placeholder="Email" v-model="email" aria-label="Recipient's username" aria-describedby="basic-addon2" required pattern="[A-z, 0-9]{2,20}">
-          <span class="input-group-text" id="basic-addon2">@groupomania.com</span>
+        <div class="card-body">
+          <div class="form-group">
+            <em class="fas fa-user-tie"></em><label class="ml-2" for="firstName">Votre Nom *</label>
+            <input type="text" id="firstName" class="form-control validate" v-model="firstName" placeholder="Votre nom" required pattern="[A-z]{2,20}"/>
+          </div>
+
+          <div class="form-group">
+            <em class="fas fa-user-tie"></em><label class="ml-2" for="lastName">Votre Prenom *</label>
+            <input type="text" id="lastName" class="form-control validate" v-model="lastName" placeholder="Votre Prenom" required pattern="[A-z]{2,20}" />
+          </div>
+
+          <div class="form-group input-group mb-3 d-flex flex-column">
+            <div>
+              <em class="fas fa-envelope"></em><label class="ml-2" for="email">Email *</label>
+            </div>
+
+            <div class="d-flex">
+              <input type="text" id="email" class="form-control validate" placeholder="Email" v-model="email" aria-label="Recipient's username" aria-describedby="basic-addon2" required pattern="[A-z, 0-9]{2,20}">
+              <span class="input-group-text" id="basic-addon2">@groupomania.com</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <em class="fas fa-lock"></em><label class="ml-2" for="password">Mot de Passe *</label>
+            <input type="password" id="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
+          </div>
+
+          <div class="form-group">
+            <em class="fas fa-lock"></em><label class="ml-2" for="passwordConfirm">Confirmez le Mot de Passe *</label>
+            <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" required />
+          </div>
+
+          <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">
+            Inscription !
+          </button>
         </div>
-      </div>
 
-      <div class="form-group">
-        <em class="fas fa-lock"></em><label class="ml-2">Mot de Passe *</label>
-        <input type="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
-      </div>
-
-      <div class="form-group">
-        <em class="fas fa-lock"></em><label class="ml-2">Confirmez le Mot de Passe *</label>
-        <input type="password" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" required />
-      </div>
-
-      <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">
-        Inscription !
-      </button>
-
-      <p>Vous avez déja un compte ?<a href="Login">Connectez vous !</a></p>
-    </form>
+        <div class="card-footer text-muted">
+          <p>Vous avez déja un compte ?<a href="Login">Connectez vous !</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
