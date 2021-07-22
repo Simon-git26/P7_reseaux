@@ -1,15 +1,19 @@
 <template>
-    <div class="mt-5 border border-secondary p-3 rounded">
-        <h4 class="mb-3">Crée une publication...</h4>
-        
-        <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
-        
-        <div class="mt-3 col-12">
-            <div class="row">
-                <div class="border-secondary col-12 col-md-8">
-                    <input class="form-control" type="file" id="image" @change="onFileSelected">
+    <div class="mt-5">
+        <div class="card text-center border border-secondary">
+            <div class="card-body">
+                <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
+            </div>
+
+            <div class="card-footer text-muted">
+                 <div class="mt-3 col-12">
+                    <div class="row">
+                        <div class="border-secondary col-12 col-md-8">
+                            <input class="form-control" type="file" id="image" @change="onFileSelected">
+                        </div>
+                        <button class="col-12 col-md-4 btn btn-primary" v-on:click="publish">Publier !</button>
+                    </div>
                 </div>
-                <button class="col-12 col-md-4 btn btn-primary" v-on:click="publish">Publier !</button>
             </div>
         </div>
     </div>

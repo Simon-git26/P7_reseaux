@@ -3,7 +3,6 @@
         <h3 class="d-flex justify-content-center mb-3">Nos Groupomaniens !</h3>
         <div class="mx-auto col-12 col-md-6">
             <div v-for="user in users" :key="user.id" :user="user" class="d-flex border border-secondary rounded-3 mb-3 container-fluid">
-                <div class="row">
                     <div class="col-4" v-if="user.imagePath">
                         <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                     </div>
@@ -15,8 +14,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                
             </div>
         </div>
     </div>

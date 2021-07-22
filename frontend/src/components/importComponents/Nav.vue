@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light justify-content-between border-bottom border-danger">
+  <nav class="navbar bg-white navbar-expand-lg bg-light justify-content-between border-bottom border-danger">
     <div class="container-fluid">
       <a class="nav-link" href="/"><img src="@/assets/iconegroupo.png" alt="#"/></a>
       <ul class="navbar-nav">

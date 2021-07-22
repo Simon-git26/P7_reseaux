@@ -4,7 +4,7 @@
     <notifications />
 
     <div class="d-flex justify-content-center flex-column text-left">
-      <div class="bg-white border border-dark border-2 rounded-3 mt-5 pt-5 pb-5 pl-3 pr-3 mx-auto container-lg">
+      <div class="mt-5 pt-3 pb-4 mx-auto container-lg">
         <router-view />
       </div>
     </div>

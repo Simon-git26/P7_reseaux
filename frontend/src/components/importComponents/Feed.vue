@@ -3,7 +3,6 @@
         <Publish />
 
         <div class="mt-4">
-            <h3>Fil d'Actualitée</h3>
             <Publication v-for="post in posts" :key="post.id" :post="post" />
         </div>
         
