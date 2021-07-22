@@ -1,7 +1,7 @@
 <template>
     <div class="mt-5">
         <div class="card text-center border border-secondary">
-            <div class="card-body">
+            <div class="card-body pt-4">
                 <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Crée votre publication..."></textarea>
             </div>
 
