@@ -38,7 +38,7 @@
 
                         <form @submit.prevent="commentPost()">
                             <div class="input-group mb-2">
-                                <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecrivez un commentaire" />
+                                <input class="form-control border border-success" ref="inputRef" type="text" v-model="comment" placeholder="Ecriver un commentaire" />
                                 <button class="btn btn-outline-success" @click.prevent="commentPost()" type="button">Envoyer</button>
                             </div>
                         </form>

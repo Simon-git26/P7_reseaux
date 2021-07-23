@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div class="bg-white col-md-4 border border-secondary rounded mb-3" v-if="password && email">
-        <strong>Le mot de passe ne correspond pas à l'email.</strong><br />
-        <strong>Vous disposez de {{ count }} essaie</strong>
-    </div>
-
     <div class="card">
       <form @submit.prevent="handlelogsubmit">
         <div class="card-header text-center">
@@ -22,7 +17,7 @@
             <input type="password" id="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
           </div>
 
-          <button class="mb-2 btn btn-primary btn-block" v-on:click="countLimit" :disabled="btnlogdisable">
+          <button class="mb-2 btn btn-primary btn-block" :disabled="btnlogdisable">
             Connexion
           </button>
         </div>
@@ -45,12 +40,9 @@ export default {
 
   data() {
     return {
-      showErrors: [],
       error: ["error"],
       email: "",
       password: "",
-
-      count: 3,
     };
   },
 
@@ -80,6 +72,7 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+          window.alert("L'email n'est pas correcte ou le mot de passe ne correspond pas à l'email !")
         });
     },
 
@@ -96,10 +89,6 @@ export default {
       if (!this.password) {
         this.error.push("password is required");
       }
-    },
-
-    countLimit() {
-      this.count--;
     },
   },
 

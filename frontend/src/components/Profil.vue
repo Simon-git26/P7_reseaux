@@ -20,7 +20,7 @@
                     
                     <div class=" border-secondary d-flex flex-column">
                         <label for="image">Changer ma photo de profil</label>
-                        <input type="file" id="image" name="image" @change="onFileSelected" />
+                        <input class="form-control" type="file" id="image" name="image" @change="onFileSelected" />
                     </div>
 
                     <div class="mt-3" v-if="selectedFile">

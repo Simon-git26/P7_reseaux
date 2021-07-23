@@ -23,8 +23,8 @@
           </div>
 
           <div class="form-group">
-            <em class="fas fa-user-tie"></em><label class="ml-2" for="lastName">Votre Prenom *</label>
-            <input type="text" id="lastName" class="form-control validate" v-model="lastName" placeholder="Votre Prenom" required pattern="[A-z]{2,20}" />
+            <em class="fas fa-user-tie"></em><label class="ml-2" for="lastName">Votre Prénom *</label>
+            <input type="text" id="lastName" class="form-control validate" v-model="lastName" placeholder="Votre Prénom" required pattern="[A-z]{2,20}" />
           </div>
 
           <div class="form-group input-group mb-3 d-flex flex-column">
@@ -44,8 +44,8 @@
           </div>
 
           <div class="form-group">
-            <em class="fas fa-lock"></em><label class="ml-2" for="passwordConfirm">Confirmez le Mot de Passe *</label>
-            <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" placeholder="Confirmez le Mot de passe" required />
+            <em class="fas fa-lock"></em><label class="ml-2" for="passwordConfirm">Confirmer le Mot de Passe *</label>
+            <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" placeholder="Confirmer le Mot de passe" required />
           </div>
 
           <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">
@@ -161,7 +161,7 @@ export default {
     },
 
     email(value) {
-      this.femail = value;
+      this.email = value;
       this.checkForm();
     },
 
