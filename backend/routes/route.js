@@ -36,6 +36,8 @@ router.get('/users', auth, userCtrl.findAllUsers);
 router.delete('/users/:id/modoDelete', auth, userCtrl.modoDeleteUser);
 
 
+
+
 //------------Route Post---------------
 //Création Publication
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
@@ -43,6 +45,8 @@ router.post('/users/:id/publication', auth, multer, postCtrl.publish);
 router.get('/publications', auth, multer, postCtrl.findAllPosts);
 // Suppression de post par modo
 router.delete('/publications/:id', auth, postCtrl.modoDeletePosts);
+//Récuperation des posts du user connecté
+router.get('/user/:id/publications', auth, postCtrl.getPublications);
 
 
 //-----------Route Comments------------

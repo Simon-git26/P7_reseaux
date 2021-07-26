@@ -43,7 +43,7 @@ exports.findAllPosts = async (req, res, next) => {
 };
 
 
-exports.modoDeletePosts = async (req, res) => {
+exports.modoDeletePosts = async (req, res, next) => {
     const post = await db.post.findOne({
         where: {
             id: req.params.id,
@@ -52,9 +52,21 @@ exports.modoDeletePosts = async (req, res) => {
 
     await db.comments.destroy({ where: {PostId: post.id}})
     
-    
-
     post.destroy()
     .then((deletePost) => res.status(200).json({ deletePost }))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+// Recuperer les posts du user connecté dans Profil *
+exports.getPublications = async (req, res) => {
+
+    db.post.findAll({
+        where: {
+            UserId: req.params.id
+        }
+    })
+    
+    .then((userPosts) => res.status(200).json( userPosts ))
     .catch(error => res.status(400).json({ error }));
 };

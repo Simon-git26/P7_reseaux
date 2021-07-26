@@ -84,6 +84,10 @@
                 </div>
             </div>
         </div>
+
+
+
+
     </div>
 </template>
 
@@ -92,6 +96,7 @@
 <script>
     import axios from '../api'
     import Bus from '../bus'
+    
 
     export default {
         name: 'Profil',
@@ -105,8 +110,7 @@
                 passwordError: false,
                 selectedFile: null,
                 imagePath: "",
-                showChangeDescription: false
-
+                showChangeDescription: false,
             }
         },
 
@@ -223,7 +227,35 @@
                     console.log(err);
                 });
             },
+
+            //recuperer tous mes posts du user connecté
+            fetchPosts () {
+                axios.get('/user/' + this.$root.user.id + '/publications', {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                    console.log(response);
+                    
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            }
         },
+
+        mounted() {
+            //setTimeout(() => {
+            //    this.fetchPosts();
+            //}, 1000)
+
+            Bus.$on('connected', () => this.fetchPosts());
+           
+            
+        }
     }
 </script>
 

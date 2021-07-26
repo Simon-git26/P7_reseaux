@@ -187,7 +187,7 @@ exports.findAllUsers = async (req, res, next) => {
 
 
 //Supprimer un User par le Modos
-exports.modoDeleteUser = async (req, res) => {
+exports.modoDeleteUser = async (req, res, next) => {
     const user = await db.user.findOne({
         where: {
             id: req.params.id
