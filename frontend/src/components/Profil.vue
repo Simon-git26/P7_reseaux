@@ -84,11 +84,15 @@
                 </div>
             </div>
         </div>
-        <div class="mt-5">
-            <h3>Vos Publications</h3>
-            <ProfilPublications v-for="post in posts" :key="post.id" :post="post" />
+        <div class="mt-4">
+            <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showPublications = true">
+                Voir mes Publications
+            </button>
+
+            <div v-if="showPublications">
+                <ProfilPublications v-for="post in posts" :key="post.id" :post="post" />
+            </div>
         </div>
-        
     </div>
 </template>
 
@@ -117,7 +121,8 @@
                 selectedFile: null,
                 imagePath: "",
                 showChangeDescription: false,
-                posts: []
+                posts: [],
+                showPublications: false
             }
         },
 
