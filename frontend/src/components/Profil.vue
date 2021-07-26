@@ -56,8 +56,8 @@
             </div>
         </div>
 
-        <div class="pl-3 pr-3 pt-4 pb-2">
-            <div class="row d-flex justify-content-between">
+        <div class="pl-3 pr-3 pt-4 pb-2 border-bottom border-secondary">
+            <div class="row d-flex justify-content-between mb-4">
                 <div class="col-lg-6 col-md-5 col-sm-12">
                     <h5>Changer votre Mot de passe</h5>
                     <form class="d-flex flex-column">
@@ -84,10 +84,11 @@
                 </div>
             </div>
         </div>
-
-
-
-
+        <div class="mt-5">
+            <h3>Vos Publications</h3>
+            <ProfilPublications v-for="post in posts" :key="post.id" :post="post" />
+        </div>
+        
     </div>
 </template>
 
@@ -96,10 +97,15 @@
 <script>
     import axios from '../api'
     import Bus from '../bus'
+    import ProfilPublications from './importComponents/ProfilPublications.vue'
     
 
     export default {
         name: 'Profil',
+
+        components: {
+            ProfilPublications
+        },
 
         data() {
             return {
@@ -111,10 +117,13 @@
                 selectedFile: null,
                 imagePath: "",
                 showChangeDescription: false,
+                posts: []
             }
         },
 
+
         methods: {
+
             onFileSelected(event) {
                 this.selectedFile = event.target.files[0];
                 console.log('selectedFile', this.selectedFile);
@@ -238,6 +247,7 @@
 
                 .then((response) => {
                     console.log(response);
+                    this.posts = response.data;
                     
                 })
 
@@ -248,13 +258,7 @@
         },
 
         mounted() {
-            //setTimeout(() => {
-            //    this.fetchPosts();
-            //}, 1000)
-
             Bus.$on('connected', () => this.fetchPosts());
-           
-            
         }
     }
 </script>

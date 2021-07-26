@@ -1,0 +1,98 @@
+<template>
+    <div class="d-flex mb-3 mt-3 container-fluid">
+        <div class="card col-md-12 pr-0 pl-0 mb-4 border border-secondary">
+            <div class="text-center">
+                <div class="card-header">
+                    <div class="d-flex">
+                        <div class="col-md-2" v-if="post.User.imagePath">
+                            <img :src="`http://localhost:3000/${post.User.imagePath}`" class="img-fluid rounded-circle w-50" alt="#">
+                        </div>
+
+                        <div class="col-md-10 d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-text">Posté par {{ post.User.firstName }} {{ post.User.lastName }}</h5>
+                                <p class="card-text"><small class="text-muted">Le {{ formatDate(post.createdAt) }}</small></p> 
+                            </div>
+                            
+                            <div v-if="isConnected && post.UserId === $root.user.id">
+                                <button class="btn-danger btn-sm ml-2" @click.prevent="deletePost(post)">
+                                    <em class="fas fa-trash-alt"></em>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body d-flex">
+                    <div v-if="post.imagePath" class="col-md-3">
+                        <img :src="`http://localhost:3000/${post.imagePath}`" class="img-fluid rounded-start" alt="#">
+                    </div>
+                    <div class="col-md-9 p-5">
+                        <p class="card-text">{{ post.post }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<script>
+    import axios from '../../api'
+
+    export default {
+        name: 'ProfilPublications',
+
+        props: {
+            post: {
+                type: Object,
+                required: true
+            },
+        },
+
+        computed: {
+            isConnected: function() {
+                return this.$root.user;
+            }
+        },
+
+        methods: {
+            formatDate(date) {
+                return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
+            },
+
+            deletePost(post) {
+                const valid = window.confirm('Supprimer ce post ?')
+
+                if (!valid) {
+                    window.alert('Suppression annulée !');
+                } else {
+                    const data = {
+                        post: post,
+                    }
+
+                    const url = 'users/publications/' + post.id
+
+                    axios.delete(url, data, {
+                        headers: {
+                        "Content-Type": "application/json",
+                        },
+                    })
+
+                    .then((response) => {
+                        this.$parent.fetchPosts()
+
+                        this.$notify({
+                            title: 'Notifications',
+                            text: 'Post Supprimé !'
+                        })
+                    })
+
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                }
+            }
+        }
+    }
+</script>

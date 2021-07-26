@@ -47,6 +47,8 @@ router.get('/publications', auth, multer, postCtrl.findAllPosts);
 router.delete('/publications/:id', auth, postCtrl.modoDeletePosts);
 //Récuperation des posts du user connecté
 router.get('/user/:id/publications', auth, postCtrl.getPublications);
+// Suppression de post Profil*
+router.delete('/users/publications/:id', auth, postCtrl.deletePosts);
 
 
 //-----------Route Comments------------
