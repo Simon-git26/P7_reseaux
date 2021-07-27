@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card shadow-lg">
       <form @submit.prevent="handlelogsubmit">
         <div class="card-header text-center">
           <h3>Connexion</h3>

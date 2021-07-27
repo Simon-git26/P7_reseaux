@@ -1,6 +1,6 @@
 <template>
     <div class="mt-5">
-        <div class="card text-center border border-secondary">
+        <div class="card shadow-lg text-center border border-secondary">
             <div class="card-body pt-4">
                 <textarea class="rounded w-100" id="createPost" v-model="post" type="text" placeholder="Créer votre publication..."></textarea>
             </div>

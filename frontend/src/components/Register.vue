@@ -10,44 +10,55 @@
     </div>
 
 
-    <div class="card">
+    <div class="card shadow-lg">
       <form @submit.prevent="handleSubmit">
         <div class="card-header">
           <h3>Inscription</h3>
         </div>
 
         <div class="card-body">
-          <div class="form-group">
-            <em class="fas fa-user-tie"></em><label class="ml-2" for="firstName">Votre Nom *</label>
-            <input type="text" id="firstName" class="form-control validate" v-model="firstName" placeholder="Votre nom" required pattern="[A-z]{2,20}"/>
+          <div class="row">
+            <div class="col col-md-6">
+              <div class="form-group">
+                <em class="fas fa-user-tie"></em><label class="ml-2" for="firstName">Votre Nom *</label>
+                <input type="text" id="firstName" class="form-control validate" v-model="firstName" placeholder="Votre nom" required pattern="[A-z\-]{2,40}"/>
+              </div>
+            </div>
+            <div class="col col-md-6">
+              <div class="form-group">
+                <em class="fas fa-user-tie"></em><label class="ml-2" for="lastName">Votre Prénom *</label>
+                <input type="text" id="lastName" class="form-control validate" v-model="lastName" placeholder="Votre Prénom" required pattern="[A-z\-]{2,40}" />
+              </div>
+            </div>
           </div>
-
-          <div class="form-group">
-            <em class="fas fa-user-tie"></em><label class="ml-2" for="lastName">Votre Prénom *</label>
-            <input type="text" id="lastName" class="form-control validate" v-model="lastName" placeholder="Votre Prénom" required pattern="[A-z]{2,20}" />
-          </div>
-
-          <div class="form-group input-group mb-3 d-flex flex-column">
+      
+          <div class="form-group mb-3 d-flex flex-column">
             <div>
               <em class="fas fa-envelope"></em><label class="ml-2" for="email">Email *</label>
             </div>
 
-            <div class="d-flex">
+            <div class="input-group">
               <input type="text" id="email" class="form-control validate" placeholder="Email" v-model="email" aria-label="Recipient's username" aria-describedby="basic-addon2" required pattern="[A-z, 0-9]{2,20}">
               <span class="input-group-text" id="basic-addon2">@groupomania.com</span>
             </div>
           </div>
 
-          <div class="form-group">
-            <em class="fas fa-lock"></em><label class="ml-2" for="password">Mot de Passe *</label>
-            <input type="password" id="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
-          </div>
+          <div class="row">
+            <div class="col col-md-6">
+              <div class="form-group">
+                <em class="fas fa-lock"></em><label class="ml-2" for="password">Mot de Passe *</label>
+                <input type="password" id="password" class="form-control" v-model="password" placeholder="Mot de passe" required />
+              </div>
+            </div>
 
-          <div class="form-group">
-            <em class="fas fa-lock"></em><label class="ml-2" for="passwordConfirm">Confirmer le Mot de Passe *</label>
-            <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" placeholder="Confirmer le Mot de passe" required />
+            <div class="col col-md-6">
+              <div class="form-group">
+                <em class="fas fa-lock"></em><label class="ml-2" for="passwordConfirm">Confirmer le Mot de Passe *</label>
+                <input type="password" id="passwordConfirm" class="form-control" v-model="passwordConfirm" placeholder="Confirmer le Mot de passe" required />
+              </div>
+            </div>
           </div>
-
+          
           <button class="mb-2 btn btn-primary btn-block" :disabled="btndisable">
             Inscription !
           </button>

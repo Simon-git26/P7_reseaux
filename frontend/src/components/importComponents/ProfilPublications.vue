@@ -15,7 +15,7 @@
                             </div>
                             
                             <div v-if="isConnected && post.UserId === $root.user.id || isConnected && $root.user.isAdmin == true">
-                                <button class="btn-danger btn-sm ml-2" @click.prevent="deletePost(post)">
+                                <button class="btn btn-danger btn-sm ml-2" @click.prevent="deletePost(post)">
                                     <em class="fas fa-trash-alt"></em>
                                 </button>
                             </div>

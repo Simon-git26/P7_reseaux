@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!!$root.user" class="card container-fluid pt-2 pb-2 w-100 text-center">
+    <div v-if="!!$root.user" class="card shadow-lg container-fluid pt-2 pb-2 w-100 text-center">
         <p v-if="passwordError">
             <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
@@ -39,7 +39,7 @@
                         <p class="breakword text-break">{{ $root.user.description }}</p>
                     </div>
 
-                    <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showChangeDescription = true, description = $root.user.description">
+                    <button class="btn btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showChangeDescription = true, description = $root.user.description">
                         Changer ma description
                     </button>
                     
@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="mt-4">
-            <button class="btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showPublications = true">
+            <button class="btn btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showPublications = true">
                 Voir mes Publications
             </button>
 

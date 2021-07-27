@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800");
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
-
-  background-color: rgba(255, 255, 255, 1);
-  background-size: 29px 29px;
-  background-image: repeating-linear-gradient(45deg, rgba(66, 135, 245, 0.4) 0, rgba(66, 135, 245, 0.4) 2.9000000000000004px, #ffffff 0, #ffffff 50%);
-
+  background-color: #e5e5f7;
+  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, rgba(229, 229, 247, 0.1) 8px ), repeating-linear-gradient( rgba(229, 229, 247, 0.1), rgba(252, 32, 0, 0.1) );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 
   font-family: "Fira Sans", sans-serif;
 }

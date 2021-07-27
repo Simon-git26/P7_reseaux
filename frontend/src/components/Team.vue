@@ -3,7 +3,7 @@
         <h3 class="d-flex justify-content-center mb-3">Nos Groupomaniens !</h3>
 
         <div v-for="user in users" :key="user.id" :user="user" class="d-flex mb-3 container-fluid">
-            <div class="card mb-3 mx-auto col-12 col-md-6 border border-dark">
+            <div class="card shadow-lg mb-3 mx-auto col-12 col-md-6 border border-dark">
                 <div class="row g-0">
 
                     <div class="col-md-4" v-if="user.imagePath">
@@ -18,7 +18,7 @@
                             </div>
                             
                             <div v-if="isConnected && $root.user.isAdmin == true">
-                                <button class="btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
+                                <button class="btn btn-danger btn-sm ml-2" @click.prevent="modoDeleteUser(user)">
                                     <em class="fas fa-trash-alt"></em>
                                 </button>
                             </div>

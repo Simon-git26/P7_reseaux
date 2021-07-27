@@ -3,7 +3,7 @@
     <div class="modal-mask">
         <div class="modal-wrapper">
             <div class="modal-dialog-scrollable mx-auto" role="document">
-                <div class="modal-content">
+                <div class="modal-content shadow-lg">
 
                     <div class="modal-header">
                         <h5 class="d-flex justify-content-center">Commentaires</h5>
@@ -61,14 +61,14 @@
 
                                         <div class="d-flex">
                                             <div v-if="isConnected && comment.UserId === $root.user.id">
-                                                <button class="btn-primary btn-sm" @click.prevent="seeInput = comment.id, commentChange = comment.comment">
+                                                <button class="btn btn-primary btn-sm" @click.prevent="seeInput = comment.id, commentChange = comment.comment">
                                                     Modifier
                                                 </button>
                                             </div>
 
                                             <div v-if="isConnected && comment.UserId === $root.user.id || $root.user.isAdmin == true">
                                                 <div>
-                                                    <button class="btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
+                                                    <button class="btn btn-danger btn-sm ml-2" @click.prevent="deleteComment(comment)">
                                                         Supprimer
                                                     </button>
                                                 </div>
