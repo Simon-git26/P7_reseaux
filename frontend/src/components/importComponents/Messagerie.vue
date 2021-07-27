@@ -6,17 +6,16 @@
                 <div class="modal-content shadow-lg">
 
                     <div class="modal-header">
-                        <h5 class="d-flex justify-content-center">Conversations</h5>
+                        <h5 class="d-flex justify-content-center">Conversations avec </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" v-on:click="$emit('modalMessage')">&times;</span>
                         </button>
                     </div>
 
                 <div class="modal-body">
-                    <div class="mt-3">
-                        <h4>Un super contenu</h4>
-                        <p>Contenu de mon modal</p>
-                    </div>
+                    
+                    <textarea class="w-100 mt-4" id="conversation" type="text" placeholder="Envoyé votre message" name="monTexte"></textarea><!--v-model="messagerie"-->
+                    
                 </div>
 
                 <div class="modal-footer">
@@ -32,15 +31,9 @@
 
 
 <script>
+
     export default {
         name: 'Messagerie',
-
-        data() {
-            return {
-
-            }
-        },
-        
     }
 
 </script>

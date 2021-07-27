@@ -19,6 +19,12 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.STRING(30),
                 allowNull: false,
                 defaultValue: "",
+            },
+
+            contenu: {
+                type: Sequelize.STRING(400),
+                allowNull: false,
+                defaultValue: "",
             }
 
         },
