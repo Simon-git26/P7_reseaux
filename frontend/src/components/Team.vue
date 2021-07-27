@@ -15,7 +15,7 @@
                             <div>   
                                 <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
 
-                                <button class="btn btn-primary" @click.prevent="showConversation = true">{{ user.firstName }} {{ user.lastName }}</button>
+                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true">{{ user.firstName }} {{ user.lastName }}</button>
 
                                 <a href="mailto:">{{ user.email }}</a>
                             </div>
