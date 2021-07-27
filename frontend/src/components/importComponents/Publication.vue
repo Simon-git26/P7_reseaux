@@ -24,7 +24,7 @@
             <p class="card-text p-5">{{ post.post }}</p>
         </div>
 
-        <div class="card-footer text-muted">
+        <div class="card-footer text-muted" v-if="!$attrs.showBtn">
             <button class="btn btn-primary btn-sm mt-2 col-md-5 mx-auto" :class="{'btn-primary': post.Comments.length > 0, 'btn-secondary': post.Comments.length === 0}" 
                     @click.prevent="showModal = true">
                 Afficher les commentaires <em class="far fa-comment-alt"></em> ({{ post.Comments.length }}) 
@@ -70,7 +70,7 @@
         computed: {
             isConnected: function() {
                 return this.$root.user;
-            }
+            },
         },
 
         methods: {

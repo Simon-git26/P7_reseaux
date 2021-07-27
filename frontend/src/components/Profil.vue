@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!!$root.user" class="card shadow-lg container-fluid pt-2 pb-2 w-100 text-center">
+    <div v-if="!!$root.user" class="card shadow-lg container-fluid pt-2 pb-2 w-100">
         <p v-if="passwordError">
             <strong>Le mot de passe ne correspond pas.</strong><br />
         </p>
@@ -7,7 +7,7 @@
             <h3 class="border-bottom border-secondary color" v-if="$root.user">{{ $root.user.firstName }} {{ $root.user.lastName }}<span class="ml-1" v-if="$root.user.isAdmin == true"><em class="fs-5 fas fa-star"></em></span></h3>
         </div>
 
-        <div class="card-body border-bottom border-secondary pl-3 pr-3 pt-4 pb-4">
+        <div class="card-body text-center border-bottom border-secondary pl-3 pr-3 pt-4 pb-4">
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-12 border border-secondary rounded">
                     <h5 class="card-title">Photo de Profil</h5>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="pl-3 pr-3 pt-4 pb-2 border-bottom border-secondary">
+        <div class="pl-3 pr-3 pt-4 pb-2 border-bottom border-secondary text-center">
             <div class="row d-flex justify-content-between mb-4">
                 <div class="col-lg-6 col-md-5 col-sm-12">
                     <h5>Changer votre Mot de passe</h5>
@@ -84,13 +84,13 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
-            <button class="btn btn-primary btn-sm mt-2 col-md-5 mx-auto" @click.prevent="showPublications = true">
+        <div class="mt-5">
+            <button class="d-flex justify-content-center btn btn-primary btn-sm col-md-5 mb-3 mx-auto" @click.prevent="showPublications = true">
                 Voir mes Publications
             </button>
 
             <div v-if="showPublications">
-                <ProfilPublications v-for="post in posts" :key="post.id" :post="post" />
+                <Publication v-for="post in posts" :key="post.id" :post="post" showBtn = false />
             </div>
         </div>
     </div>
@@ -101,14 +101,14 @@
 <script>
     import axios from '../api'
     import Bus from '../bus'
-    import ProfilPublications from './importComponents/ProfilPublications.vue'
+    import Publication from './importComponents/Publication.vue'
     
 
     export default {
         name: 'Profil',
 
         components: {
-            ProfilPublications
+            Publication
         },
 
         data() {
@@ -122,7 +122,8 @@
                 imagePath: "",
                 showChangeDescription: false,
                 posts: [],
-                showPublications: false
+                showPublications: false,
+                showBtn: false
             }
         },
 
