@@ -14,6 +14,9 @@
                         <div class="card-body d-flex justify-content-between breakword text-break">
                             <div>   
                                 <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
+
+                                <button class="btn btn-primary" @click.prevent="showConversation = true">{{ user.firstName }} {{ user.lastName }}</button>
+
                                 <a href="mailto:">{{ user.email }}</a>
                             </div>
                             
@@ -26,21 +29,32 @@
                     </div>
                 </div>
             </div>
-        </div>      
+        </div>
+
+        <div v-if="showConversation">
+            <Messagerie v-on:modalMessage="showConversation = false" />
+        </div>
+        
     </div>
 </template>
 
 
 <script>
     import axios from '../api'
+    import Messagerie from './importComponents/Messagerie.vue'
 
     export default {
 
         name: 'Team',
 
+        components: {
+            Messagerie
+        },
+
         data() {
             return {
                 users: [],
+                showConversation: false
             }
         },
 
