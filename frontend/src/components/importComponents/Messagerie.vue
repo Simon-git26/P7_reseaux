@@ -13,9 +13,12 @@
                     </div>
 
                 <div class="modal-body">
-                    
-                    <textarea class="w-100 mt-4" id="conversation" type="text" placeholder="Envoyé votre message" name="monTexte"></textarea><!--v-model="messagerie"-->
-                    
+
+                    <div>
+                        <ul id="messages"></ul>
+                        <input type="text" class="style border border-dark rounded" id="envoyer" /> <button class="send rounded btn btn-sm btn-primary">Envoyer</button>
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -37,3 +40,14 @@
     }
 
 </script>
+
+
+<style scoped>
+    .style {
+        width: 90%;
+    }
+
+    .send {
+        width: 9%;
+    }
+</style>

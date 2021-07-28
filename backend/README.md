@@ -15,6 +15,7 @@ Installation de morgan : npm install morgan
 -Instalation de password Validator : npm install password-validator 
 -Installation de helmet: npm install helmet
 -Installation d emulter : npm install --save multer
+-Installation de socket.io: npm install socket.io
 
 
 Documentation:
