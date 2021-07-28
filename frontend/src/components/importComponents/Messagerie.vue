@@ -6,7 +6,7 @@
                 <div class="modal-content shadow-lg">
 
                     <div class="modal-header">
-                        <h5 class="d-flex justify-content-center">Conversations avec </h5>
+                        <h5 class="d-flex justify-content-center">Conversations entre {{ $root.user.firstName }} {{ $root.user.lastName }} et </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" v-on:click="$emit('modalMessage')">&times;</span>
                         </button>
@@ -16,7 +16,7 @@
 
                     <div>
                         <ul id="messages"></ul>
-                        <input type="text" class="style border border-dark rounded" id="envoyer" /> <button class="send rounded btn btn-sm btn-primary">Envoyer</button>
+                        <!--v-model="message"--><input  type="text" class="style border border-dark rounded" id="envoyer" /> <button class="send rounded btn btn-sm btn-primary">Envoyer</button>
                     </div>
 
                 </div>
@@ -37,6 +37,13 @@
 
     export default {
         name: 'Messagerie',
+
+        props: {
+            users: {
+                type: Array,
+                required: true
+            },
+        },
     }
 
 </script>

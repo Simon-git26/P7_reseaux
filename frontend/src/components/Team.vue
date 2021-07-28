@@ -15,7 +15,7 @@
                             <div>   
                                 <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
 
-                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true">{{ user.firstName }} {{ user.lastName }}</button><!--v-on="findUsers()"-->
+                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true">{{ user.firstName }} {{ user.lastName }}</button>
 
                                 <a href="mailto:">{{ user.email }}</a>
                             </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div v-if="showConversation">
-            <Messagerie v-on:modalMessage="showConversation = false" />
+            <Messagerie v-on:modalMessage="showConversation = false" :users="users" />
         </div>
         
     </div>
@@ -119,22 +119,6 @@
                     });
                 }  
             },
-
-            //findUsers() {
-//
-            //    const url = '/users/' + this.user.id
-//
-            //    axios.get(url,)
-//
-//
-            //    .then((response) => {
-            //        console.log(response);
-            //        this.users = response.data;
-            //    })
-            //    .catch((err) => {
-            //    console.log(err);
-            //    });
-            //}
-        }//
+        }
     }
 </script>
