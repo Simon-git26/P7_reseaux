@@ -16,7 +16,7 @@
 
                     <div>
                         <ul id="messages"></ul>
-                        <!--v-model="message"--><input  type="text" class="style border border-dark rounded" id="envoyer" /> <button class="send rounded btn btn-sm btn-primary">Envoyer</button>
+                        <input  type="text" v-model="message" class="style border border-dark rounded" id="envoyer" /> <button v-on:click="createMessage()" class="send rounded btn btn-sm btn-primary">Envoyer</button>
                     </div>
 
                 </div>
@@ -34,6 +34,7 @@
 
 
 <script>
+    import axios from '../../api'
 
     export default {
         name: 'Messagerie',
@@ -44,6 +45,38 @@
                 required: true
             },
         },
+
+        data() {
+            return {
+                message: null
+            }
+        },
+
+        methods: {
+            // Crée un message avec le user qui est connecté
+            createMessage() {
+                const data = {
+                    message: this.message
+                }
+                console.log('message', data);
+
+                const url = '/users/' + this.$root.user.id + '/messagerie';
+
+                axios
+                    .post(url, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+
+                .then((createdMessage) => {
+                    console.log(createdMessage)
+                })
+                .catch((err) => {
+                console.log(err);
+                });
+            }
+        }
     }
 
 </script>

@@ -7,6 +7,7 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 const postCtrl = require('../controllers/post');
 const commentCtrl = require('../controllers/comment');
+const messageCtrl = require('../controllers/messagerie');
 
 
 //Importer le middleware auth 
@@ -36,8 +37,6 @@ router.get('/users', auth, userCtrl.findAllUsers);
 router.delete('/users/:id/modoDelete', auth, userCtrl.modoDeleteUser);
 
 
-
-
 //------------Route Post---------------
 //Création Publication
 router.post('/users/:id/publication', auth, multer, postCtrl.publish);
@@ -54,10 +53,13 @@ router.delete('/users/publications/:id', auth, postCtrl.deletePosts);
 //-----------Route Comments------------
 //Création commentaires
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
-
 //Modifier un commentaire
 router.put('/comments/:id', auth, commentCtrl.changeComment)
 //Supprimer un commentaire
 router.delete('/comments/:id/delete', auth, commentCtrl.deleteComment)
+
+
+// Route Messagerie
+router.post('/users/:id/messagerie', auth,  messageCtrl.createMessage)
 
 module.exports = router;

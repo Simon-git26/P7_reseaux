@@ -9,18 +9,6 @@ module.exports = (sequelize, Sequelize) => {
                 allowNull: false,
             },
 
-            expediteur: {
-                type: Sequelize.STRING(30),
-                allowNull: false,
-                defaultValue: "",
-            },
-
-            destinataire: {
-                type: Sequelize.STRING(30),
-                allowNull: false,
-                defaultValue: "",
-            },
-
             contenu: {
                 type: Sequelize.STRING(400),
                 allowNull: false,

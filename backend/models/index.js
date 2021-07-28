@@ -30,9 +30,14 @@ db.comments.belongsTo(db.user);
 //Relier ma table Users a ma table Post
 db.user.hasMany(db.post);
 db.post.belongsTo(db.user);
+
 //Relier ma table Users a ma table Messagerie
 db.user.hasMany(db.messagerie);
-db.messagerie.belongsTo(db.user);
+db.messagerie.belongsTo(db.user, { as: 'expediteur' });
+
+//Relier ma table Users a ma table Messagerie
+db.user.hasMany(db.messagerie);
+db.messagerie.belongsTo(db.user, { as: 'destinataire' });
 
 
 //Exporter db avec les infos dedans
