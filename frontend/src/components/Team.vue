@@ -15,7 +15,7 @@
                             <div>   
                                 <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
 
-                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true, findUserMessagerie()">{{ user.firstName }} {{ user.lastName }}</button>
+                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true, findUserMessagerie(user)">{{ user.firstName }} {{ user.lastName }}</button>
 
                                 <a href="mailto:">{{ user.email }}</a>
                             </div>
@@ -32,7 +32,7 @@
         </div>
 
         <div v-if="showConversation">
-            <Messagerie v-on:modalMessage="showConversation = false" :users="users" />
+            <Messagerie v-on:modalMessage="showConversation = false" :user="user" />
         </div>
         
     </div>
@@ -54,6 +54,7 @@
         data() {
             return {
                 users: [],
+                user: {},
                 showConversation: false
             }
         },
@@ -120,8 +121,28 @@
                 }  
             },
 
-            findUserMessagerie() {
-                
+            findUserMessagerie(user) {
+                const data = {
+                    user: user
+                }
+                console.log('usertucoco', data);
+
+                const url = '/users/' + user.id + '/destinataire';
+
+                axios
+                    .get(url, data, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+
+                .then((findUser) => {
+                    console.log(findUser)
+                    this.user = findUser.data;
+                })
+                .catch((err) => {
+                console.log(err);
+                });
             }
         }
     }

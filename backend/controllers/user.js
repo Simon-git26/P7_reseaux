@@ -202,3 +202,16 @@ exports.modoDeleteUser = async (req, res, next) => {
     .then(() => res.status(200).json({ message: 'Utilisateur supprimé !' }))
     .catch(error => res.status(400).json({ error }));
 };
+
+
+// Trouver un user destinataire pour la messagerie
+exports.findUserMessagerie = async (req, res) => {
+    const user = await  db.user.findOne({
+        where: {
+            id: req.params.id,
+        }
+    })
+
+    .then((findUser) => res.status(200).json( findUser ))
+    .catch(error => res.status(400).json({ error }));
+};

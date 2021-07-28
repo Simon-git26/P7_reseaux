@@ -6,7 +6,7 @@
                 <div class="modal-content shadow-lg">
 
                     <div class="modal-header">
-                        <h5 class="d-flex justify-content-center">Conversations entre {{ $root.user.firstName }} {{ $root.user.lastName }} et </h5>
+                        <h5 class="d-flex justify-content-center">Conversations entre {{ $root.user.firstName }} et {{ user.firstName }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" v-on:click="$emit('modalMessage')">&times;</span>
                         </button>
@@ -40,15 +40,21 @@
         name: 'Messagerie',
 
         props: {
-            users: {
-                type: Array,
+            user: {
+                type: Object,
                 required: true
             },
         },
 
         data() {
             return {
-                message: null
+                message: null,
+            }
+        },
+
+        computed: {
+            isConnected: function() {
+                return this.$root.user;
             }
         },
 
@@ -56,7 +62,8 @@
             // Crée un message avec le user qui est connecté
             createMessage() {
                 const data = {
-                    message: this.message
+                    message: this.message,
+                    user: this.user.id
                 }
                 console.log('message', data);
 
@@ -70,6 +77,7 @@
                 })
 
                 .then((createdMessage) => {
+                    this.message = ""
                     console.log(createdMessage)
                 })
                 .catch((err) => {

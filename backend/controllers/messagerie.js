@@ -6,6 +6,7 @@ const db = require("../models");
 exports.createMessage = async (req, res) => {
     db.messagerie.create({
         expediteurId: req.params.id,
+        destinataireId: req.body.user,
         contenu: req.body.message,
     })
     
