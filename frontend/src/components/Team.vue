@@ -15,7 +15,8 @@
                             <div>   
                                 <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
 
-                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true, findUserMessagerie(user)">{{ user.firstName }} {{ user.lastName }}</button>
+                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary"
+                                @click.prevent="showConversation = true, findUserMessagerie(user), findAllMessages(user)">{{ user.firstName }} {{ user.lastName }}</button>
 
                                 <a href="mailto:">{{ user.email }}</a>
                             </div>
@@ -32,7 +33,7 @@
         </div>
 
         <div v-if="showConversation">
-            <Messagerie v-on:modalMessage="showConversation = false" :user="user" />
+            <Messagerie v-on:modalMessage="showConversation = false" :user="user" :messages="messages" />
         </div>
         
     </div>
@@ -55,7 +56,8 @@
             return {
                 users: [],
                 user: {},
-                showConversation: false
+                showConversation: false,
+                messages: []
             }
         },
 
@@ -125,7 +127,6 @@
                 const data = {
                     user: user
                 }
-                console.log('usertucoco', data);
 
                 const url = '/users/' + user.id + '/destinataire';
 
@@ -143,6 +144,30 @@
                 .catch((err) => {
                 console.log(err);
                 });
+            },
+
+
+            findAllMessages(user) {
+                //recuperer tous les messages avec le meme id → destinataireId + expediteurId
+
+                const url = '/messages?destinataire=' + user.id + '&expediteur=' + this.$root.user.id
+
+                console.log(url)
+
+                axios.get(url, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                })
+
+                .then((response) => {
+                    this.messages = response.data;
+                })
+
+                .catch((err) => {
+                console.log(err);
+                });
+            
             }
         }
     }

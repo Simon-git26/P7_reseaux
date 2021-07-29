@@ -44,6 +44,11 @@
                 type: Object,
                 required: true
             },
+
+            messages: {
+                type: Array,
+                required: true
+            }
         },
 
         data() {
@@ -83,7 +88,7 @@
                 .catch((err) => {
                 console.log(err);
                 });
-            }
+            },
         }
     }
 

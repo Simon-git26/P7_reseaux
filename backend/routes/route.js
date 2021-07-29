@@ -63,5 +63,7 @@ router.delete('/comments/:id/delete', auth, commentCtrl.deleteComment);
 
 // Route Messagerie
 router.post('/users/:id/messagerie', auth,  messageCtrl.createMessage);
+// Récuperation de tous les message avec id → expediteurId + destinataireId
+router.get('/messages', auth,  messageCtrl.findAllMessages);
 
 module.exports = router;
