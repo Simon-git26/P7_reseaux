@@ -10,7 +10,7 @@ module.exports = (sequelize, Sequelize) => {
             },
 
             contenu: {
-                type: Sequelize.STRING(400),
+                type: Sequelize.STRING(250),
                 allowNull: false,
                 defaultValue: "",
             }

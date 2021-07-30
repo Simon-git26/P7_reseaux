@@ -33,7 +33,7 @@
         </div>
 
         <div v-if="showConversation">
-            <Messagerie v-on:modalMessage="showConversation = false" :user="user" :messages="messages" />
+            <Messagerie v-on:modalMessage="showConversation = false" :user="user" :users="users" :messages="messages" />
         </div>
         
     </div>
@@ -43,6 +43,7 @@
 <script>
     import axios from '../api'
     import Messagerie from './importComponents/Messagerie.vue'
+    import Bus from '../bus'
 
     export default {
 
@@ -62,7 +63,8 @@
         },
 
         mounted() {
-            this.fetchUsers()
+            this.fetchUsers();
+            Bus.$on('refreshMessages', () => this.findAllMessages());
         },
 
         computed: {

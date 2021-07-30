@@ -5,23 +5,6 @@ const http = require('http');
 const app = require('./app');
 
 
-
-// Importer mon socket.io
-const io = require('socket.io')(http);
-
-
-io.on('connection', function(socket) {
-  console.log('Un user est connecté');
-  socket.on('disconnect', function() {
-    console.log('Un user est deconnecté');
-  })
-  socket.on('chat message', function(msg) {
-    console.log('message recu :' + msg);
-  })
-})
-
-
-
 // normalizePort renvoi un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaine
 const normalizePort = val => {
     const port = parseInt(val, 10);
