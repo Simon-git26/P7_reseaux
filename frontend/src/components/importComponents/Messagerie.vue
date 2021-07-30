@@ -13,23 +13,19 @@
                     </div>
 
                 <div class="modal-body">
-
-                    <div>
-                        <div v-for="message in messages" :key="message.id">
-                            <div>
-                                <blockquote class="blockquote fs-5">
-                                    <p class="m-1">{{ message.contenu }}</p>
-                                </blockquote>
-                                
-                                <div class="blockquote-footer">
-                                    Posté par {{ message.expediteur.firstName }} {{ message.expediteur.lastName }}
-                                </div>
-                            </div>  
-                        </div>
-                        
-                        <input  type="text" v-model="message" class="style border border-dark rounded" /> <button v-on:click="createMessage()" class="send rounded btn btn-sm btn-primary">Envoyer</button>
+                    <div v-for="message in messages" :key="message.id">
+                        <div class="border-top border-secondary">
+                            <blockquote class="blockquote fs-5">
+                                <p class="m-1">{{ message.contenu }}</p>
+                            </blockquote>
+                            
+                            <div class="blockquote-footer">
+                                Posté par {{ message.expediteur.firstName }} {{ message.expediteur.lastName }}  Le {{ formatDate(message.createdAt) }}
+                            </div>
+                        </div>  
                     </div>
-
+                    
+                    <input  type="text" v-model="message" class="style border border-dark rounded" /> <button v-on:click="createMessage()" class="send rounded btn btn-sm btn-primary">Envoyer</button>
                 </div>
 
                 <div class="modal-footer">
@@ -46,7 +42,7 @@
 
 <script>
     import axios from '../../api'
-    import Bus from '../../bus'
+    //import Bus from '../../bus'
 
     export default {
         name: 'Messagerie',
@@ -81,13 +77,18 @@
         },
 
         methods: {
+
+            formatDate(date) {
+                return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'full', timeStyle: 'short'}).format(new Date(date));
+            },
+
+
             // Crée un message avec le user qui est connecté
             createMessage() {
                 const data = {
                     message: this.message,
                     user: this.user.id
                 }
-                console.log('message', data);
 
                 const url = '/users/' + this.$root.user.id + '/messagerie';
 
@@ -100,7 +101,8 @@
 
                 .then(() => {
                     this.message = ""
-                    Bus.$emit('refreshMessages');
+                    //Bus.$emit('refreshMessages');
+                    window.location.reload();
                 })
                 .catch((err) => {
                 console.log(err);

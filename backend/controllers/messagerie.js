@@ -11,7 +11,6 @@ exports.createMessage = async (req, res, next) => {
     })
     
     .then((createdMessage) => {
-        console.log(createdMessage);
         res.status(201).json(createdMessage)
     })
     
@@ -22,7 +21,6 @@ exports.createMessage = async (req, res, next) => {
 
 // Recuperation des messages pour id → expediteurId + destinataireId
 exports.findAllMessages = async (req, res) => {
-    console.log(req.query)
 
     db.messagerie.findAll({
         where: {
@@ -31,11 +29,9 @@ exports.findAllMessages = async (req, res) => {
             destinataireId: [ req.query.destinataire, req.query.expediteur ]
             
         },
-
         order: [
             ['createdAt', 'ASC'],
         ],
-
         include: { all: true }
     })
 

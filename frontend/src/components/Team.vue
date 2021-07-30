@@ -6,19 +6,17 @@
             <div class="card shadow-lg mb-3 mx-auto col-12 col-md-6 border border-dark">
                 <div class="row g-0">
 
-                    <div class="col-md-4" v-if="user.imagePath">
+                    <div class="col-md-4 d-flex justify-content-center" v-if="user.imagePath">
                         <img :src="`http://localhost:3000/${user.imagePath}`" class="img-fluid rounded-circle w-75" alt="#">
                     </div>
 
                     <div class="col-md-8 d-flex align-items-center text-center">
                         <div class="card-body d-flex justify-content-between breakword text-break">
-                            <div>   
-                                <h5>{{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></h5>
+                            <div class="d-flex flex-column">
+                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true, findUserMessagerie(user), findAllMessages(user)">
+                                {{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></button>
 
-                                <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary"
-                                @click.prevent="showConversation = true, findUserMessagerie(user), findAllMessages(user)">{{ user.firstName }} {{ user.lastName }}</button>
-
-                                <a href="mailto:">{{ user.email }}</a>
+                                <a href="mailto:" class="text-dark">{{ user.email }}</a>
                             </div>
                             
                             <div v-if="isConnected && $root.user.isAdmin == true">
@@ -64,7 +62,7 @@
 
         mounted() {
             this.fetchUsers();
-            Bus.$on('refreshMessages', () => this.findAllMessages());
+            //Bus.$on('refreshMessages', () => this.findAllMessages());
         },
 
         computed: {
