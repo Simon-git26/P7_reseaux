@@ -32,10 +32,8 @@ db.user.hasMany(db.post);
 db.post.belongsTo(db.user);
 
 //Relier ma table Users a ma table Messagerie
-db.user.hasMany(db.messagerie);
 db.messagerie.belongsTo(db.user, { as: 'expediteur' });
 //Relier ma table Users a ma table Messagerie
-db.user.hasMany(db.messagerie);
 db.messagerie.belongsTo(db.user, { as: 'destinataire' });
 
 
