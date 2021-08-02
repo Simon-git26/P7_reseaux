@@ -14,7 +14,9 @@
                         <div class="card-body d-flex justify-content-between breakword text-break">
                             <div class="d-flex flex-column">
                                 <button v-if="isConnected && $root.user.id != user.id" class="btn btn-primary" @click.prevent="showConversation = true, findUserMessagerie(user), findAllMessages(user)">
-                                {{ user.firstName }} {{ user.lastName }}<span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span></button>
+                                {{ user.firstName }} {{ user.lastName }}
+                                <span class="ml-1" v-if="isConnected && user.isAdmin == true"><em class="fs-6 fas fa-star"></em></span>
+                                </button>
 
                                 <a href="mailto:" class="text-dark">{{ user.email }}</a>
                             </div>
@@ -31,7 +33,7 @@
         </div>
 
         <div v-if="showConversation">
-            <Messagerie v-on:modalMessage="showConversation = false" :user="user" :users="users" :messages="messages" />
+            <Messagerie v-on:modalMessage="showConversation = false" :user="user" :messages="messages" />
         </div>
         
     </div>
@@ -62,7 +64,6 @@
 
         mounted() {
             this.fetchUsers();
-            //Bus.$on('refreshMessages', () => this.findAllMessages());
         },
 
         computed: {

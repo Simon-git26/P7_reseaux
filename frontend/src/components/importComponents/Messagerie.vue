@@ -25,7 +25,7 @@
                         </div>  
                     </div>
                     
-                    <input  type="text" v-model="message" class="style border border-dark rounded" /> <button v-on:click="createMessage()" class="send rounded btn btn-sm btn-primary">Envoyer</button>
+                    <input  type="text" v-model="message" ref="inputRefMessage" class="style border border-dark rounded" /> <button v-on:click="createMessage()" class="send rounded btn btn-sm btn-primary">Envoyer</button>
                 </div>
 
                 <div class="modal-footer">
@@ -42,7 +42,6 @@
 
 <script>
     import axios from '../../api'
-    //import Bus from '../../bus'
 
     export default {
         name: 'Messagerie',
@@ -50,11 +49,6 @@
         props: {
             user: {
                 type: Object,
-                required: true
-            },
-
-            users: {
-                type: Array,
                 required: true
             },
 
@@ -70,10 +64,10 @@
             }
         },
 
-        computed: {
-            isConnected: function() {
-                return this.$root.user;
-            }
+        mounted() {
+            this.$nextTick(() => {
+                this.$refs.inputRefMessage.focus()
+            })
         },
 
         methods: {
@@ -101,7 +95,6 @@
 
                 .then(() => {
                     this.message = ""
-                    //Bus.$emit('refreshMessages');
                     window.location.reload();
                 })
                 .catch((err) => {
