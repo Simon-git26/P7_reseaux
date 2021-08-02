@@ -17,9 +17,23 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `PostId` (`PostId`),
   KEY `UserId` (`UserId`),
-  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `comments_ibfk_5` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_6` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE `messagerie` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `contenu` varchar(250) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `expediteurId` int DEFAULT NULL,
+  `destinataireId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `expediteurId` (`expediteurId`),
+  KEY `destinataireId` (`destinataireId`),
+  CONSTRAINT `messagerie_ibfk_1` FOREIGN KEY (`expediteurId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `messagerie_ibfk_2` FOREIGN KEY (`destinataireId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -46,11 +60,14 @@ CREATE TABLE `users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `email_2` (`email`)
+  UNIQUE KEY `email_2` (`email`),
+  UNIQUE KEY `email_3` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 INSERT INTO `comments` (`id`, `comment`, `createdAt`, `updatedAt`, `PostId`, `UserId`) VALUES
 (1, 'Génial ! :)', '2021-08-02 16:10:12', '2021-08-02 16:10:12', 1, 2);
+
+
 
 
 INSERT INTO `posts` (`id`, `post`, `imagePath`, `createdAt`, `updatedAt`, `UserId`) VALUES
