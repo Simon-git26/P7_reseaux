@@ -18,8 +18,8 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `PostId` (`PostId`),
   KEY `UserId` (`UserId`),
-  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+  CONSTRAINT `comments_ibfk_7` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_8` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 DROP TABLE IF EXISTS `messagerie`;
@@ -64,7 +64,9 @@ CREATE TABLE `users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `email_2` (`email`)
+  UNIQUE KEY `email_2` (`email`),
+  UNIQUE KEY `email_3` (`email`),
+  UNIQUE KEY `email_4` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 INSERT INTO `comments` (`id`, `comment`, `createdAt`, `updatedAt`, `PostId`, `UserId`) VALUES
