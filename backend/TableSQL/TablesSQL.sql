@@ -7,6 +7,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int NOT NULL AUTO_INCREMENT,
   `comment` varchar(250) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -17,6 +18,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `PostId` (`PostId`),
   KEY `UserId` (`UserId`),
+<<<<<<< HEAD:backend/TableSQL/TableSQL.sql
 <<<<<<< HEAD
   CONSTRAINT `comments_ibfk_10` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `comments_ibfk_9` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -26,7 +28,13 @@ CREATE TABLE `comments` (
   CONSTRAINT `comments_ibfk_27` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `comments_ibfk_28` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+=======
+  CONSTRAINT `comments_ibfk_3` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_4` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+>>>>>>> Messagerie:backend/TableSQL/TablesSQL.sql
 
+DROP TABLE IF EXISTS `messagerie`;
 CREATE TABLE `messagerie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `contenu` varchar(250) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -41,7 +49,11 @@ CREATE TABLE `messagerie` (
   CONSTRAINT `messagerie_ibfk_2` FOREIGN KEY (`destinataireId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
+<<<<<<< HEAD:backend/TableSQL/TableSQL.sql
 >>>>>>> Messagerie
+=======
+DROP TABLE IF EXISTS `posts`;
+>>>>>>> Messagerie:backend/TableSQL/TablesSQL.sql
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -52,12 +64,17 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+<<<<<<< HEAD:backend/TableSQL/TableSQL.sql
 <<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 =======
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 >>>>>>> Messagerie
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+>>>>>>> Messagerie:backend/TableSQL/TablesSQL.sql
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `firstName` varchar(30) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -75,6 +92,7 @@ CREATE TABLE `users` (
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
+<<<<<<< HEAD:backend/TableSQL/TableSQL.sql
   UNIQUE KEY `email_2` (`email`),
   UNIQUE KEY `email_3` (`email`),
   UNIQUE KEY `email_4` (`email`),
@@ -93,9 +111,13 @@ CREATE TABLE `users` (
   UNIQUE KEY `email_14` (`email`)
 >>>>>>> Messagerie
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+=======
+  UNIQUE KEY `email_2` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+>>>>>>> Messagerie:backend/TableSQL/TablesSQL.sql
 
 INSERT INTO `comments` (`id`, `comment`, `createdAt`, `updatedAt`, `PostId`, `UserId`) VALUES
-(1, 'Génial ! :)', '2021-08-02 16:10:12', '2021-08-02 16:10:12', 1, 2);
+(2, 'Génial ! :)', '2021-08-03 10:14:16', '2021-08-03 10:14:22', 2, 2);
 
 
 <<<<<<< HEAD
@@ -104,17 +126,16 @@ INSERT INTO `comments` (`id`, `comment`, `createdAt`, `updatedAt`, `PostId`, `Us
 
 >>>>>>> Messagerie
 INSERT INTO `posts` (`id`, `post`, `imagePath`, `createdAt`, `updatedAt`, `UserId`) VALUES
-(1, 'De super vacanses à la mer !', '', '2021-08-02 16:09:47', '2021-08-02 16:09:47', 1);
+(2, 'Super mes vacanses à la mer !', '', '2021-08-03 10:13:34', '2021-08-03 10:13:34', 1);
 INSERT INTO `posts` (`id`, `post`, `imagePath`, `createdAt`, `updatedAt`, `UserId`) VALUES
-(2, 'Et tout le monde, vous avez vu Prison Break ?', '', '2021-08-02 16:11:47', '2021-08-02 16:11:47', 2);
+(3, 'Et tout le monde, qui à vu la Prison Break ? :)', '', '2021-08-03 10:14:44', '2021-08-03 10:14:44', 2);
 
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `description`, `imagePath`, `isAdmin`, `createdAt`, `updatedAt`) VALUES
-(1, 'Fernando', 'Sucre', 'fernando@groupomania.com', '$2b$10$hokOqGCO9O3ubNAF7bWjQOd/XRlHRd34r8D/h7/WFnfWlz/dMMmgS', '', '', 0, '2021-08-02 16:07:32', '2021-08-02 16:07:32');
+(1, 'Fernando', 'Sucre', 'fernando@groupomania.com', '$2b$10$yJkmLCQSgRBoW.r4fo7lNevu9XKBlA2izUn8z7aJ0xfNV3.EuNYDK', '', '', 0, '2021-08-03 10:12:40', '2021-08-03 10:12:40');
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `description`, `imagePath`, `isAdmin`, `createdAt`, `updatedAt`) VALUES
-(2, 'Scofield', 'Michael', 'michael@groupomania.com', '$2b$10$9Ztkk9QyoPxr4ZzVpmddkuejp00fdxk1B2uRjEGj76RZjR.1QOO9C', '', '', 0, '2021-08-02 16:08:29', '2021-08-02 16:12:22');
-INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `description`, `imagePath`, `isAdmin`, `createdAt`, `updatedAt`) VALUES
-(3, 'Lincoln', 'Burrows', 'superburrows@groupomania.com', '$2b$10$AZyB7XGeoc2lvrMfZNBsY.8h6GmmFMoxfghPb77GRkO9rb2Eb37SW', '', '', 0, '2021-08-02 16:09:08', '2021-08-02 16:09:08');
+(2, 'Scofield', 'Michael', 'michael@groupomania.com', '$2b$10$cht5yYbGyaYNhpBLVKOH3uUJmE3A8rUg4UaHoTUFsFCQJ.5G79xYS', '', '', 0, '2021-08-03 10:14:04', '2021-08-03 10:15:05');
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
