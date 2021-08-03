@@ -30,7 +30,7 @@ const userRoutes = require('./routes/route');
 
 //Importer le fichier models et ajouter les modifs sur la table users
 const db = require("./models");
-db.sequelize.sync({ alter: true });
+db.sequelize.sync({ alter : true });
 
 //Vérifier que la connection s'effectue
 const verification = async function () {
