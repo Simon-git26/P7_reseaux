@@ -7,6 +7,7 @@ const router = express.Router();
 const userCtrl = require('../controllers/user');
 const postCtrl = require('../controllers/post');
 const commentCtrl = require('../controllers/comment');
+const messageCtrl = require('../controllers/messagerie');
 
 
 //Importer le middleware auth 
@@ -34,8 +35,8 @@ router.post('/users/:id/picture', auth, multer, userCtrl.savePicture);
 router.get('/users', auth, userCtrl.findAllUsers);
 // Delete un user par le Modo
 router.delete('/users/:id/modoDelete', auth, userCtrl.modoDeleteUser);
-
-
+// Trouver un user comme destinataire pour messagerie
+router.get('/users/:id/destinataire', auth,  userCtrl.findUserMessagerie);
 
 
 //------------Route Post---------------
@@ -54,10 +55,15 @@ router.delete('/users/publications/:id', auth, postCtrl.deletePosts);
 //-----------Route Comments------------
 //Création commentaires
 router.post('/posts/:id/comment', auth, commentCtrl.postComment);
-
 //Modifier un commentaire
-router.put('/comments/:id', auth, commentCtrl.changeComment)
+router.put('/comments/:id', auth, commentCtrl.changeComment);
 //Supprimer un commentaire
-router.delete('/comments/:id/delete', auth, commentCtrl.deleteComment)
+router.delete('/comments/:id/delete', auth, commentCtrl.deleteComment);
+
+
+// Route Messagerie
+router.post('/users/:id/messagerie', auth,  messageCtrl.createMessage);
+// Récuperation de tous les message avec id → expediteurId + destinataireId
+router.get('/messages', auth,  messageCtrl.findAllMessages);
 
 module.exports = router;

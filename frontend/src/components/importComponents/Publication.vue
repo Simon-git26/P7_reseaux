@@ -36,6 +36,7 @@
         <div v-if="showModal">
             <ModalComments :post="post" v-on:modal="showModal = false" />
         </div>
+        
     </div>
 </template>
 

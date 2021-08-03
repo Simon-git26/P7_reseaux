@@ -17,6 +17,7 @@ db.sequelize = sequelize;
 db.user = require('./User')(sequelize, Sequelize);
 db.comments = require('./Comments')(sequelize, Sequelize);
 db.post = require('./Post')(sequelize, Sequelize);
+db.messagerie = require('./Messagerie')(sequelize, Sequelize);
 
 
 //------------------Création des clé étrangère----------------------
@@ -29,6 +30,11 @@ db.comments.belongsTo(db.user);
 //Relier ma table Users a ma table Post
 db.user.hasMany(db.post);
 db.post.belongsTo(db.user);
+
+//Relier ma table Users a ma table Messagerie
+db.messagerie.belongsTo(db.user, { as: 'expediteur' });
+//Relier ma table Users a ma table Messagerie
+db.messagerie.belongsTo(db.user, { as: 'destinataire' });
 
 
 //Exporter db avec les infos dedans

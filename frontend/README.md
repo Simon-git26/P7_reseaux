@@ -20,7 +20,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 
-
 Documentation:
 Vue.js → doc: https://vuejs.org/v2/guide/
 

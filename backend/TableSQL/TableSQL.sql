@@ -17,10 +17,31 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `PostId` (`PostId`),
   KEY `UserId` (`UserId`),
+<<<<<<< HEAD
   CONSTRAINT `comments_ibfk_10` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `comments_ibfk_9` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
+=======
+  CONSTRAINT `comments_ibfk_27` FOREIGN KEY (`PostId`) REFERENCES `posts` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `comments_ibfk_28` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+CREATE TABLE `messagerie` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `contenu` varchar(250) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `expediteurId` int DEFAULT NULL,
+  `destinataireId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `expediteurId` (`expediteurId`),
+  KEY `destinataireId` (`destinataireId`),
+  CONSTRAINT `messagerie_ibfk_1` FOREIGN KEY (`expediteurId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `messagerie_ibfk_2` FOREIGN KEY (`destinataireId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+
+>>>>>>> Messagerie
 CREATE TABLE `posts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `post` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -31,13 +52,21 @@ CREATE TABLE `posts` (
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
+>>>>>>> Messagerie
 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `firstName` varchar(30) COLLATE utf8_bin NOT NULL DEFAULT '',
   `lastName` varchar(30) COLLATE utf8_bin NOT NULL DEFAULT '',
+<<<<<<< HEAD
   `email` varchar(124) COLLATE utf8_bin NOT NULL DEFAULT '',
+=======
+  `email` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+>>>>>>> Messagerie
   `password` varchar(124) COLLATE utf8_bin NOT NULL DEFAULT '',
   `description` varchar(124) COLLATE utf8_bin DEFAULT '',
   `imagePath` varchar(250) COLLATE utf8_bin NOT NULL DEFAULT '',
@@ -49,13 +78,31 @@ CREATE TABLE `users` (
   UNIQUE KEY `email_2` (`email`),
   UNIQUE KEY `email_3` (`email`),
   UNIQUE KEY `email_4` (`email`),
+<<<<<<< HEAD
   UNIQUE KEY `email_5` (`email`)
+=======
+  UNIQUE KEY `email_5` (`email`),
+  UNIQUE KEY `email_6` (`email`),
+  UNIQUE KEY `email_7` (`email`),
+  UNIQUE KEY `email_8` (`email`),
+  UNIQUE KEY `email_9` (`email`),
+  UNIQUE KEY `email_10` (`email`),
+  UNIQUE KEY `email_11` (`email`),
+  UNIQUE KEY `email_12` (`email`),
+  UNIQUE KEY `email_13` (`email`),
+  UNIQUE KEY `email_14` (`email`)
+>>>>>>> Messagerie
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin;
 
 INSERT INTO `comments` (`id`, `comment`, `createdAt`, `updatedAt`, `PostId`, `UserId`) VALUES
 (1, 'Génial ! :)', '2021-08-02 16:10:12', '2021-08-02 16:10:12', 1, 2);
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Messagerie
 INSERT INTO `posts` (`id`, `post`, `imagePath`, `createdAt`, `updatedAt`, `UserId`) VALUES
 (1, 'De super vacanses à la mer !', '', '2021-08-02 16:09:47', '2021-08-02 16:09:47', 1);
 INSERT INTO `posts` (`id`, `post`, `imagePath`, `createdAt`, `updatedAt`, `UserId`) VALUES
